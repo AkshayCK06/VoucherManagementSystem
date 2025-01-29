@@ -1,0 +1,1064 @@
+2025-01-27 09:54:21.844 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 09:54:21.875 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 09:54:22.056 INFO [restartedMain] [org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:252)] - The Class-Path manifest attribute in C:\Users\Renuka\.m2\repository\com\oracle\database\jdbc\ojdbc11\21.9.0.0\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/Renuka/.m2/repository/com/oracle/database/jdbc/ojdbc11/21.9.0.0/oraclepki.jar
+2025-01-27 09:54:22.058 INFO [restartedMain] [org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:252)] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-01-27 09:54:22.059 INFO [restartedMain] [org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:252)] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-01-27 09:54:22.926 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8736 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 09:54:22.938 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 09:54:23.065 INFO [restartedMain] [org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:252)] - The Class-Path manifest attribute in C:\Users\Renuka\.m2\repository\com\oracle\database\jdbc\ojdbc11\21.9.0.0\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/Renuka/.m2/repository/com/oracle/database/jdbc/ojdbc11/21.9.0.0/oraclepki.jar
+2025-01-27 09:54:23.067 INFO [restartedMain] [org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:252)] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-01-27 09:54:23.068 INFO [restartedMain] [org.springframework.boot.logging.DeferredLog.logTo(DeferredLog.java:252)] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-01-27 09:54:24.326 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 09:54:24.354 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 09:54:24.358 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 09:54:24.359 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 09:54:24.440 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 09:54:24.447 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 2380 ms
+2025-01-27 09:54:25.101 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 09:54:25.128 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 09:54:25.136 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 09:54:25.138 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 09:54:25.236 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 09:54:25.239 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 2166 ms
+2025-01-27 09:54:26.151 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 09:54:26.266 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 09:54:26.316 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 09:54:26.361 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 5.023 seconds (process running for 6.434)
+2025-01-27 09:54:26.387 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-1 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 09:54:26.388 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-1 - Starting...
+2025-01-27 09:54:26.638 WARN [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:62)] - Unable to start LiveReload server
+2025-01-27 09:54:26.749 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 09:54:26.848 WARN [restartedMain] [org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:635)] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-01-27 09:54:26.883 INFO [restartedMain] [org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger.logMessage(ConditionEvaluationReportLogger.java:82)] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-27 09:54:26.925 ERROR [restartedMain] [org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter.report(LoggingFailureAnalysisReporter.java:40)] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-01-27 09:54:27.175 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@24c7e1f3
+2025-01-27 09:54:27.180 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-1 - Start completed.
+2025-01-27 09:54:32.405 INFO [http-nio-8080-exec-1] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27 09:54:32.405 INFO [http-nio-8080-exec-1] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:532)] - Initializing Servlet 'dispatcherServlet'
+2025-01-27 09:54:32.407 INFO [http-nio-8080-exec-1] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:554)] - Completed initialization in 2 ms
+2025-01-27 09:54:32.428 INFO [http-nio-8080-exec-1] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:36)] - `url::::::::`/wvms/voucher/redeem
+2025-01-27 09:54:32.429 INFO [http-nio-8080-exec-1] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:43)] - `header::`Basic d3Ztczp3dm1z
+2025-01-27 09:54:32.429 INFO [http-nio-8080-exec-1] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:49)] - :::::::::::::::::true
+2025-01-27 09:54:32.430 INFO [http-nio-8080-exec-1] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:50)] - :::::::::::::::::::::true
+2025-01-27 09:54:32.431 INFO [http-nio-8080-exec-1] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:60)] - User 'wvms' successfully authenticated for endpoint '/wvms/voucher/redeem'.
+2025-01-27 09:54:32.521 INFO [http-nio-8080-exec-1] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:70)] - ::::::::::::::Received VoucherRedeemRequest:::::::::::::
+2025-01-27 09:54:32.522 INFO [http-nio-8080-exec-1] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:71)] - ::::::::::::::::::::::request:::::::::::::::::::::::::::VoucherRedeemRequest{voucherFlag='2', msisdn='5645764529', voucherNo='530030319635'}
+2025-01-27 09:54:32.522 INFO [http-nio-8080-exec-1] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:79)] - Received request with content type: JSON
+2025-01-27 09:54:32.522 INFO [http-nio-8080-exec-1] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:20)] - :::::::::::getTransactionId::::::::::
+2025-01-27 09:54:32.575 INFO [http-nio-8080-exec-1] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:26)] - ::::::transactionId::::::::1995112502735706
+2025-01-27 09:54:32.575 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.parseRequest(VoucherRedeemptionService.java:190)] - :::::::::::parseRequest:::::::::::::::::::
+2025-01-27 09:54:32.575 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.validateData(VoucherRedeemptionService.java:217)] - :::::::::::validateData:::::::::::::::::::
+2025-01-27 09:54:32.576 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:149)] - ::::::::::migrationFlag::::::::::1
+2025-01-27 09:54:32.577 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:588)] - ::::::::::::::getData::::::::::::::::
+2025-01-27 09:54:32.577 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:589)] - :::::::::::::query to fetch details based on voucher flag:::::::::::::::::::SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)
+2025-01-27 09:54:34.514 WARN [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:652)] - Voucher is genrated but not active
+2025-01-27 09:54:34.515 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:278)] - :::::::::::manageCustomerMast:::::::::::::::::::
+2025-01-27 09:54:34.520 INFO [http-nio-8080-exec-1] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:39)] - :::::::::stringToHash:::::::
+2025-01-27 09:54:34.521 INFO [http-nio-8080-exec-1] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:40)] - :::::::::paramString1::::::::evrEvent,101256,evrCause,0,evrReason,0,evrCategory,1,evtType,1::::::::::paramString2:::::::::,
+2025-01-27 09:54:34.522 INFO [http-nio-8080-exec-1] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:46)] - ::::::::::localHashMap::::::::{evrCause=0, evrCategory=1, evtType=1, evrEvent=101256, evrReason=0}
+2025-01-27 09:54:34.523 INFO [http-nio-8080-exec-1] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:39)] - :::::::::stringToHash:::::::
+2025-01-27 09:54:34.523 INFO [http-nio-8080-exec-1] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:40)] - :::::::::paramString1::::::::1,true,2,true::::::::::paramString2:::::::::,
+2025-01-27 09:54:34.524 INFO [http-nio-8080-exec-1] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:46)] - ::::::::::localHashMap::::::::{1=true, 2=true}
+2025-01-27 09:54:34.524 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.getMessageHash(VoucherRedeemptionService.java:559)] - ::::::getMessageHash:::::::::
+2025-01-27 09:54:34.637 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.getMessageHash(VoucherRedeemptionService.java:573)] - ::::::messageHash:::::::::{1005=PreUAT:Your mobile number __MSISDN__ has been deactivated. Please contact customer care for further information. RefId : __TXID__, 1004=Pre UAT:You have reached to maximum number of retries for invalid voucher number. Any further invalid action will result in mobile number deactivation.}
+2025-01-27 09:54:34.639 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:307)] - ::::::fecthing fail count from CUSTOMER_MAST:::::::::SELECT FAIL_COUNT FROM CUSTOMER_MAST WHERE SUBSCRIBER_MSISDN =:msisdn
+2025-01-27 09:54:34.696 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:320)] - ::::::fail count from CUSTOMER_MAST for msisdn:::::::::5645764529::::::::str_fail_count::::2
+2025-01-27 09:54:34.702 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:321)] - ::::str_fail_count:::::2:::::::maxFailCount:::::3::::::multiBlockCallFlag:::::::1
+2025-01-27 09:54:34.703 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:340)] - ::::str_fail_count:::::2:::::::maxFailCount:::::3::::::multiBlockCallFlag:::::::1
+2025-01-27 09:54:34.704 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:432)] - ::::::updating CUSTOMER_MAST::::::::UPDATE CUSTOMER_MAST SET FAIL_COUNT =:failCount, LAST_MOD_DATE = SYSDATE WHERE SUBSCRIBER_MSISDN =:msisdn
+2025-01-27 09:54:34.751 INFO [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:436)] - :::::isRecordsUpdated to CUSTOMER_MAST:::::::true
+2025-01-27 09:54:34.752 ERROR [http-nio-8080-exec-1] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:177)] - Exception in redeemVoucher1007
+2025-01-27 09:56:36.774 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 4 class path changes (0 additions, 0 deletions, 4 modifications)
+2025-01-27 09:56:36.781 INFO [Thread-5] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 09:56:36.783 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 09:56:36.815 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 09:56:36.816 INFO [Thread-5] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 09:56:36.843 INFO [Thread-5] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-1 - Shutdown initiated...
+2025-01-27 09:56:36.854 INFO [Thread-5] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-1 - Shutdown completed.
+2025-01-27 09:56:36.984 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 09:56:36.986 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 09:56:37.292 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 09:56:37.294 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 09:56:37.295 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 09:56:37.296 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 09:56:37.327 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 09:56:37.327 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 337 ms
+2025-01-27 09:56:37.470 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 09:56:37.475 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 09:56:37.487 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 09:56:37.492 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.568 seconds (process running for 137.564)
+2025-01-27 09:56:37.492 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-2 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 09:56:37.494 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-2 - Starting...
+2025-01-27 09:56:37.495 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 09:56:37.665 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-2 - Added connection oracle.jdbc.driver.T4CConnection@4fe30ce8
+2025-01-27 09:56:37.666 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-2 - Start completed.
+2025-01-27 09:56:48.467 INFO [http-nio-8080-exec-2] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27 09:56:48.468 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:532)] - Initializing Servlet 'dispatcherServlet'
+2025-01-27 09:56:48.470 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:554)] - Completed initialization in 2 ms
+2025-01-27 09:56:48.474 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:36)] - `url::::::::`/wvms/voucher/redeem
+2025-01-27 09:56:48.475 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:43)] - `header::`Basic d3Ztczp3dm1z
+2025-01-27 09:56:48.477 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:49)] - :::::::::::::::::true
+2025-01-27 09:56:48.478 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:50)] - :::::::::::::::::::::true
+2025-01-27 09:56:48.479 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:60)] - User 'wvms' successfully authenticated for endpoint '/wvms/voucher/redeem'.
+2025-01-27 09:56:48.488 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:70)] - ::::::::::::::Received VoucherRedeemRequest:::::::::::::
+2025-01-27 09:56:48.489 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:71)] - ::::::::::::::::::::::request:::::::::::::::::::::::::::VoucherRedeemRequest{voucherFlag='2', msisdn='5645754529', voucherNo='530030319635'}
+2025-01-27 09:56:48.490 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:79)] - Received request with content type: JSON
+2025-01-27 09:56:48.491 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:20)] - :::::::::::getTransactionId::::::::::
+2025-01-27 09:56:48.501 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:26)] - ::::::transactionId::::::::3595122502735842
+2025-01-27 09:56:48.502 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.parseRequest(VoucherRedeemptionService.java:190)] - :::::::::::parseRequest:::::::::::::::::::
+2025-01-27 09:56:48.503 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.validateData(VoucherRedeemptionService.java:217)] - :::::::::::validateData:::::::::::::::::::
+2025-01-27 09:56:48.504 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:149)] - ::::::::::migrationFlag::::::::::1
+2025-01-27 09:56:48.505 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:588)] - ::::::::::::::getData::::::::::::::::
+2025-01-27 09:56:48.505 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:589)] - :::::::::::::query to fetch details based on voucher flag:::::::::::::::::::SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)
+2025-01-27 09:56:48.969 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:635)] - :::batchId::::1781::::::voucherNumber::::::530030319635:::::::serialNumber:::::::1000:::::::voucherStatus::::::0
+2025-01-27 09:56:48.970 WARN [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:655)] - Voucher is genrated but not active
+2025-01-27 09:56:48.971 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:278)] - :::::::::::manageCustomerMast:::::::::::::::::::
+2025-01-27 09:56:48.971 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:39)] - :::::::::stringToHash:::::::
+2025-01-27 09:56:48.972 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:40)] - :::::::::paramString1::::::::evrEvent,101256,evrCause,0,evrReason,0,evrCategory,1,evtType,1::::::::::paramString2:::::::::,
+2025-01-27 09:56:48.973 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:46)] - ::::::::::localHashMap::::::::{evrCause=0, evrCategory=1, evtType=1, evrEvent=101256, evrReason=0}
+2025-01-27 09:56:48.973 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:39)] - :::::::::stringToHash:::::::
+2025-01-27 09:56:48.974 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:40)] - :::::::::paramString1::::::::1,true,2,true::::::::::paramString2:::::::::,
+2025-01-27 09:56:48.974 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.stringToHash(Generic.java:46)] - ::::::::::localHashMap::::::::{1=true, 2=true}
+2025-01-27 09:56:48.975 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getMessageHash(VoucherRedeemptionService.java:559)] - ::::::getMessageHash:::::::::
+2025-01-27 09:56:48.983 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getMessageHash(VoucherRedeemptionService.java:573)] - ::::::messageHash:::::::::{1005=PreUAT:Your mobile number __MSISDN__ has been deactivated. Please contact customer care for further information. RefId : __TXID__, 1004=Pre UAT:You have reached to maximum number of retries for invalid voucher number. Any further invalid action will result in mobile number deactivation.}
+2025-01-27 09:56:48.985 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:307)] - ::::::fecthing fail count from CUSTOMER_MAST:::::::::SELECT FAIL_COUNT FROM CUSTOMER_MAST WHERE SUBSCRIBER_MSISDN =:msisdn
+2025-01-27 09:56:48.994 WARN [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:314)] - No fail count found for MSISDN: 5645754529
+2025-01-27 09:56:48.995 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:320)] - ::::::fail count from CUSTOMER_MAST for msisdn:::::::::5645754529::::::::str_fail_count::::0
+2025-01-27 09:56:48.997 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:321)] - ::::str_fail_count:::::0:::::::maxFailCount:::::3::::::multiBlockCallFlag:::::::1
+2025-01-27 09:56:48.999 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:451)] - ::::::Inserting CUSTOMER_MAST::::::::INSERT INTO CUSTOMER_MAST(SUBSCRIBER_MSISDN,FAIL_COUNT,LAST_MOD_DATE) VALUES(:msisdn,:str_fail_count,SYSDATE)
+2025-01-27 09:56:49.049 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.manageCustomerMast(VoucherRedeemptionService.java:455)] - :::::isRecordsUpdated to CUSTOMER_MAST:::::::true
+2025-01-27 09:56:49.050 ERROR [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:177)] - Exception in redeemVoucher1007
+2025-01-27 10:01:57.375 INFO [http-nio-8080-exec-5] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:36)] - `url::::::::`/wvms/voucher/redeem
+2025-01-27 10:01:57.376 INFO [http-nio-8080-exec-5] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:43)] - `header::`Basic d3Ztczp3dm1z
+2025-01-27 10:01:57.377 INFO [http-nio-8080-exec-5] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:49)] - :::::::::::::::::true
+2025-01-27 10:01:57.378 INFO [http-nio-8080-exec-5] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:50)] - :::::::::::::::::::::true
+2025-01-27 10:01:57.378 INFO [http-nio-8080-exec-5] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:60)] - User 'wvms' successfully authenticated for endpoint '/wvms/voucher/redeem'.
+2025-01-27 10:01:57.381 INFO [http-nio-8080-exec-5] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:70)] - ::::::::::::::Received VoucherRedeemRequest:::::::::::::
+2025-01-27 10:01:57.383 INFO [http-nio-8080-exec-5] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:71)] - ::::::::::::::::::::::request:::::::::::::::::::::::::::VoucherRedeemRequest{voucherFlag='2', msisdn='5645754529', voucherNo='530399141578'}
+2025-01-27 10:01:57.384 INFO [http-nio-8080-exec-5] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:79)] - Received request with content type: JSON
+2025-01-27 10:01:57.384 INFO [http-nio-8080-exec-5] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:20)] - :::::::::::getTransactionId::::::::::
+2025-01-27 10:01:57.397 INFO [http-nio-8080-exec-5] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:26)] - ::::::transactionId::::::::4495132502736151
+2025-01-27 10:01:57.398 INFO [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.parseRequest(VoucherRedeemptionService.java:190)] - :::::::::::parseRequest:::::::::::::::::::
+2025-01-27 10:01:57.399 INFO [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.validateData(VoucherRedeemptionService.java:217)] - :::::::::::validateData:::::::::::::::::::
+2025-01-27 10:01:57.399 INFO [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:149)] - ::::::::::migrationFlag::::::::::1
+2025-01-27 10:01:57.400 INFO [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:588)] - ::::::::::::::getData::::::::::::::::
+2025-01-27 10:01:57.401 INFO [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:589)] - :::::::::::::query to fetch details based on voucher flag:::::::::::::::::::SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)
+2025-01-27 10:01:57.905 INFO [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:635)] - :::batchId::::1625::::::voucherNumber::::::530399141578:::::::serialNumber:::::::938926:::::::voucherStatus::::::2
+2025-01-27 10:01:57.906 INFO [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:696)] - ::::::::::::::::getCustomerDet::::::::::::::::
+2025-01-27 10:01:57.908 INFO [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:704)] - ::::::query to fetch details from TRANSACTION_MAST:::::::::SELECT SUBSCRIBER_MSISDN FROM TRANSACTION_MAST WHERE VOUCHER_NUMBER =:voucherNumber AND BATCH_NUMBER = :batchId
+2025-01-27 10:01:58.218 ERROR [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:709)] - Error while fetching details from TRANSACTION_MAST:::::: Incorrect result size: expected 1, actual 0
+2025-01-27 10:01:58.219 ERROR [http-nio-8080-exec-5] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:177)] - Exception in redeemVoucher1014
+2025-01-27 10:07:15.405 INFO [http-nio-8080-exec-7] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:36)] - `url::::::::`/wvms/voucher/redeem
+2025-01-27 10:07:15.407 INFO [http-nio-8080-exec-7] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:43)] - `header::`Basic d3Ztczp3dm1z
+2025-01-27 10:07:15.408 INFO [http-nio-8080-exec-7] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:49)] - :::::::::::::::::true
+2025-01-27 10:07:15.408 INFO [http-nio-8080-exec-7] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:50)] - :::::::::::::::::::::true
+2025-01-27 10:07:15.409 INFO [http-nio-8080-exec-7] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:60)] - User 'wvms' successfully authenticated for endpoint '/wvms/voucher/redeem'.
+2025-01-27 10:07:15.414 INFO [http-nio-8080-exec-7] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:70)] - ::::::::::::::Received VoucherRedeemRequest:::::::::::::
+2025-01-27 10:07:15.415 INFO [http-nio-8080-exec-7] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:71)] - ::::::::::::::::::::::request:::::::::::::::::::::::::::VoucherRedeemRequest{voucherFlag='2', msisdn='5645754529', voucherNo='530399141578'}
+2025-01-27 10:07:15.416 INFO [http-nio-8080-exec-7] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:79)] - Received request with content type: JSON
+2025-01-27 10:07:15.417 INFO [http-nio-8080-exec-7] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:20)] - :::::::::::getTransactionId::::::::::
+2025-01-27 10:07:15.430 INFO [http-nio-8080-exec-7] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:26)] - ::::::transactionId::::::::6295142502736469
+2025-01-27 10:07:15.431 INFO [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.parseRequest(VoucherRedeemptionService.java:190)] - :::::::::::parseRequest:::::::::::::::::::
+2025-01-27 10:07:15.431 INFO [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.validateData(VoucherRedeemptionService.java:217)] - :::::::::::validateData:::::::::::::::::::
+2025-01-27 10:07:15.432 INFO [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:149)] - ::::::::::migrationFlag::::::::::1
+2025-01-27 10:07:15.433 INFO [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:588)] - ::::::::::::::getData::::::::::::::::
+2025-01-27 10:07:15.434 INFO [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:589)] - :::::::::::::query to fetch details based on voucher flag:::::::::::::::::::SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)
+2025-01-27 10:07:15.864 INFO [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:635)] - :::batchId::::1625::::::voucherNumber::::::530399141578:::::::serialNumber:::::::938926:::::::voucherStatus::::::2
+2025-01-27 10:07:15.866 INFO [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:696)] - ::::::::::::::::getCustomerDet::::::::::::::::
+2025-01-27 10:07:15.867 INFO [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:704)] - ::::::query to fetch details from TRANSACTION_MAST:::::::::SELECT SUBSCRIBER_MSISDN FROM TRANSACTION_MAST WHERE VOUCHER_NUMBER =:voucherNumber AND BATCH_NUMBER = :batchId
+2025-01-27 10:07:15.879 ERROR [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:709)] - Error while fetching details from TRANSACTION_MAST:::::: Incorrect result size: expected 1, actual 0
+2025-01-27 10:07:15.880 ERROR [http-nio-8080-exec-7] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:177)] - Exception in redeemVoucher1014
+2025-01-27 10:12:52.561 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 10:12:52.565 INFO [Thread-12] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 10:12:52.567 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:12:52.594 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 10:12:52.596 INFO [Thread-12] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:12:52.599 INFO [Thread-12] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-2 - Shutdown initiated...
+2025-01-27 10:12:52.609 INFO [Thread-12] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-2 - Shutdown completed.
+2025-01-27 10:12:52.716 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 10:12:52.717 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 10:12:53.041 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 10:12:53.042 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:12:53.043 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 10:12:53.043 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 10:12:53.079 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 10:12:53.080 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 358 ms
+2025-01-27 10:12:53.226 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 10:12:53.231 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:12:53.248 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 10:12:53.252 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.588 seconds (process running for 1113.325)
+2025-01-27 10:12:53.253 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-3 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 10:12:53.253 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-3 - Starting...
+2025-01-27 10:12:53.254 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 10:12:53.716 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-3 - Added connection oracle.jdbc.driver.T4CConnection@590f7cda
+2025-01-27 10:12:53.716 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-3 - Start completed.
+2025-01-27 10:12:57.517 INFO [http-nio-8080-exec-2] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27 10:12:57.518 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:532)] - Initializing Servlet 'dispatcherServlet'
+2025-01-27 10:12:57.519 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:554)] - Completed initialization in 1 ms
+2025-01-27 10:12:57.522 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:36)] - `url::::::::`/wvms/voucher/redeem
+2025-01-27 10:12:57.522 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:43)] - `header::`Basic d3Ztczp3dm1z
+2025-01-27 10:12:57.523 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:49)] - :::::::::::::::::true
+2025-01-27 10:12:57.523 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:50)] - :::::::::::::::::::::true
+2025-01-27 10:12:57.525 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:60)] - User 'wvms' successfully authenticated for endpoint '/wvms/voucher/redeem'.
+2025-01-27 10:12:57.530 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:70)] - ::::::::::::::Received VoucherRedeemRequest:::::::::::::
+2025-01-27 10:12:57.531 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:71)] - ::::::::::::::::::::::request:::::::::::::::::::::::::::VoucherRedeemRequest{voucherFlag='2', msisdn='5645754529', voucherNo='530399141578'}
+2025-01-27 10:12:57.531 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:79)] - Received request with content type: JSON
+2025-01-27 10:12:57.531 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:20)] - :::::::::::getTransactionId::::::::::
+2025-01-27 10:12:57.558 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:26)] - ::::::transactionId::::::::4495152502736811
+2025-01-27 10:12:57.559 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.parseRequest(VoucherRedeemptionService.java:190)] - :::::::::::parseRequest:::::::::::::::::::
+2025-01-27 10:12:57.559 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.validateData(VoucherRedeemptionService.java:217)] - :::::::::::validateData:::::::::::::::::::
+2025-01-27 10:12:57.559 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:149)] - ::::::::::migrationFlag::::::::::1
+2025-01-27 10:12:57.560 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:588)] - ::::::::::::::getData::::::::::::::::
+2025-01-27 10:12:57.561 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:589)] - :::::::::::::query to fetch details based on voucher flag:::::::::::::::::::SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)
+2025-01-27 10:12:58.705 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:635)] - :::batchId::::1625::::::voucherNumber::::::530399141578:::::::serialNumber:::::::938926:::::::voucherStatus::::::2
+2025-01-27 10:12:58.706 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:697)] - ::::::::::::::::getCustomerDet::::::::::::::::
+2025-01-27 10:12:58.707 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:705)] - ::::::query to fetch details from TRANSACTION_MAST:::::::::SELECT SUBSCRIBER_MSISDN FROM TRANSACTION_MAST WHERE VOUCHER_NUMBER =:voucherNumber AND BATCH_NUMBER = :batchId
+2025-01-27 10:12:58.732 ERROR [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:710)] - Error while fetching details from TRANSACTION_MAST:::::: Incorrect result size: expected 1, actual 0
+2025-01-27 10:12:58.733 ERROR [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:177)] - Exception in redeemVoucher1014
+2025-01-27 10:18:55.377 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 10:18:55.381 INFO [Thread-36] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 10:18:55.383 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:18:55.432 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 10:18:55.434 INFO [Thread-36] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:18:55.440 INFO [Thread-36] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-3 - Shutdown initiated...
+2025-01-27 10:18:55.450 INFO [Thread-36] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-3 - Shutdown completed.
+2025-01-27 10:18:55.540 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 10:18:55.541 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 10:18:55.784 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 10:18:55.785 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:18:55.786 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 10:18:55.787 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 10:18:55.822 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 10:18:55.822 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 278 ms
+2025-01-27 10:18:55.950 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 10:18:55.954 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:18:55.967 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 10:18:55.971 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.468 seconds (process running for 1476.045)
+2025-01-27 10:18:55.973 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-4 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 10:18:55.974 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 10:18:55.974 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-4 - Starting...
+2025-01-27 10:18:56.104 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-4 - Added connection oracle.jdbc.driver.T4CConnection@53eff861
+2025-01-27 10:18:56.105 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-4 - Start completed.
+2025-01-27 10:18:59.300 INFO [http-nio-8080-exec-2] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27 10:18:59.302 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:532)] - Initializing Servlet 'dispatcherServlet'
+2025-01-27 10:18:59.303 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:554)] - Completed initialization in 1 ms
+2025-01-27 10:18:59.305 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:36)] - `url::::::::`/wvms/voucher/redeem
+2025-01-27 10:18:59.306 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:43)] - `header::`Basic d3Ztczp3dm1z
+2025-01-27 10:18:59.306 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:49)] - :::::::::::::::::true
+2025-01-27 10:18:59.307 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:50)] - :::::::::::::::::::::true
+2025-01-27 10:18:59.308 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:60)] - User 'wvms' successfully authenticated for endpoint '/wvms/voucher/redeem'.
+2025-01-27 10:18:59.314 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:70)] - ::::::::::::::Received VoucherRedeemRequest:::::::::::::
+2025-01-27 10:18:59.314 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:71)] - ::::::::::::::::::::::request:::::::::::::::::::::::::::VoucherRedeemRequest{voucherFlag='2', msisdn='5645754529', voucherNo='530399141578'}
+2025-01-27 10:18:59.315 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:79)] - Received request with content type: JSON
+2025-01-27 10:18:59.315 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:20)] - :::::::::::getTransactionId::::::::::
+2025-01-27 10:18:59.326 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:26)] - ::::::transactionId::::::::4695162502737173
+2025-01-27 10:18:59.327 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.parseRequest(VoucherRedeemptionService.java:190)] - :::::::::::parseRequest:::::::::::::::::::
+2025-01-27 10:18:59.327 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.validateData(VoucherRedeemptionService.java:217)] - :::::::::::validateData:::::::::::::::::::
+2025-01-27 10:18:59.328 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:149)] - ::::::::::migrationFlag::::::::::1
+2025-01-27 10:18:59.328 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:588)] - ::::::::::::::getData::::::::::::::::
+2025-01-27 10:18:59.329 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:589)] - :::::::::::::query to fetch details based on voucher flag:::::::::::::::::::SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)
+2025-01-27 10:18:59.768 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:635)] - :::batchId::::1625::::::voucherNumber::::::530399141578:::::::serialNumber:::::::938926:::::::voucherStatus::::::2
+2025-01-27 10:18:59.769 WARN [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:660)] - Voucher is processing
+2025-01-27 10:18:59.769 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:699)] - ::::::::::::::::getCustomerDet::::::::::::::::
+2025-01-27 10:18:59.770 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:707)] - ::::::query to fetch details from TRANSACTION_MAST:::::::::SELECT SUBSCRIBER_MSISDN FROM TRANSACTION_MAST WHERE VOUCHER_NUMBER =:voucherNumber AND BATCH_NUMBER = :batchId
+2025-01-27 10:18:59.794 ERROR [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getCustomerDet(VoucherRedeemptionService.java:712)] - Error while fetching details from TRANSACTION_MAST:::::: Incorrect result size: expected 1, actual 0
+2025-01-27 10:18:59.796 ERROR [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:177)] - Exception in redeemVoucher1014
+2025-01-27 10:20:07.659 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 10:20:07.663 INFO [Thread-48] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 10:20:07.665 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:20:07.712 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 10:20:07.714 INFO [Thread-48] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:20:07.717 INFO [Thread-48] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-4 - Shutdown initiated...
+2025-01-27 10:20:07.729 INFO [Thread-48] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-4 - Shutdown completed.
+2025-01-27 10:20:07.830 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 10:20:07.831 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 10:20:08.122 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 10:20:08.123 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:20:08.123 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 10:20:08.124 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 10:20:08.149 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 10:20:08.150 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 315 ms
+2025-01-27 10:20:08.262 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 10:20:08.266 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:20:08.283 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 10:20:08.287 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.491 seconds (process running for 1548.36)
+2025-01-27 10:20:08.288 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 10:20:08.288 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-5 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 10:20:08.289 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-5 - Starting...
+2025-01-27 10:20:08.505 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-5 - Added connection oracle.jdbc.driver.T4CConnection@1613a773
+2025-01-27 10:20:08.506 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-5 - Start completed.
+2025-01-27 10:20:13.313 INFO [http-nio-8080-exec-2] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27 10:20:13.314 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:532)] - Initializing Servlet 'dispatcherServlet'
+2025-01-27 10:20:13.315 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:554)] - Completed initialization in 0 ms
+2025-01-27 10:20:13.316 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:36)] - `url::::::::`/wvms/voucher/redeem
+2025-01-27 10:20:13.317 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:43)] - `header::`Basic d3Ztczp3dm1z
+2025-01-27 10:20:13.318 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:49)] - :::::::::::::::::true
+2025-01-27 10:20:13.318 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:50)] - :::::::::::::::::::::true
+2025-01-27 10:20:13.319 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:60)] - User 'wvms' successfully authenticated for endpoint '/wvms/voucher/redeem'.
+2025-01-27 10:20:13.322 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:70)] - ::::::::::::::Received VoucherRedeemRequest:::::::::::::
+2025-01-27 10:20:13.323 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:71)] - ::::::::::::::::::::::request:::::::::::::::::::::::::::VoucherRedeemRequest{voucherFlag='2', msisdn='5645754529', voucherNo='530399141578'}
+2025-01-27 10:20:13.323 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:79)] - Received request with content type: JSON
+2025-01-27 10:20:13.324 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:20)] - :::::::::::getTransactionId::::::::::
+2025-01-27 10:20:13.336 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:26)] - ::::::transactionId::::::::6095172502737247
+2025-01-27 10:20:13.336 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.parseRequest(VoucherRedeemptionService.java:190)] - :::::::::::parseRequest:::::::::::::::::::
+2025-01-27 10:20:13.336 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.validateData(VoucherRedeemptionService.java:217)] - :::::::::::validateData:::::::::::::::::::
+2025-01-27 10:20:13.337 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:149)] - ::::::::::migrationFlag::::::::::1
+2025-01-27 10:20:13.337 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:588)] - ::::::::::::::getData::::::::::::::::
+2025-01-27 10:20:13.337 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:589)] - :::::::::::::query to fetch details based on voucher flag:::::::::::::::::::SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)
+2025-01-27 10:20:14.210 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:635)] - :::batchId::::1625::::::voucherNumber::::::530399141578:::::::serialNumber:::::::938926:::::::voucherStatus::::::2
+2025-01-27 10:20:14.211 WARN [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:661)] - Voucher is processing
+2025-01-27 10:20:14.211 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:683)] - ::::::::::::::::::::after vouchflag switch::::::::::::::::::::::::
+2025-01-27 10:20:14.212 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.updateVoucherStatus(VoucherRedeemptionService.java:737)] - :::::::;query to update VOUCHER_DET:::::::::UPDATE VOUCHER_DET SET STATUS =:status WHERE SERIAL_NUMBER =:voucherNo AND BATCH_ID = :batchId
+2025-01-27 10:30:09.099 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 10:30:09.104 INFO [Thread-55] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 10:30:09.106 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:30:09.149 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 10:30:09.151 INFO [Thread-55] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:30:09.154 INFO [Thread-55] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-5 - Shutdown initiated...
+2025-01-27 10:30:09.167 INFO [Thread-55] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-5 - Shutdown completed.
+2025-01-27 10:30:09.250 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 10:30:09.253 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 10:30:09.503 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 10:30:09.506 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:30:09.507 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 10:30:09.507 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 10:30:09.541 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 10:30:09.542 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 286 ms
+2025-01-27 10:30:09.669 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 10:30:09.679 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:30:09.706 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 10:30:09.711 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.505 seconds (process running for 2149.785)
+2025-01-27 10:30:09.712 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-6 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 10:30:09.712 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-6 - Starting...
+2025-01-27 10:30:09.715 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 10:30:09.955 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-6 - Added connection oracle.jdbc.driver.T4CConnection@6a6cc46e
+2025-01-27 10:30:09.956 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-6 - Start completed.
+2025-01-27 10:30:23.660 INFO [http-nio-8080-exec-2] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-27 10:30:23.661 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:532)] - Initializing Servlet 'dispatcherServlet'
+2025-01-27 10:30:23.662 INFO [http-nio-8080-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:554)] - Completed initialization in 1 ms
+2025-01-27 10:30:23.664 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:36)] - `url::::::::`/wvms/voucher/redeem
+2025-01-27 10:30:23.664 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:43)] - `header::`Basic d3Ztczp3dm1z
+2025-01-27 10:30:23.665 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:49)] - :::::::::::::::::true
+2025-01-27 10:30:23.665 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:50)] - :::::::::::::::::::::true
+2025-01-27 10:30:23.666 INFO [http-nio-8080-exec-2] [com.tss.wvms.SecurityConfig.preHandle(SecurityConfig.java:60)] - User 'wvms' successfully authenticated for endpoint '/wvms/voucher/redeem'.
+2025-01-27 10:30:23.671 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:70)] - ::::::::::::::Received VoucherRedeemRequest:::::::::::::
+2025-01-27 10:30:23.671 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:71)] - ::::::::::::::::::::::request:::::::::::::::::::::::::::VoucherRedeemRequest{voucherFlag='2', msisdn='5645754529', voucherNo='530399141578'}
+2025-01-27 10:30:23.672 INFO [http-nio-8080-exec-2] [com.tss.wvms.contoller.VoucherController.voucherRedeem(VoucherController.java:79)] - Received request with content type: JSON
+2025-01-27 10:30:23.672 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:20)] - :::::::::::getTransactionId::::::::::
+2025-01-27 10:30:23.685 INFO [http-nio-8080-exec-2] [com.tss.wvms.generic.Generic.getTransactionId(Generic.java:26)] - ::::::transactionId::::::::7095182502737857
+2025-01-27 10:30:23.686 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.parseRequest(VoucherRedeemptionService.java:190)] - :::::::::::parseRequest:::::::::::::::::::
+2025-01-27 10:30:23.686 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.validateData(VoucherRedeemptionService.java:217)] - :::::::::::validateData:::::::::::::::::::
+2025-01-27 10:30:23.687 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.redeemVoucher(VoucherRedeemptionService.java:149)] - [redeemVoucher]::::::::::migrationFlag::::::::::1
+2025-01-27 10:30:23.687 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:588)] - ::::::::::::::getData::::::::::::::::
+2025-01-27 10:30:23.687 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:589)] - [getData]:::::::::::::query to fetch details based on voucher flag:::::::::::::::::::SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)
+2025-01-27 10:30:24.112 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:635)] - [getData]:::batchId::::1625::::::voucherNumber::::::530399141578:::::::serialNumber:::::::938926:::::::voucherStatus::::::2
+2025-01-27 10:30:24.112 WARN [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:661)] - [getData]::::Voucher is processing
+2025-01-27 10:30:24.112 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.getData(VoucherRedeemptionService.java:683)] - [getData]::::::::::::::::::::after vouchflag switch::::::::::::::::::::::::
+2025-01-27 10:30:24.113 INFO [http-nio-8080-exec-2] [com.tss.wvms.service.VoucherRedeemptionService.updateVoucherStatus(VoucherRedeemptionService.java:737)] - [updateVoucherStatus]:::::::;query to update VOUCHER_DET:::::::::UPDATE VOUCHER_DET SET STATUS =:status WHERE SERIAL_NUMBER =:voucherNo AND BATCH_ID = :batchId
+2025-01-27 10:31:44.175 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 10:31:44.178 INFO [Thread-71] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 10:31:44.181 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:31:44.231 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 10:31:44.232 INFO [Thread-71] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:31:44.236 INFO [Thread-71] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-6 - Shutdown initiated...
+2025-01-27 10:31:44.246 INFO [Thread-71] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-6 - Shutdown completed.
+2025-01-27 10:31:44.331 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 10:31:44.333 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 10:31:44.568 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 10:31:44.569 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:31:44.569 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 10:31:44.569 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 10:31:44.599 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 10:31:44.599 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 263 ms
+2025-01-27 10:31:44.701 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 10:31:44.704 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:31:44.716 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 10:31:44.720 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.42 seconds (process running for 2244.793)
+2025-01-27 10:31:44.720 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-7 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 10:31:44.721 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-7 - Starting...
+2025-01-27 10:31:44.721 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 10:31:44.887 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-7 - Added connection oracle.jdbc.driver.T4CConnection@5c946183
+2025-01-27 10:31:44.887 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-7 - Start completed.
+2025-01-27 10:43:20.668 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 10:43:20.673 INFO [Thread-78] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 10:43:20.675 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:43:20.711 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 10:43:20.712 INFO [Thread-78] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:43:20.715 INFO [Thread-78] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-7 - Shutdown initiated...
+2025-01-27 10:43:20.727 INFO [Thread-78] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-7 - Shutdown completed.
+2025-01-27 10:43:20.802 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 10:43:20.803 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 10:43:21.024 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 10:43:21.025 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:43:21.026 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 10:43:21.026 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 10:43:21.055 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 10:43:21.056 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 249 ms
+2025-01-27 10:43:21.156 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 10:43:21.159 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:43:21.173 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 10:43:21.177 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.406 seconds (process running for 2941.25)
+2025-01-27 10:43:21.177 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-8 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 10:43:21.177 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-8 - Starting...
+2025-01-27 10:43:21.179 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 10:43:21.334 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-8 - Added connection oracle.jdbc.driver.T4CConnection@39b2ced5
+2025-01-27 10:43:21.336 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-8 - Start completed.
+2025-01-27 10:48:58.869 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 10:48:58.873 INFO [Thread-94] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 10:48:58.876 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:48:58.920 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 10:48:58.923 INFO [Thread-94] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:48:58.927 INFO [Thread-94] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-8 - Shutdown initiated...
+2025-01-27 10:48:58.935 INFO [Thread-94] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-8 - Shutdown completed.
+2025-01-27 10:48:59.010 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 10:48:59.011 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 10:48:59.279 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 10:48:59.281 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:48:59.281 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 10:48:59.282 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 10:48:59.308 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 10:48:59.308 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 294 ms
+2025-01-27 10:48:59.427 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 10:48:59.429 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:48:59.447 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 10:48:59.451 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.471 seconds (process running for 3279.524)
+2025-01-27 10:48:59.453 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-9 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 10:48:59.453 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 10:48:59.453 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-9 - Starting...
+2025-01-27 10:48:59.742 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-9 - Added connection oracle.jdbc.driver.T4CConnection@2c9ce926
+2025-01-27 10:48:59.743 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-9 - Start completed.
+2025-01-27 10:55:39.852 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 10:55:39.856 INFO [Thread-104] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 10:55:39.858 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:55:39.895 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 10:55:39.896 INFO [Thread-104] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:55:39.898 INFO [Thread-104] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-9 - Shutdown initiated...
+2025-01-27 10:55:39.905 INFO [Thread-104] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-9 - Shutdown completed.
+2025-01-27 10:55:40.026 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 10:55:40.027 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 10:55:40.218 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 10:55:40.219 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:55:40.219 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 10:55:40.219 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 10:55:40.248 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 10:55:40.249 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 220 ms
+2025-01-27 10:55:40.364 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 10:55:40.367 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 10:55:40.381 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 10:55:40.384 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.41 seconds (process running for 3680.458)
+2025-01-27 10:55:40.385 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-10 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 10:55:40.386 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-10 - Starting...
+2025-01-27 10:55:40.386 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 10:55:40.599 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-10 - Added connection oracle.jdbc.driver.T4CConnection@72f38f9f
+2025-01-27 10:55:40.600 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-10 - Start completed.
+2025-01-27 11:09:57.321 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 11:09:57.326 INFO [Thread-115] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 11:09:57.328 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:09:57.377 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 11:09:57.379 INFO [Thread-115] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:09:57.382 INFO [Thread-115] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-10 - Shutdown initiated...
+2025-01-27 11:09:57.396 INFO [Thread-115] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-10 - Shutdown completed.
+2025-01-27 11:09:57.474 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 11:09:57.475 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 11:09:57.702 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 11:09:57.703 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:09:57.703 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 11:09:57.704 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 11:09:57.738 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 11:09:57.738 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 261 ms
+2025-01-27 11:09:57.830 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 11:09:57.833 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:09:57.845 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 11:09:57.848 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.404 seconds (process running for 4537.921)
+2025-01-27 11:09:57.848 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-11 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 11:09:57.849 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-11 - Starting...
+2025-01-27 11:09:57.849 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 11:09:58.057 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-11 - Added connection oracle.jdbc.driver.T4CConnection@5e741d64
+2025-01-27 11:09:58.057 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-11 - Start completed.
+2025-01-27 11:28:22.744 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 11:28:22.749 INFO [Thread-134] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 11:28:22.751 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:28:22.802 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 11:28:22.804 INFO [Thread-134] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:28:22.809 INFO [Thread-134] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-11 - Shutdown initiated...
+2025-01-27 11:28:22.817 INFO [Thread-134] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-11 - Shutdown completed.
+2025-01-27 11:28:22.944 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 11:28:22.945 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 11:28:23.139 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 11:28:23.140 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:28:23.141 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 11:28:23.141 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 11:28:23.168 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 11:28:23.168 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 221 ms
+2025-01-27 11:28:23.195 WARN [restartedMain] [org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:635)] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'voucherController': Unsatisfied dependency expressed through field 'voucherRedeemptionService': Error creating bean with name 'voucherRedeemptionService' defined in file [C:\Users\Renuka\Documents\wvmsApiServer\target\classes\com\tss\wvms\service\VoucherRedeemptionService.class]: Failed to instantiate [com.tss.wvms.service.VoucherRedeemptionService]: Constructor threw exception
+2025-01-27 11:28:23.196 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping service [Tomcat]
+2025-01-27 11:28:23.203 INFO [restartedMain] [org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger.logMessage(ConditionEvaluationReportLogger.java:82)] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-27 11:28:23.224 ERROR [restartedMain] [org.springframework.boot.SpringApplication.reportFailure(SpringApplication.java:857)] - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'voucherController': Unsatisfied dependency expressed through field 'voucherRedeemptionService': Error creating bean with name 'voucherRedeemptionService' defined in file [C:\Users\Renuka\Documents\wvmsApiServer\target\classes\com\tss\wvms\service\VoucherRedeemptionService.class]: Failed to instantiate [com.tss.wvms.service.VoucherRedeemptionService]: Constructor threw exception
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1441) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1122) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1093) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1030) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.1.jar:6.2.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.1.jar:6.2.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) [spring-boot-3.4.1.jar:3.4.1]
+	at com.tss.wvms.WvmsApiServerApplication.main(WvmsApiServerApplication.java:21) [classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.4.1.jar:3.4.1]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'voucherRedeemptionService' defined in file [C:\Users\Renuka\Documents\wvmsApiServer\target\classes\com\tss\wvms\service\VoucherRedeemptionService.class]: Failed to instantiate [com.tss.wvms.service.VoucherRedeemptionService]: Constructor threw exception
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1339) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1224) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.tss.wvms.service.VoucherRedeemptionService]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:222) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:122) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1333) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1224) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	logger cannot be resolved
+	txid cannot be resolved to a variable
+	resMap cannot be resolved to a variable
+	Syntax error on token "}", delete this token
+
+	at com.tss.wvms.service.VoucherRedeemptionService.<init>(VoucherRedeemptionService.java:842) ~[classes/:?]
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485) ~[?:?]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:196) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:122) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1333) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1224) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
+2025-01-27 11:28:38.167 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 11:28:38.168 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 11:28:38.400 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 11:28:38.405 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:28:38.406 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 11:28:38.407 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 11:28:38.443 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 11:28:38.444 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 275 ms
+2025-01-27 11:28:38.472 WARN [restartedMain] [org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:635)] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'voucherController': Unsatisfied dependency expressed through field 'voucherRedeemptionService': Error creating bean with name 'voucherRedeemptionService' defined in file [C:\Users\Renuka\Documents\wvmsApiServer\target\classes\com\tss\wvms\service\VoucherRedeemptionService.class]: Failed to instantiate [com.tss.wvms.service.VoucherRedeemptionService]: Constructor threw exception
+2025-01-27 11:28:38.474 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping service [Tomcat]
+2025-01-27 11:28:38.478 INFO [restartedMain] [org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger.logMessage(ConditionEvaluationReportLogger.java:82)] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-27 11:28:38.481 ERROR [restartedMain] [org.springframework.boot.SpringApplication.reportFailure(SpringApplication.java:857)] - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'voucherController': Unsatisfied dependency expressed through field 'voucherRedeemptionService': Error creating bean with name 'voucherRedeemptionService' defined in file [C:\Users\Renuka\Documents\wvmsApiServer\target\classes\com\tss\wvms\service\VoucherRedeemptionService.class]: Failed to instantiate [com.tss.wvms.service.VoucherRedeemptionService]: Constructor threw exception
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1441) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1122) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1093) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1030) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.1.jar:6.2.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.1.jar:6.2.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) [spring-boot-3.4.1.jar:3.4.1]
+	at com.tss.wvms.WvmsApiServerApplication.main(WvmsApiServerApplication.java:21) [classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.4.1.jar:3.4.1]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'voucherRedeemptionService' defined in file [C:\Users\Renuka\Documents\wvmsApiServer\target\classes\com\tss\wvms\service\VoucherRedeemptionService.class]: Failed to instantiate [com.tss.wvms.service.VoucherRedeemptionService]: Constructor threw exception
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1339) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1224) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.tss.wvms.service.VoucherRedeemptionService]: Constructor threw exception
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:222) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:122) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1333) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1224) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	Syntax error on token "}", delete this token
+
+	at com.tss.wvms.service.VoucherRedeemptionService.<init>(VoucherRedeemptionService.java:860) ~[classes/:?]
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501) ~[?:?]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485) ~[?:?]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:196) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:122) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1333) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1224) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
+2025-01-27 11:29:03.757 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 11:29:03.759 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 11:29:04.055 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 11:29:04.057 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:29:04.058 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 11:29:04.058 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 11:29:04.103 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 11:29:04.103 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 343 ms
+2025-01-27 11:29:04.195 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 11:29:04.199 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:29:04.212 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 11:29:04.216 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.51 seconds (process running for 5684.289)
+2025-01-27 11:29:04.217 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-12 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 11:29:04.217 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-12 - Starting...
+2025-01-27 11:29:04.217 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 11:29:04.400 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-12 - Added connection oracle.jdbc.driver.T4CConnection@4d7bf857
+2025-01-27 11:29:04.400 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-12 - Start completed.
+2025-01-27 11:59:38.398 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 11:59:38.401 INFO [Thread-157] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 11:59:38.403 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:59:38.445 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 11:59:38.446 INFO [Thread-157] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:59:38.449 INFO [Thread-157] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-12 - Shutdown initiated...
+2025-01-27 11:59:38.456 INFO [Thread-157] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-12 - Shutdown completed.
+2025-01-27 11:59:38.582 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 11:59:38.582 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 11:59:38.812 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 11:59:38.813 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:59:38.814 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 11:59:38.814 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 11:59:38.854 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 11:59:38.855 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 270 ms
+2025-01-27 11:59:38.971 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 11:59:38.975 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 11:59:38.999 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 11:59:39.005 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.472 seconds (process running for 7519.078)
+2025-01-27 11:59:39.006 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-13 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 11:59:39.006 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 11:59:39.007 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-13 - Starting...
+2025-01-27 11:59:39.192 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-13 - Added connection oracle.jdbc.driver.T4CConnection@390411a3
+2025-01-27 11:59:39.193 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-13 - Start completed.
+2025-01-27 12:00:07.259 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 12:00:07.261 INFO [Thread-198] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 12:00:07.263 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:00:07.299 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 12:00:07.301 INFO [Thread-198] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:00:07.303 INFO [Thread-198] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-13 - Shutdown initiated...
+2025-01-27 12:00:07.337 INFO [Thread-198] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-13 - Shutdown completed.
+2025-01-27 12:00:07.447 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 12:00:07.449 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 12:00:07.679 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 12:00:07.681 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:00:07.682 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 12:00:07.682 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 12:00:07.740 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 12:00:07.740 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 289 ms
+2025-01-27 12:00:07.874 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 12:00:07.877 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:00:07.896 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 12:00:07.899 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.505 seconds (process running for 7547.972)
+2025-01-27 12:00:07.899 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-14 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 12:00:07.900 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-14 - Starting...
+2025-01-27 12:00:07.900 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 12:00:08.068 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-14 - Added connection oracle.jdbc.driver.T4CConnection@45e4ebe9
+2025-01-27 12:00:08.069 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-14 - Start completed.
+2025-01-27 12:03:27.850 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 12:03:27.852 INFO [Thread-203] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 12:03:27.854 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:03:27.905 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 12:03:27.907 INFO [Thread-203] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:03:27.910 INFO [Thread-203] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-14 - Shutdown initiated...
+2025-01-27 12:03:27.919 INFO [Thread-203] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-14 - Shutdown completed.
+2025-01-27 12:03:28.023 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 12:03:28.025 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 12:03:28.222 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 12:03:28.223 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:03:28.224 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 12:03:28.224 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 12:03:28.258 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 12:03:28.258 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 230 ms
+2025-01-27 12:03:28.418 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 12:03:28.422 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:03:28.446 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 12:03:28.451 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.463 seconds (process running for 7748.524)
+2025-01-27 12:03:28.452 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-15 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 12:03:28.453 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-15 - Starting...
+2025-01-27 12:03:28.453 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 12:03:28.687 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-15 - Added connection oracle.jdbc.driver.T4CConnection@54b29451
+2025-01-27 12:03:28.687 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-15 - Start completed.
+2025-01-27 12:26:27.903 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 12:26:27.908 INFO [Thread-211] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 12:26:27.910 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:26:27.964 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 12:26:27.965 INFO [Thread-211] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:26:27.976 INFO [Thread-211] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-15 - Shutdown initiated...
+2025-01-27 12:26:27.993 INFO [Thread-211] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-15 - Shutdown completed.
+2025-01-27 12:26:28.131 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 12:26:28.132 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 12:26:28.398 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 12:26:28.400 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:26:28.401 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 12:26:28.401 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 12:26:28.443 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 12:26:28.443 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 308 ms
+2025-01-27 12:26:28.581 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 12:26:28.592 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:26:28.624 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 12:26:28.630 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.553 seconds (process running for 9128.703)
+2025-01-27 12:26:28.632 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-16 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 12:26:28.632 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 12:26:28.632 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-16 - Starting...
+2025-01-27 12:26:28.810 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-16 - Added connection oracle.jdbc.driver.T4CConnection@3660f39e
+2025-01-27 12:26:28.810 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-16 - Start completed.
+2025-01-27 12:42:08.250 WARN [HikariPool-16 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-16 - Thread starvation or clock leap detected (housekeeper delta=2m9s183ms298µs200ns).
+2025-01-27 12:45:19.102 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 12:45:19.106 INFO [Thread-238] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 12:45:19.108 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:45:19.156 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 12:45:19.157 INFO [Thread-238] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:45:19.163 INFO [Thread-238] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-16 - Shutdown initiated...
+2025-01-27 12:45:19.174 INFO [Thread-238] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-16 - Shutdown completed.
+2025-01-27 12:45:19.347 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 12:45:19.348 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 12:45:19.620 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 12:45:19.623 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:45:19.624 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 12:45:19.625 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 12:45:19.664 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 12:45:19.665 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 314 ms
+2025-01-27 12:45:19.773 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 12:45:19.782 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 12:45:19.805 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 12:45:19.809 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.519 seconds (process running for 10259.882)
+2025-01-27 12:45:19.813 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-17 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 12:45:19.813 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-17 - Starting...
+2025-01-27 12:45:19.813 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 12:45:19.984 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-17 - Added connection oracle.jdbc.driver.T4CConnection@39af82b2
+2025-01-27 12:45:19.984 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-17 - Start completed.
+2025-01-27 13:00:40.234 WARN [HikariPool-17 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-17 - Thread starvation or clock leap detected (housekeeper delta=5m20s68ms287µs700ns).
+2025-01-27 13:10:55.122 WARN [HikariPool-17 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-17 - Thread starvation or clock leap detected (housekeeper delta=4m14s817ms250µs300ns).
+2025-01-27 13:25:29.592 WARN [HikariPool-17 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-17 - Thread starvation or clock leap detected (housekeeper delta=8m4s400ms719µs200ns).
+2025-01-27 13:39:17.393 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2025-01-27 13:39:17.396 INFO [Thread-260] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 13:39:17.397 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 13:39:17.415 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 13:39:17.416 INFO [Thread-260] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 13:39:17.418 INFO [Thread-260] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-17 - Shutdown initiated...
+2025-01-27 13:39:17.426 INFO [Thread-260] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-17 - Shutdown completed.
+2025-01-27 13:39:17.502 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 13:39:17.503 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 13:39:17.647 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 13:39:17.648 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 13:39:17.648 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 13:39:17.648 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 13:39:17.674 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 13:39:17.675 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 171 ms
+2025-01-27 13:39:17.748 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 13:39:17.751 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 13:39:17.767 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 13:39:17.771 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.292 seconds (process running for 13497.844)
+2025-01-27 13:39:17.772 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 13:39:17.772 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-18 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 13:39:17.772 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-18 - Starting...
+2025-01-27 13:39:17.899 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-18 - Added connection oracle.jdbc.driver.T4CConnection@7bdcce7a
+2025-01-27 13:39:17.900 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-18 - Start completed.
+2025-01-27 13:42:42.212 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 13:42:42.214 INFO [Thread-302] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 13:42:42.215 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 13:42:42.233 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 13:42:42.234 INFO [Thread-302] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 13:42:42.236 INFO [Thread-302] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-18 - Shutdown initiated...
+2025-01-27 13:42:42.242 INFO [Thread-302] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-18 - Shutdown completed.
+2025-01-27 13:42:42.311 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 13:42:42.311 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 13:42:42.458 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 13:42:42.459 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 13:42:42.459 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 13:42:42.459 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 13:42:42.480 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 13:42:42.480 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 166 ms
+2025-01-27 13:42:42.552 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 13:42:42.554 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 13:42:42.566 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 13:42:42.568 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.276 seconds (process running for 13702.642)
+2025-01-27 13:42:42.569 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-19 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 13:42:42.569 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-19 - Starting...
+2025-01-27 13:42:42.569 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 13:42:42.725 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-19 - Added connection oracle.jdbc.driver.T4CConnection@7b4d7735
+2025-01-27 13:42:42.725 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-19 - Start completed.
+2025-01-27 14:17:39.693 WARN [HikariPool-19 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-19 - Thread starvation or clock leap detected (housekeeper delta=4m44s369ms308µs600ns).
+2025-01-27 14:42:25.934 WARN [HikariPool-19 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-19 - Thread starvation or clock leap detected (housekeeper delta=1m16s80ms843µs300ns).
+2025-01-27 14:52:47.020 WARN [HikariPool-19 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-19 - Thread starvation or clock leap detected (housekeeper delta=1m51s15ms657µs800ns).
+2025-01-27 15:04:34.617 WARN [HikariPool-19 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-19 - Thread starvation or clock leap detected (housekeeper delta=5m17s527ms634µs100ns).
+2025-01-27 15:12:45.451 WARN [HikariPool-19 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-19 - Thread starvation or clock leap detected (housekeeper delta=4m40s792ms282µs900ns).
+2025-01-27 15:28:29.213 WARN [HikariPool-19 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-19 - Thread starvation or clock leap detected (housekeeper delta=11m43s725ms290µs700ns).
+2025-01-27 15:35:40.828 WARN [HikariPool-19 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-19 - Thread starvation or clock leap detected (housekeeper delta=4m41s599ms972µs500ns).
+2025-01-27 16:31:20.885 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 16:31:20.900 INFO [Thread-310] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 16:31:20.906 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 16:31:20.926 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 16:31:20.927 INFO [Thread-310] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 16:31:20.936 INFO [Thread-310] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-19 - Shutdown initiated...
+2025-01-27 16:31:21.411 INFO [Thread-310] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-19 - Shutdown completed.
+2025-01-27 16:31:21.581 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 16:31:21.582 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 16:31:21.776 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 16:31:21.780 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 16:31:21.781 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 16:31:21.781 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 16:31:21.808 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 16:31:21.808 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 224 ms
+2025-01-27 16:31:21.936 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 16:31:21.941 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 16:31:21.953 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 16:31:21.956 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.418 seconds (process running for 23822.029)
+2025-01-27 16:31:21.957 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-20 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 16:31:21.957 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-20 - Starting...
+2025-01-27 16:31:21.957 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 16:31:22.084 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-20 - Added connection oracle.jdbc.driver.T4CConnection@7ac81c96
+2025-01-27 16:31:22.084 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-20 - Start completed.
+2025-01-27 16:40:52.838 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 16:40:52.840 INFO [Thread-452] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 16:40:52.841 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 16:40:52.855 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 16:40:52.856 INFO [Thread-452] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 16:40:52.857 INFO [Thread-452] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-20 - Shutdown initiated...
+2025-01-27 16:40:52.864 INFO [Thread-452] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-20 - Shutdown completed.
+2025-01-27 16:40:52.923 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 16:40:52.924 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 16:40:53.058 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 16:40:53.058 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 16:40:53.059 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 16:40:53.059 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 16:40:53.076 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 16:40:53.076 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 151 ms
+2025-01-27 16:40:53.133 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 16:40:53.136 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 16:40:53.145 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 16:40:53.147 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.24 seconds (process running for 24393.22)
+2025-01-27 16:40:53.147 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-21 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 16:40:53.148 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 16:40:53.148 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-21 - Starting...
+2025-01-27 16:40:53.279 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-21 - Added connection oracle.jdbc.driver.T4CConnection@13eafab5
+2025-01-27 16:40:53.280 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-21 - Start completed.
+2025-01-27 16:51:27.043 WARN [HikariPool-21 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-21 - Thread starvation or clock leap detected (housekeeper delta=1m3s534ms292µs700ns).
+2025-01-27 17:27:15.337 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 17:27:15.339 INFO [Thread-466] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 17:27:15.341 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 17:27:15.404 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 17:27:15.405 INFO [Thread-466] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 17:27:15.409 INFO [Thread-466] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-21 - Shutdown initiated...
+2025-01-27 17:27:15.420 INFO [Thread-466] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-21 - Shutdown completed.
+2025-01-27 17:27:15.584 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 17:27:15.587 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 17:27:15.776 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 17:27:15.777 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 17:27:15.777 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 17:27:15.778 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 17:27:15.807 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 17:27:15.807 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 218 ms
+2025-01-27 17:27:15.903 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:59)] - LiveReload server is running on port 35729
+2025-01-27 17:27:15.906 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-8080"]
+2025-01-27 17:27:15.918 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:243)] - Tomcat started on port 8080 (http) with context path '/'
+2025-01-27 17:27:15.921 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59)] - Started WvmsApiServerApplication in 0.37 seconds (process running for 27175.994)
+2025-01-27 17:27:15.921 WARN [scheduling-1] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1045)] - HikariPool-22 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2025-01-27 17:27:15.921 INFO [restartedMain] [org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:63)] - Condition evaluation unchanged
+2025-01-27 17:27:15.921 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:109)] - HikariPool-22 - Starting...
+2025-01-27 17:27:16.057 INFO [scheduling-1] [com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:554)] - HikariPool-22 - Added connection oracle.jdbc.driver.T4CConnection@48e58b5a
+2025-01-27 17:27:16.057 INFO [scheduling-1] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:122)] - HikariPool-22 - Start completed.
+2025-01-27 17:59:09.495 WARN [HikariPool-22 housekeeper] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper.run(HikariPool.java:797)] - HikariPool-22 - Thread starvation or clock leap detected (housekeeper delta=6m53s27ms557µs200ns).
+2025-01-27 18:30:29.992 INFO [File Watcher] [org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent(LocalDevToolsAutoConfiguration.java:211)] - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-01-27 18:30:29.996 INFO [Thread-516] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully(GracefulShutdown.java:54)] - Commencing graceful shutdown. Waiting for active requests to complete
+2025-01-27 18:30:29.998 INFO [tomcat-shutdown] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Pausing ProtocolHandler ["http-nio-8080"]
+2025-01-27 18:30:30.048 INFO [tomcat-shutdown] [org.springframework.boot.web.embedded.tomcat.GracefulShutdown.doShutdown(GracefulShutdown.java:76)] - Graceful shutdown complete
+2025-01-27 18:30:30.049 INFO [Thread-516] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping ProtocolHandler ["http-nio-8080"]
+2025-01-27 18:30:30.053 INFO [Thread-516] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:349)] - HikariPool-22 - Shutdown initiated...
+2025-01-27 18:30:30.063 INFO [Thread-516] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)] - HikariPool-22 - Shutdown completed.
+2025-01-27 18:30:30.244 INFO [restartedMain] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:53)] - Starting WvmsApiServerApplication using Java 23.0.1 with PID 8152 (C:\Users\Renuka\Documents\wvmsApiServer\target\classes started by Renuka in C:\Users\Renuka\Documents\wvmsApiServer)
+2025-01-27 18:30:30.245 INFO [restartedMain] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:652)] - No active profile set, falling back to 1 default profile: "default"
+2025-01-27 18:30:30.499 INFO [restartedMain] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:111)] - Tomcat initialized with port 8080 (http)
+2025-01-27 18:30:30.501 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-8080"]
+2025-01-27 18:30:30.502 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2025-01-27 18:30:30.502 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-01-27 18:30:30.527 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2025-01-27 18:30:30.528 INFO [restartedMain] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:296)] - Root WebApplicationContext: initialization completed in 279 ms
+2025-01-27 18:30:30.587 WARN [restartedMain] [org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:635)] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'voucherController': Unsatisfied dependency expressed through field 'voucherRedeemptionService': Error creating bean with name 'voucherRedeemptionService': Unsatisfied dependency expressed through field 'noOfProcessInstances': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "${WVMS_TOTAL_PROCESS_INSTANCES"
+2025-01-27 18:30:30.588 INFO [restartedMain] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Stopping service [Tomcat]
+2025-01-27 18:30:30.592 INFO [restartedMain] [org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger.logMessage(ConditionEvaluationReportLogger.java:82)] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-27 18:30:30.598 ERROR [restartedMain] [org.springframework.boot.SpringApplication.reportFailure(SpringApplication.java:857)] - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'voucherController': Unsatisfied dependency expressed through field 'voucherRedeemptionService': Error creating bean with name 'voucherRedeemptionService': Unsatisfied dependency expressed through field 'noOfProcessInstances': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "${WVMS_TOTAL_PROCESS_INSTANCES"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1441) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1122) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1093) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1030) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.1.jar:6.2.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.1.jar:6.2.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) [spring-boot-3.4.1.jar:3.4.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) [spring-boot-3.4.1.jar:3.4.1]
+	at com.tss.wvms.WvmsApiServerApplication.main(WvmsApiServerApplication.java:21) [classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.4.1.jar:3.4.1]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'voucherRedeemptionService': Unsatisfied dependency expressed through field 'noOfProcessInstances': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "${WVMS_TOTAL_PROCESS_INSTANCES"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1441) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
+Caused by: org.springframework.beans.TypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "${WVMS_TOTAL_PROCESS_INSTANCES"
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:87) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:71) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1548) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1441) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
+Caused by: java.lang.NumberFormatException: For input string: "${WVMS_TOTAL_PROCESS_INSTANCES"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67) ~[?:?]
+	at java.base/java.lang.Integer.parseInt(Integer.java:588) ~[?:?]
+	at java.base/java.lang.Integer.valueOf(Integer.java:935) ~[?:?]
+	at org.springframework.util.NumberUtils.parseNumber(NumberUtils.java:201) ~[spring-core-6.2.1.jar:6.2.1]
+	at org.springframework.beans.propertyeditors.CustomNumberEditor.setAsText(CustomNumberEditor.java:115) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:439) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:412) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:161) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:80) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:71) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1548) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1441) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:289) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.1.jar:6.2.1]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.1.jar:6.2.1]
+	... 25 more
