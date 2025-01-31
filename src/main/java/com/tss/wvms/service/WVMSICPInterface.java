@@ -37,7 +37,7 @@ public class WVMSICPInterface {
     private static final Logger logger = LoggerFactory.getLogger(WVMSICPInterface.class);
 
     // Properties from application.properties
-    @Value("${wvms.config.url}")
+    @Value("${WVMS_WICP_URL}")
     private String configUrl;
 
     @Value("${wvms.recharge.template}")
