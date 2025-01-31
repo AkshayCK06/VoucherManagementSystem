@@ -125,13 +125,16 @@ public class VoucherRedeemptionService {
 	@Value("${WVMS_EACH_TRY_SLEEP}")
 	private int eachTrysleep;
 	
+	@Value("${WVMS_ICP_API_TIMEOUT}")
+	private int TIMEOUT;
+	
 	@Autowired
 	private NamedParameterJdbcTemplate namedDbJdbcTemplate;
 	
 	@Autowired
 	private Generic generic;
 	
-	private int TIMEOUT = 10000, SLAB_COSVAL = 0, COS_COSVAL = 0, FREEBIE_COSVAL = 0, voucherStatusChecker = 1,processId=0;
+	private int SLAB_COSVAL = 0, COS_COSVAL = 0, FREEBIE_COSVAL = 0, voucherStatusChecker = 1,processId=0;
 	
 	private Date expiryDate = null;
 	
@@ -244,7 +247,7 @@ public class VoucherRedeemptionService {
 		finally
         {
                 redeemVoucherList.remove(voucherRedeemRequest.toString());
-                constructResponseJson(responseCode,null);
+                voucherRedeemResponse = constructResponseJson(responseCode,null);
                 log.info("[processRequest] :: RESPONSE : "+voucherRedeemResponse);
                 log.trace("****************Voucher Redemption completed****************");
         }
@@ -1130,7 +1133,7 @@ public class VoucherRedeemptionService {
                 	    params.put("transactionId",transactionId);
                 	    params.put("msisdn", voucherRedeemRequest.getMsisdn());
                 	    params.put("batchNo",String.valueOf(voucherDetails.getBatchId()));
-                	    params.put("username",eapiUserFlag.get(userName));
+                	    params.put("username",eapiUserFlag.get("WVMS"));
                 	    params.put("voucherNo",String.valueOf(voucherDetails.getVoucherNumber()));
                 	    params.put("processId",String.valueOf(processId));
                 	    params.put("cosVal", Integer.toString(SLAB_COSVAL + COS_COSVAL + FREEBIE_COSVAL));
@@ -1155,7 +1158,7 @@ public class VoucherRedeemptionService {
                       
             	        params.put("transactionId",transactionId);
                 	    params.put("msisdn", voucherRedeemRequest.getMsisdn());
-                	    params.put("username",eapiUserFlag.get(userName));
+                	    params.put("username",eapiUserFlag.get("WVMS"));
                 	    params.put("processId",String.valueOf(processId));
                 	    params.put("voucherFlag",voucherRedeemRequest.getVoucherFlag());
                 	    params.put("voucherNo",String.valueOf(voucherDetails.getVoucherNumber()));
@@ -1245,85 +1248,82 @@ public class VoucherRedeemptionService {
     }
     
     
-    
-    private String checkStatus(String transactionId) throws Exception
-    {
-    		log.info(":::::::::::checkStatus::::::::::");
-            int status = 0;
-            String responseCode = "",query="";    
-            boolean isRecordsUpdated = false;
-            HashMap<String,String> params = new HashMap<String,String>();
-            
-            try{
-            	
-                    TimeUnit.SECONDS.sleep(1);
-                    
-                    query = "SELECT STATUS,RESP_CODE,RESP_DESC,IVR_BALANCE_INFO FROM TRANSACTION_MAST WHERE TRANSACTION_ID =:transactionId AND STATUS != 0";                    
-                    params.put("transactionId",transactionId);
-                    
-                    log.info("[checkStatus]:::::::::::query to fetch status,responseCode,balanceInfo from TRANSACTION_MAST:::::::::::"+query);
-                    
-                    for(int i = 1; i <= maxCheckStatusTries; i++)
-                    	
-                    {
-                            log.info("[checkStatus] : "+i);
-                            transactionDetails = namedDbJdbcTemplate.query(query, params,
-                            		(rs,rowNum) -> new TransactionMast(
-                            				     rs.getInt("STATUS"),
-                            				     rs.getInt("RESP_DESC"),
-                            				     rs.getString("RESP_DESC"),
-                            				     rs.getString("IVR_BALANCE_INFO")
-                            				)
-                            ).get(0);
-                            log.info("[checkStatus]:::::::::::transactionDetails::::::::::::::"+transactionDetails);        
-                            if(!transactionDetails.toString().isEmpty())
-                            {
-                                    
-                                            if(transactionDetails.getStatus() != 0 && transactionDetails.getStatus() != 1 && transactionDetails.getStatus() != 5)
-                                            {
-                                            		log.info("[checkStatus] ::transactionDetails:::::::"+transactionDetails);    
-                                                
-                                            	    responseCode = String.valueOf(transactionDetails.getResponseCode());
-                                                    return responseCode;
-                                            }
+    private String checkStatus(String transactionId) throws Exception {
+        log.info(":::::::::::checkStatus::::::::::");
+        
+        int status = 0;
+        String responseCode = "", query = "";    
+        boolean isRecordsUpdated = false;
+        HashMap<String, String> params = new HashMap<>();
+        List<TransactionMast> transactionList = null;
+        
+        try {
+            TimeUnit.SECONDS.sleep(1);
 
-                                   
-                            }
-                            TimeUnit.SECONDS.sleep(eachTrysleep);
-                    }
-                    log.trace("[checkStatus] ::TRANSACTION_MAST final status="+transactionDetails.getStatus());
-                    if(transactionDetails.getStatus() == 0)
-                    {
-                    	    query = "UPDATE TRANSACTION_MAST SET STATUS = 10 WHERE TRANSACTION_ID =:transactionId";
-                    	    params.put("transactionId", transactionId);
-                            
-                    	    log.info("[checkStatus]:::::::::::query to update TRANSACTION_MAST:::::::::"+query);
-                    	    try {
-                    	    	isRecordsUpdated = namedDbJdbcTemplate.update(query, params)>0;
-                    	    	log.info("[checkStatus]:::::::::::isRecordsUpdated in TRANSACTION_MAST:::::::::"+isRecordsUpdated);
-                    	    }
-                            catch(Exception e)
-                    	    {
-                            	log.info("[checkStatus]:::::::::::Exception in updating TRANSACTION_MAST:::::::::"+e.getMessage());	
-                            	return "1014";
-                    	    }
-                            updateVoucherStatus(String.valueOf(voucherDetails.getSerialNumber()), String.valueOf(voucherDetails.getBatchId()), 1);
-                            return "1014";
-                    }
-                    else
-                    {
-                            return "1009";
-                    }
-            }catch(Exception e)
-            {
-                    log.error("[checkStatus] Exception is fetching recods from TRANSACTION_MAST table:::::::"+e.getMessage());
-                    return "1014";
+            query = "SELECT STATUS, RESP_CODE, RESP_DESC, IVR_BALANCE_INFO FROM TRANSACTION_MAST " +
+                    "WHERE TRANSACTION_ID = :transactionId AND STATUS != 0";                    
+            params.put("transactionId", transactionId);
+
+            log.info("[checkStatus] Query to fetch status, responseCode, balanceInfo from TRANSACTION_MAST: {}", query);
+
+            for (int i = 1; i <= maxCheckStatusTries; i++) {
+                log.info("[checkStatus] Attempt: {}", i);
+
+                 transactionList = namedDbJdbcTemplate.query(query, params,
+                    (rs, rowNum) -> new TransactionMast(
+                        rs.getInt("STATUS"),
+                        rs.getInt("RESP_CODE"),
+                        rs.getString("RESP_DESC"),
+                        rs.getString("IVR_BALANCE_INFO")
+                    )
+                );
+
+                TimeUnit.SECONDS.sleep(eachTrysleep);
             }
+            if (transactionList.size()>0) {
+                
+                TransactionMast transactionDetails = transactionList.get(0);
+                log.info("[checkStatus] Retrieved transaction details: {}", transactionDetails);
+
+                if (transactionDetails.getStatus() != 0 && 
+                    transactionDetails.getStatus() != 1 && 
+                    transactionDetails.getStatus() != 5) {
+
+                    log.info("[checkStatus] Transaction details match condition, returning responseCode: {}", 
+                             transactionDetails.getResponseCode());
+                    return String.valueOf(transactionDetails.getResponseCode());
+                }
+
+            }
+            log.trace("[checkStatus] TRANSACTION_MAST final status={}", status);
+            if (status == 0) {
+                query = "UPDATE TRANSACTION_MAST SET STATUS = 10 WHERE TRANSACTION_ID = :transactionId";
+                log.info("[checkStatus] Query to update TRANSACTION_MAST: {}", query);
+                
+                try {
+                    isRecordsUpdated = namedDbJdbcTemplate.update(query, params) > 0;
+                    log.info("[checkStatus] isRecordsUpdated in TRANSACTION_MAST: {}", isRecordsUpdated);
+                } catch (Exception e) {
+                    log.error("[checkStatus] Exception in updating TRANSACTION_MAST: {}", e.getMessage());
+                    return "1014";
+                }
+
+                updateVoucherStatus(String.valueOf(voucherDetails.getSerialNumber()), 
+                                    String.valueOf(voucherDetails.getBatchId()), 1);
+                return "1014";
+            } else {
+                return "1009";
+            }
+        } catch (Exception e) {
+            log.error("[checkStatus] Exception while fetching records from TRANSACTION_MAST: {}", e.getMessage());
+            return "1014";
+        }
     }
+
     
     
     
-    private void constructResponseJson( String responseCode, JSONObject responseData) throws JSONException
+    private VoucherRedeemResponse constructResponseJson( String responseCode, JSONObject responseData) throws JSONException
     {
     	    log.info(":::::::::::::::::constructResponseJson::::::::::::::::::::");
     	    reasonList = getReasonList();
@@ -1334,10 +1334,15 @@ public class VoucherRedeemptionService {
                     {
                     		responseCode = "1014";
                             transactionDetails.setResponseDescription(getResponseDescription(responseCode));
+                            
+                            voucherRedeemResponse.setRespCode(responseCode);
+	                    	voucherRedeemResponse.setRespDesc(getResponseDescription(responseCode));
                     }
                     else if(!responseCode.equals("0000"))
                     {
                     		transactionDetails.setResponseDescription(getResponseDescription(responseCode));
+                    		voucherRedeemResponse.setRespCode(responseCode);
+	                    	voucherRedeemResponse.setRespDesc(getResponseDescription(responseCode));
                     }
 
                     if(responseData != null)
@@ -1387,6 +1392,7 @@ public class VoucherRedeemptionService {
                   
             }
             log.info("[constructResponseJson]:::::::::voucherRedeemResponse::::::::::::"+voucherRedeemResponse);
+            return voucherRedeemResponse;
     }
 
 
