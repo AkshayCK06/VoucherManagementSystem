@@ -1,15 +1,11 @@
 package com.tss.wvms.model;
 
 public class TransactionMast {
-
-	//SELECT SEQ_ID,TRANSACTION_ID,to_char(REQ_DATE,'dd-mm-yyyy hh24:mi:ss'),
-	//SUBSCRIBER_MSISDN,STATUS,BATCH_NUMBER,REQ_MODE,VOUCHER_NUMBER,APPLICABLE_COS,
-	//SERVICE_FULFILLMENT_COS,VOUCHER_AMOUNT,SERIAL_NUMBER,VOUCHER_AMOUNT 
-	//FROM TRANSACTION_MAST WHERE STATUS=0 and PROCESS_ID=$processId and ROWNUM<10
 	
 	private int transactionSequenceId;
 	private long transactionId;
 	private String requestDate;
+	private String requestDateMonthWise;
 	private int msisdn;
 	private int status;
 	private int batchNumber;
@@ -19,9 +15,11 @@ public class TransactionMast {
 	private int serviceFullfillmentCOS;
 	private int voucherAmount;
 	private int serialNumber;
+	private int requestType;
 	private int responseCode;
 	private String responseDescription;
 	private String  ivrBalanceInfo;
+	
 	
 	public int getTransactionSequenceId() {
 		return transactionSequenceId;
@@ -143,6 +141,22 @@ public class TransactionMast {
 		this.ivrBalanceInfo = ivrBalanceInfo;
 	}
 
+	public String getRequestDateMonthWise() {
+		return requestDateMonthWise;
+	}
+
+	public void setRequestDateMonthWise(String requestDateMonthWise) {
+		this.requestDateMonthWise = requestDateMonthWise;
+	}
+
+	public int getRequestType() {
+		return requestType;
+	}
+
+	public void setRequestType(int requestType) {
+		this.requestType = requestType;
+	}
+
 	public TransactionMast()
 	{
 		
@@ -155,6 +169,7 @@ public class TransactionMast {
 		this.responseDescription = responseDescription;
 		this.ivrBalanceInfo = ivrBalanceInfo;
 	}
+	
 	
 	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, int msisdn, int status,
 			int batchNumber, int requestMode, long voucherNumber, int applicableCOS, int serviceFullfillmentCOS,
@@ -173,17 +188,77 @@ public class TransactionMast {
 		this.voucherAmount = voucherAmount;
 		this.serialNumber = serialNumber;
 	}
+	
+
+	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, int msisdn, int status,
+			int batchNumber, int requestMode, long voucherNumber, int applicableCOS, int serviceFullfillmentCOS) {
+		super();
+		this.transactionSequenceId = transactionSequenceId;
+		this.transactionId = transactionId;
+		this.requestDate = requestDate;
+		this.msisdn = msisdn;
+		this.status = status;
+		this.batchNumber = batchNumber;
+		this.requestMode = requestMode;
+		this.voucherNumber = voucherNumber;
+		this.applicableCOS = applicableCOS;
+		this.serviceFullfillmentCOS = serviceFullfillmentCOS;
+	}
+	
+	
+	
+	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate,
+			String requestDateMonthWise, int msisdn, int status, int batchNumber, int requestMode, long voucherNumber,
+			int applicableCOS, int serviceFullfillmentCOS,int responseCode, int serialNumber, int requestType,int voucherAmount) {
+		super();
+		this.transactionSequenceId = transactionSequenceId;
+		this.transactionId = transactionId;
+		this.requestDate = requestDate;
+		this.requestDateMonthWise = requestDateMonthWise;
+		this.msisdn = msisdn;
+		this.status = status;
+		this.batchNumber = batchNumber;
+		this.requestMode = requestMode;
+		this.voucherNumber = voucherNumber;
+		this.applicableCOS = applicableCOS;
+		this.serviceFullfillmentCOS = serviceFullfillmentCOS;
+		this.responseCode = responseCode;	
+		this.serialNumber = serialNumber;
+		this.requestType = requestType;
+		this.voucherAmount = voucherAmount;
+	}
+	
+	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, int msisdn, int status,
+			int batchNumber, int requestMode, long voucherNumber, int applicableCOS, int serviceFullfillmentCOS,
+			int voucherAmount, int serialNumber, String responseDescription) {
+		super();
+		this.transactionSequenceId = transactionSequenceId;
+		this.transactionId = transactionId;
+		this.requestDate = requestDate;
+		this.msisdn = msisdn;
+		this.status = status;
+		this.batchNumber = batchNumber;
+		this.requestMode = requestMode;
+		this.voucherNumber = voucherNumber;
+		this.applicableCOS = applicableCOS;
+		this.serviceFullfillmentCOS = serviceFullfillmentCOS;
+		this.voucherAmount = voucherAmount;
+		this.serialNumber = serialNumber;
+		this.responseDescription = responseDescription;
+	}
 
 	@Override
 	public String toString() {
 		return "TransactionMast [transactionSequenceId=" + transactionSequenceId + ", transactionId=" + transactionId
-				+ ", requestDate=" + requestDate + ", msisdn=" + msisdn + ", status=" + status + ", batchNumber="
-				+ batchNumber + ", requestMode=" + requestMode + ", voucherNumber=" + voucherNumber + ", applicableCOS="
-				+ applicableCOS + ", serviceFullfillmentCOS=" + serviceFullfillmentCOS + ", voucherAmount="
-				+ voucherAmount + ", serialNumber=" + serialNumber + ", responseCode=" + responseCode
-				+ ", responseDescription=" + responseDescription + ", ivrBalanceInfo=" + ivrBalanceInfo + "]";
+				+ ", requestDate=" + requestDate + ", requestDateMonthWise=" + requestDateMonthWise + ", msisdn="
+				+ msisdn + ", status=" + status + ", batchNumber=" + batchNumber + ", requestMode=" + requestMode
+				+ ", voucherNumber=" + voucherNumber + ", applicableCOS=" + applicableCOS + ", serviceFullfillmentCOS="
+				+ serviceFullfillmentCOS + ", voucherAmount=" + voucherAmount + ", serialNumber=" + serialNumber
+				+ ", requestType=" + requestType + ", responseCode=" + responseCode + ", responseDescription="
+				+ responseDescription + ", ivrBalanceInfo=" + ivrBalanceInfo + "]";
 	}
 
+	
 	
 	
 	
