@@ -2,6 +2,7 @@ package com.tss.wvms.scheduler;
 
 import java.io.BufferedWriter;
 
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.SecureRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,16 @@ public class VoucherEmail {
       @Value("${WVMS_VOUCHER_DET_FILE_PATH}")
       private String csvFilePath;
 	  
+      @Value("${WVMS_VOCUHER_FILE_TMPL}")
+      private String cvsTemplate;
+      
+      @Value("${WVMS_VOUCHER_PASSWORD_TMPL}")
+      private String passwordTemplate;
+      
+      @Value("${WVMS_VOUCHER_SUPERIOR_TMPL}")
+      private String superiorTemplate;
+      
+      
 	  public int countSeconds = 0;
 	  
 	  @Autowired
@@ -52,9 +65,10 @@ public class VoucherEmail {
 	  public void generateVoucherPrint() throws Exception {
         	
 	    	String query="",fileContent="",fileName="",fileHeader="",fileData="";
+	    	
 	    	String csvFileMailBody="",passwordMailBody="",superiorMailBody="";
-	    	String cvsTemplate="",passwordTemplate="",superiorTemplate="";
 	    	String cvsEmailTemplate="",passwordEmailTemplate="",superiorEmailTemplate="";
+	    	
 	    	int upperLimit=99999,lowerLimit=10000,filePassword=0;
 	    	boolean isEmailDetTableUpdated = false,isZIPFileCreated=false;
 	    	Random random = new Random();
@@ -91,7 +105,7 @@ public class VoucherEmail {
 	        	params.put("serialEnd", emailRecord.getSerialTo());
 	        	params.put("batchId", emailRecord.getBatchId());
 	        	
-	        	log.info("::::::to fetch email details records from WVMS_EMAIL_DET table::::::"+query);
+	        	log.info("[generateVoucherPrint]::::::to fetch email details records from WVMS_EMAIL_DET table::::::"+query);
 	        	
 	        	List<EmailDet> emailDetailsList = namedDbJdbcTemplate.query(query, params,
 	        			(rs,rowNum) -> new EmailDet(
@@ -114,7 +128,7 @@ public class VoucherEmail {
 	        					)
 	        			);
 	        			
-	            log.info(":::::::emailDet::::::::::::"+emailDetailsList.get(0));
+	            log.info("[generateVoucherPrint]:::::::emailDet::::::::::::"+emailDetailsList.get(0));
 	            
 	            //formatting voucher details
 //	            while(emailDetailsList.size()==1)
@@ -122,7 +136,7 @@ public class VoucherEmail {
 	            	EmailDet emailDet=emailDetailsList.get(0);
 	            	
 	            	//formatting csv file name
-	            	fileName = "CWS_."+emailDet.getBatchId()+"._."+emailDet.getSerialFrom()+"-"+emailDet.getSerialTo();
+	            	fileName = "CWS_"+emailDet.getBatchId()+"_"+emailDet.getSerialFrom()+"-"+emailDet.getSerialTo();
 	            	
 	            	if(!emailDet.getCsvToEmail().equals(""))
 	            	{	
@@ -134,7 +148,7 @@ public class VoucherEmail {
 	            	    params.put("serialEnd", emailDet.getSerialTo());
 	            	    params.put("batchId",emailDet.getBatchId());
 	            	    
-	            	    log.info("::::::to fetch voucher details from VOUCHER_DET table::::::"+query);
+	            	    log.info("[generateVoucherPrint]::::::to fetch voucher details from VOUCHER_DET table::::::"+query);
 	            	    
 	            	    List<VoucherDet> voucherDetails = namedDbJdbcTemplate.query(query, params,
 	            	    		
@@ -156,7 +170,7 @@ public class VoucherEmail {
 	            	}
 	            	else
 	            	{
-	            		log.error("TO MAIL ID IS MANDATORY");
+	            		log.error("[generateVoucherPrint]::::::::::TO MAIL ID IS MANDATORY:::::::::::::::");
 	            	}
 	            	
 //	            }
@@ -167,7 +181,7 @@ public class VoucherEmail {
 	            params.put("serialFrom",emailDetailsList.get(0).getSerialFrom());
         	    params.put("serialEnd", emailDetailsList.get(0).getSerialTo());
         	    
-        	    log.info("::::::to fetch denomaination and voucher quantity from DENOMINATION_MAST and BATCH_MAST table::::::"+query);
+        	    log.info("[generateVoucherPrint]::::::to fetch denomaination and voucher quantity from DENOMINATION_MAST and BATCH_MAST table::::::"+query);
         	    
 	        	DenominationMast denomination = namedDbJdbcTemplate.query(query, params,
 	        			(rs,rowNum)->new DenominationMast(
@@ -195,48 +209,133 @@ public class VoucherEmail {
 	        	
 	        	try {
 	        		isEmailDetTableUpdated = namedDbJdbcTemplate.update(query, params) > 0 ;
-		    		  
+	        		log.info("[generateVoucherPrint]:::::isEmailDetTableUpdated record updated in WVMS_EMAIL_DET Table:::::::"+isEmailDetTableUpdated);  
 		    	}
 		    	catch(Exception e)
 		    	{
-		    		log.error(":::::Error while updation WVMS_EMAIL_DET:::::::"+e.getMessage());
+		    		log.error("[generateVoucherPrint]:::::Error while updation WVMS_EMAIL_DET:::::::"+e.getMessage());
 		    		isEmailDetTableUpdated=false;
 		    	}
 	        	
-	        	isZIPFileCreated=createZipFile(vmsHome,vmsCfgDir,csvFilePath,fileName,String.valueOf(filePassword));
-	        
+	        	isZIPFileCreated=createZipFile(vmsHome,vmsCfgDir,csvFilePath,fileName,fileData,String.valueOf(filePassword));
+	        	
+	        	//to fetch cvs,password and superior mail body message from WVMS_MESSAGE_MAST_1 where message_id(1002-cvsMailBody,1001-passwordMailBody,1003-superiorMailBody)
+	        	//===========================================================================================
+	        	
+	        	int[] messageIdArray = {1002,1001,1003};
+	        	
+	        	for(int messageId : messageIdArray)
+	        	{	
+	        		query = "SELECT MESSAGE FROM WVMS_MESSAGE_MAST_1 WHERE MESSAGE_ID=:messageId";
+	        		params.put("messageId",messageId);
+	        		
+	        		if(messageId==1002)
+	        		{	
+	        			csvFileMailBody = namedDbJdbcTemplate.queryForObject(superiorEmailTemplate, params, String.class);
+	        		}
+	        		else if(messageId==1001)
+	        		{	
+	        			passwordMailBody = namedDbJdbcTemplate.queryForObject(superiorEmailTemplate, params, String.class);
+	        		}
+	        		else
+	        		{	
+	        			superiorMailBody = namedDbJdbcTemplate.queryForObject(superiorEmailTemplate, params, String.class);
+	        		}
+	        		
+	        	}
+	        	log.info("[generateVoucherPrint]:::::::::::::csvFileMailBody:::::::::::"+csvFileMailBody);
+	        	log.info("[generateVoucherPrint]:::::::::::::passwordMailBody:::::::::::"+passwordMailBody);
+	        	log.info("[generateVoucherPrint]:::::::::::::superiorMailBody:::::::::::"+superiorMailBody);
+	        	
+	        	//reading the emailFileTmeplate into corresponding variables
+	        	
+	        	cvsEmailTemplate = readFileContent(cvsTemplate,vmsHome,vmsCfgDir);
+	        	passwordEmailTemplate = readFileContent(passwordTemplate,vmsHome,vmsCfgDir);
+	        	superiorEmailTemplate = readFileContent(superiorTemplate,vmsHome,vmsCfgDir);
+	        	
+	        	log.info("[generateVoucherPrint]:::::::::::::cvsEmailTemplate:::::::::::"+cvsEmailTemplate);
+	        	log.info("[generateVoucherPrint]:::::::::::::passwordEmailTemplate:::::::::::"+passwordEmailTemplate);
+	        	log.info("[generateVoucherPrint]:::::::::::::superiorEmailTemplate:::::::::::"+superiorEmailTemplate);
+
+                //replacing the MAIL_BODY in the emailTemplates to the MAILBODY retrieved from WVMS_MESSAGE_MAST_1 table
+	        	
+	        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__MAILBODY__", csvFileMailBody);
+	        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__MAILBODY__", passwordMailBody);
+	        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__MAILBODY__", superiorMailBody);
+	        	
+	        	//replacing the PLACEHOLDERS present in the MAILBODY retrieved from WVMS_MESSAGE_MAST_1 table
+                 
+	        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__BATCHNAME__", emailRecord.getBatchName());
+	        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__FILENAME__", fileName+".zip");
+	        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
+	        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
+	        	
+	      
+	        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__PASSWORD__",String.valueOf(filePassword));
+	        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__BATCHNAME__",emailRecord.getBatchName());
+	        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__FILENAME__", fileName+".zip");
+	        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
+	        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
+	        	
+	        	
+	        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__PASSWORD__", String.valueOf(filePassword));
+	        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__BATCHNAME__", emailRecord.getBatchName());
+	        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__FILENAME__",fileName+".zip");
+	        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
+	        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
+	        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__FILEMAIL__",emailRecord.getCsvToEmail());
+	        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__PASSEMAIL__",emailRecord.getPassToEmail());
+
 	          }
 	        	
 	        }  	
 	        
 	   }
 	    
-	    private static boolean createZipFile(String vmsHome,String vmsCfgDir,String filePathTemp,String fileName,String filePassword) throws Exception
-	    {
-	    	
+	    private static boolean createZipFile(String vmsHome, String vmsCfgDir, String filePathTemp, String fileName,String fileData, String filePassword) throws Exception {
+	        boolean isCSVFileCreated = false, isZIPFileCreated = false;
 
-	        boolean isCSVFileCreated = false,isZIPFileCreated=false;
+	        // Normalize file path to remove redundant slashes
+	        String filePath = (vmsHome + vmsCfgDir + filePathTemp);
+	        
+	        // Ensure the target directory exists
+	        File targetDir = new File(filePath);
+	        if (!targetDir.exists()) {
+	            targetDir.mkdirs(); // Create directories if they don't exist
+	        }
 
-            // Build the file path
-            String filePath = vmsHome + "/" + vmsCfgDir + "/" + filePathTemp;
-            String csvFilePath = filePath + "/" + fileName + ".csv";
-            
-            // Log the file path (you can use a logger instead of System.out)
-            log.info("File path : " + csvFilePath);
+	        // Define CSV file path
+	        String csvFilePath = filePath + fileName + ".csv";
+	        
+	        log.info("CSV File Path: " + csvFilePath);
 
-            // The content you want to write to the CSV file
-            String fileContent = "Your CSV content goes here.";  // Replace with actual content
+	        // Content to be written in CSV
+	        String fileContent = fileData;
 
-            // Create the CSV file
-            isCSVFileCreated=createFile(csvFilePath, fileContent);
+	        // Create the CSV file
+	        isCSVFileCreated = createFile(csvFilePath, fileContent);
 
-            // Encrypt the created file
-            String encryptedFilePath = filePath + "/" + fileName + "_encrypted.csv"; // Encrypted file path
-            isZIPFileCreated=encryptFile(csvFilePath, encryptedFilePath, filePassword);
+	        if (isCSVFileCreated) {
+	            log.info("Successfully created the CSV file.");
 
-            log.info(isCSVFileCreated && isZIPFileCreated  ? "File created and encrypted successfully!" : "Problem in csv file creation");
-            return isCSVFileCreated && isZIPFileCreated;
+	            // Define ZIP file path (Ensure it's stored in the correct directory)
+	            String zipFilePath = vmsHome + vmsCfgDir + filePathTemp + fileName + ".zip";
+
+	            // Encrypt and compress the CSV file into ZIP
+	            isZIPFileCreated = encryptFile(csvFilePath, zipFilePath, filePassword);
+
+	            if (isZIPFileCreated) {
+	                log.info("Successfully created the ZIP file: " + zipFilePath);
+	            } else {
+	                log.error("Failed to create the ZIP file.");
+	            }
+	        } else {
+	            log.error("Failed to create the CSV file.");
+	        }
+
+	        return isCSVFileCreated && isZIPFileCreated;
 	    }
+
 	    
 	    private static boolean createFile(String filePath, String content) throws IOException {
 	    	try
@@ -321,6 +420,21 @@ public class VoucherEmail {
 	    	
 	    			
 	    }
+	    
+	    
+	    public static String readFileContent(String fileName,String vmsHome,String vmsCfgDir) {
+	     
+	        // Construct file path
+	        Path filePath = Path.of(vmsHome, vmsCfgDir, fileName);
+
+	        try {
+	            // Read and return file content
+	            return Files.readString(filePath);
+	        } catch (IOException e) {
+	            throw new RuntimeException("Error reading file: " + filePath, e);
+	        }
+	    }
+
 	    
 	    
 	   
