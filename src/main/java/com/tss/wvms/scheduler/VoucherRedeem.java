@@ -28,7 +28,7 @@ public class VoucherRedeem {
 	@Value("${WVMS_BUCKETID_MULTIPLY_FACTOR}")
 	private String bucketIdFactor;
 	
-	@Value("${WVMS_BUCKETID_MULTIPLY_FACTOR}")
+	@Value("${WVMS_BUCKETID_MULTIPLY_FACTOR_FROM_IN}")
 	private String bucketIdFactorIn;
 	
 	@Value("${WVMS_REQ_MODE_MAP}")
@@ -59,7 +59,6 @@ public class VoucherRedeem {
 		
 		log.info(":::::::::[voucherRedeem(Scheduler Process)]:::::::::::::::::");
 		String query="",rechargeDetails="";
-		int centCovertFactor=1,serviceUnitT=0;
 		boolean isRecordUpdated=false;
 		long subTransactionId=0;
 		
@@ -170,6 +169,7 @@ public class VoucherRedeem {
 				 }
 				 log.info("[voucherRedeem(Scheduler Process)]:::::::::::::::::rechargeDetails:::::::::::::"+rechargeDetails);
 			 
+				 int centCovertFactor=1,serviceUnitT=0;
 			     if(bucketIdFactorHash.containsKey(String.valueOf(t.getServiceType())));
 			     {
 			    	 centCovertFactor= Integer.parseInt(bucketIdFactorHash.get(String.valueOf(t.getServiceType())));

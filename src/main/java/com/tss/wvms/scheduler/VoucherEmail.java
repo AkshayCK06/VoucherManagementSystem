@@ -48,7 +48,7 @@ public class VoucherEmail {
 	  @Autowired
 	  private NamedParameterJdbcTemplate namedDbJdbcTemplate;
 	  
-	  @Scheduled(fixedDelay = 10000) // Runs every 10 seconds
+	  @Scheduled(fixedDelay = 3000) // Runs every 3 seconds
 	  public void generateVoucherPrint() throws Exception {
         	
 	    	String query="",fileContent="",fileName="",fileHeader="",fileData="";
