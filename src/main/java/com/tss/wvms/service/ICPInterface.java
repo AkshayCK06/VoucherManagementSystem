@@ -115,17 +115,18 @@ public class ICPInterface {
 		   
 		}
 		
-		response  = sendRequest(mainRequest,icpRechageURL);
+		response  = sendRequest(subsNo,mainRequest,icpRechageURL);
 		log.info("[recharge]:::::::::::response::::::::::::::::::"+response);
 		return response;
 	}
 	
 	
 	
-	public ICPResponseMapper sendRequest(String mainRequest,String urlString)
+	public ICPResponseMapper sendRequest(int subsNo,String mainRequest,String urlString)
 	{
 		log.info("::::::::::::::::::sendRequest::::::::::::::::::::");	
 		
+		urlString = urlString.replaceAll("__MSISDN__",String.valueOf(subsNo));
 		log.info("[sendRequest]:::::::::urlString::::::::"+urlString);
 		log.info("[sendRequest]:::::::::mainRequest::::::::"+mainRequest);
 		log.info("[sendRequest]:::::::::icpAuthorizationValue::::::::"+icpAuthorizationValue+"::::::::::icpAuthorizationName::::::"+icpAuthorizationName);
@@ -133,6 +134,7 @@ public class ICPInterface {
 		String authorize = Base64.getEncoder().encodeToString(icpAuthorizationValue.getBytes());
 		
 		try {
+			
             URL url = new URL(urlString);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");

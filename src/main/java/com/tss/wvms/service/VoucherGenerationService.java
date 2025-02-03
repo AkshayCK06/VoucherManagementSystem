@@ -81,6 +81,13 @@ public class VoucherGenerationService {
 		                rs.getInt("RATE_ID")
 
 	             ));
+	            if(batchDetails.size() == 0)
+	            {	
+	            	  log.info("Voucher generation Failed for batchId={}",batchId);
+				      return new Response(1, "Voucher generation Failed for batchId="+batchId + " Batch does not exist");
+	            }
+	            
+	            
 	            serialNumber = Integer.parseInt(batchDetails.get(0).getSerialStart());
 		        System.out.println("::::batchDetails:::::::::::"+batchDetails);  
 		        
@@ -197,28 +204,29 @@ public class VoucherGenerationService {
                                 	  
                                 	  voucherLoader +=","+batchId+","+voucherNumber+","+serialNumber+",-1\n";
                                 	  
-                                	  isRecordInserted = loadVoucher(batchId,voucherLoader);
-                            		    
-                            		  if(isRecordInserted)
-                            		  {	 
-                            			  
-                            			  int randomNumber = random.nextInt(100000000);
-                            			  pecLoader+= voucherNumber +","+randomNumber+","+batchDetails.get(0).getRateId()+","+
-                                    	                         denominationDetails.get(0).getAccessType()+","+slabDetails.get(0).getSlabAmount()+","+
-                                    			                 slabAmountI+","+voucherExpiryDate+",1,2,"+slabValidityInHours+","+batchId+","+serialNumber;
-                                    	  
-                                    	  //insert into PREPAID (CARDNO,SERIALNO,RATETABLECODE,SYNCID,CARDVALUE,CARDUNITS,EXPIRNDATE,
-                                    	  //DISABLED,ACCOUNTTYPE,HOURS_AFTER_FUD_TO_EXPIRE,BATCHNO,SEQUENCE_NUM) 
-                                    	  //values (?, ?, ?, ?, ?,?,STR_TO_DATE(?,'%d/%m/%Y'),?, ?,?,?,?)
-                            			  isPECRecordsInserted = loadVoucherWithPECDetails(batchId,pecLoader,String.valueOf(batchDetails.get(0).getVoucherQuantity()),"admin","9999");
-                                    	    
-                                    	  voucherNumberHashMap.put(voucherNumber,1);
-                            			  serialNumber++;
-                            		  }
-                            		  
-                            		  log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
-                            		  log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
-		        	    }
+                          }
+		        	  isRecordInserted = loadVoucher(batchId,voucherLoader);
+            		    
+              		  if(isRecordInserted)
+              		  {	 
+              			  
+              			  int randomNumber = random.nextInt(100000000);
+              			  pecLoader+= voucherNumber +","+randomNumber+","+batchDetails.get(0).getRateId()+","+
+                      	                         denominationDetails.get(0).getAccessType()+","+slabDetails.get(0).getSlabAmount()+","+
+                      			                 slabAmountI+","+voucherExpiryDate+",1,2,"+slabValidityInHours+","+batchId+","+serialNumber;
+                      	  
+                      	  //insert into PREPAID (CARDNO,SERIALNO,RATETABLECODE,SYNCID,CARDVALUE,CARDUNITS,EXPIRNDATE,
+                      	  //DISABLED,ACCOUNTTYPE,HOURS_AFTER_FUD_TO_EXPIRE,BATCHNO,SEQUENCE_NUM) 
+                      	  //values (?, ?, ?, ?, ?,?,STR_TO_DATE(?,'%d/%m/%Y'),?, ?,?,?,?)
+              			  isPECRecordsInserted = loadVoucherWithPECDetails(batchId,pecLoader,String.valueOf(batchDetails.get(0).getVoucherQuantity()),"admin","9999");
+                      	    
+                      	  voucherNumberHashMap.put(voucherNumber,1);
+              			  serialNumber++;
+              		  }
+              		  
+              		  log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
+              		  log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
+
 		        	
 		            }
 		        	
@@ -251,17 +259,18 @@ public class VoucherGenerationService {
                               	  
                             	  voucherLoader +=","+batchId+","+voucherNumber+","+serialNumber+",0\n";
                             	  
-                            	  isRecordInserted = loadVoucher(batchId,voucherLoader);
-                        		    
-                        		  if(isRecordInserted)
-                        		  {	 
-                        			  voucherNumberHashMap.put(voucherNumber,1);
-                        			  serialNumber++;
-                        		  }
-                        		  
-                        		  log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
-                        		  log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
-	        	    }
+                      }
+		        	  isRecordInserted = loadVoucher(batchId,voucherLoader);
+         		    
+	           		  if(isRecordInserted)
+	           		  {	 
+	           			  voucherNumberHashMap.put(voucherNumber,1);
+	           			  serialNumber++;
+	           		  }
+	           		  
+	           		  log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
+	           		  log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
+
 		        	
 		        }
 		        

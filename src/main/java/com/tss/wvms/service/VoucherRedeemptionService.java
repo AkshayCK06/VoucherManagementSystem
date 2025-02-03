@@ -3,6 +3,7 @@ package com.tss.wvms.service;
 import java.util.AbstractMap;
 
 
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -305,7 +306,7 @@ public class VoucherRedeemptionService {
                     switch(Integer.parseInt(voucherRedeemRequest.getVoucherFlag()))
                     {
                             case 1 :// serial number
-                                    if(!voucherRedeemRequest.getVoucherNo().matches(serialNoRegEx))
+                                    if(!voucherRedeemRequest.getVoucherNo().trim().matches(serialNoRegEx))
                                     {
                                     		responseDescription="Serial Number Not Matching With RegEx for transactionId:"+transactionId;
                                     	    log.warn(responseDescription);
@@ -419,7 +420,7 @@ public class VoucherRedeemptionService {
             		if(multiBlockCallFlag == 2)
                     {
                          log.info("[manageCustomerMast]::::::multiple time block call initiation:::::::");
-                         blockResponse = blockSubscriber(blockSubscriberUrl,fraudJson,transactionId);
+                         blockResponse = blockSubscriber(voucherRedeemRequest.getMsisdn(),blockSubscriberUrl,fraudJson,transactionId);
                          
                          log.info(":: ICP Fraud Response : "+blockResponse);
                          if(blockResponse.length()!= 0)
@@ -454,7 +455,7 @@ public class VoucherRedeemptionService {
             		else if(multiBlockCallFlag ==1  && Integer.parseInt(str_fail_count) == maxFailCount)
                     {
                             log.trace("one time block call initiation");
-                            blockResponse = blockSubscriber(blockSubscriberUrl, fraudJson,transactionId);
+                            blockResponse = blockSubscriber(voucherRedeemRequest.getMsisdn(),blockSubscriberUrl, fraudJson,transactionId);
                             log.info(":: ICP Fraud Response : "+blockResponse);
                             
                             if(blockResponse.length()!= 0)
@@ -518,6 +519,7 @@ public class VoucherRedeemptionService {
             }
             else
             {
+            	log.info("[manageCustomerMast]::::::::::inside else::::::::::::::::::::::");
             	query = "INSERT INTO CUSTOMER_MAST(SUBSCRIBER_MSISDN,FAIL_COUNT,LAST_MOD_DATE) VALUES(:msisdn,:str_fail_count,SYSDATE)";
             	
             	params.put("msisdn", voucherRedeemRequest.getMsisdn());
@@ -551,7 +553,7 @@ public class VoucherRedeemptionService {
 
     //to call External Block subscriber API
 	
-    public String blockSubscriber(String url, JSONObject data, String transactionId) throws Exception {
+    public String blockSubscriber(String msisdn,String url, JSONObject data, String transactionId) throws Exception {
         String output = "";
 
         log.info("::::::::::::blockSubscriber:::::::");
@@ -567,6 +569,8 @@ public class VoucherRedeemptionService {
             client.property(ClientProperties.CONNECT_TIMEOUT, 10000);
             client.property(ClientProperties.READ_TIMEOUT, TIMEOUT);
 
+       
+            url = url.replaceAll("__MSISDN__",msisdn);
             WebTarget webTarget = client.target(url);
 
             // Correct request usage with String "application/json"
@@ -1327,22 +1331,25 @@ public class VoucherRedeemptionService {
     {
     	    log.info(":::::::::::::::::constructResponseJson::::::::::::::::::::");
     	    reasonList = getReasonList();
+    	    String responseDesc ="";
     	    log.info("[constructResponseJson]:::::::::responseCode::::::::"+responseCode);
             try{
 
                     if(responseCode.equals("1000"))
                     {
                     		responseCode = "1014";
-                            transactionDetails.setResponseDescription(getResponseDescription(responseCode));
+                    		responseDesc = getResponseDescription(responseCode);
+                            transactionDetails.setResponseDescription(responseDesc);
                             
                             voucherRedeemResponse.setRespCode(responseCode);
-	                    	voucherRedeemResponse.setRespDesc(getResponseDescription(responseCode));
+	                    	voucherRedeemResponse.setRespDesc(responseDesc);
                     }
                     else if(!responseCode.equals("0000"))
                     {
-                    		transactionDetails.setResponseDescription(getResponseDescription(responseCode));
+                    		responseDesc = getResponseDescription(responseCode);
+                    		transactionDetails.setResponseDescription(responseDesc);
                     		voucherRedeemResponse.setRespCode(responseCode);
-	                    	voucherRedeemResponse.setRespDesc(getResponseDescription(responseCode));
+	                    	voucherRedeemResponse.setRespDesc(responseDesc);
                     }
 
                     if(responseData != null)
