@@ -201,6 +201,8 @@ public class VoucherGenerationService {
                                 	  //Inserting the voucher number,batchId ,serial number and status =-1(Calling card) into VOUCHER_DET table
                                 	  
                                 	  voucherLoader +=","+batchId+","+voucherNumber+","+serialNumber+",-1\n";
+                                	  voucherNumberHashMap.put(voucherNumber,1);
+                          			  serialNumber++;
                                 	  
                       }
 		        	  isRecordInserted = loadVoucher(batchId,voucherLoader);
@@ -218,8 +220,7 @@ public class VoucherGenerationService {
                       	  //values (?, ?, ?, ?, ?,?,STR_TO_DATE(?,'%d/%m/%Y'),?, ?,?,?,?)
               			  isPECRecordsInserted = loadVoucherWithPECDetails(batchId,pecLoader,String.valueOf(batchDetails.get(0).getVoucherQuantity()),"admin","9999");
                       	    
-                      	  voucherNumberHashMap.put(voucherNumber,1);
-              			  serialNumber++;
+                      	 
               		  }
               		  
               		  log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
@@ -256,15 +257,13 @@ public class VoucherGenerationService {
                             	  
                               	  
                             	  voucherLoader +=","+batchId+","+voucherNumber+","+serialNumber+",0\n";
+                            	  voucherNumberHashMap.put(voucherNumber,1);
+        	           			  serialNumber++;
                             	  
                       }
 		        	  isRecordInserted = loadVoucher(batchId,voucherLoader);
          		    
-	           		  if(isRecordInserted)
-	           		  {	 
-	           			  voucherNumberHashMap.put(voucherNumber,1);
-	           			  serialNumber++;
-	           		  }
+	           	
 	           		  
 	           		  log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
 	           		  log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
@@ -292,6 +291,7 @@ public class VoucherGenerationService {
 	  
 	  
 	  public boolean loadVoucher(int batchId, String voucherDetloader) {
+		    log.info("`:::::::::::::::::loadVoucher:::::::::::::::::::::`");
 	        try {
 	            // Define file paths based on environment variables
 	            String ctlFileContent = vmsHome + "/" + vmsCfgDir + "/controlFileContent.tmpl";
