@@ -49,7 +49,7 @@ public class WVMSICPInterface {
     @Value("${VMS_HOME}")
     private static String vmsHome;
 
-    @Value("")
+    @Value("${VMS_CFG_DIR}")
     private static String vmsCfgDir;
 
     @Value("${config.filename}")

@@ -32,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/wvms/voucher")
 public class VoucherController {
 	 
+
 	 @Autowired
 	 private VoucherGenerationService voucherGenerationService;
 	 
