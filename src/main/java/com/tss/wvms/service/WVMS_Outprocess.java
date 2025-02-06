@@ -1,19 +1,10 @@
 package com.tss.wvms.service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -29,7 +20,6 @@ public class WVMS_Outprocess {
     private static String myProgram = "WVMS_OutProcess.java";
     private static int processId;
     private static Connection conDb = null;
-    private static WVMS_Generic generic;
     private static String Signal = "Y";
     
     private static PreparedStatement SelOutSmsQPre;
@@ -42,7 +32,27 @@ public class WVMS_Outprocess {
     private static String SENDSMSURL;
     
     private static int retryConfig;
-    private static int WVMS_SLEEP_TIME;
+
+    @Value("${WVMS_SLEEP_TIME}")
+    private static String WVMS_SLEEP_TIME;
+
+    @Value("${WVMS_MSG_RETY_CNT}")
+    private static String WVMS_MSG_RETY_CNT;
+
+    @Value("${WVMS_COUNTRY_CODE}")
+    private static String WVMS_COUNTRY_CODE;
+
+    @Value("${WVMS_SENDSMS_URL}")
+    private static String WVMS_SENDSMS_URL;
+
+    @Value("${VMS_HOME}")
+    private static String VMS_HOME;
+
+    @Value("${VMS_LOG_PATH}")
+    private static String VMS_LOG_PATH;
+
+
+    
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -66,8 +76,6 @@ public class WVMS_Outprocess {
         // For simplicity, this check is omitted.
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> closePrg("SHUTDOWN")));
-
-        generic = new WVMS_Generic();
 
         while (true) {
             try {
@@ -96,14 +104,14 @@ public class WVMS_Outprocess {
         while (true) {
             try {
                 if (Signal.equals("Y")) {
-                    generic.tracesForAll(myProgram + " *** inside Signal");
+                    logger.info(myProgram + " *** inside Signal");
                     Signal = "N";
                     ConfigurationLoad();
                 }
 
                 ResultSet res = SelOutSmsQPre.executeQuery();
                 if (res == null) {
-                    generic.tracesForAll("Query Failed " + SelOutSmsQPre.toString() + "- Failed");
+                    logger.info("Query Failed " + SelOutSmsQPre.toString() + "- Failed");
                     WVMS_PerfDatabase.dbDiscon(conDb);
                     throw new SQLException("Query execution failed.");
                 }
@@ -121,7 +129,7 @@ public class WVMS_Outprocess {
                     // Updating MSG_STAT to P
                     updateOutSmsQPre.setInt(1, MsgId);
                     if (updateOutSmsQPre.executeUpdate() == 0) {
-                        generic.tracesForAll("Query Failed " + updateOutSmsQPre.toString() + "- Failed");
+                        logger.info("Query Failed " + updateOutSmsQPre.toString() + "- Failed");
                         WVMS_PerfDatabase.dbDiscon(conDb);
                         throw new SQLException("Update execution failed.");
                     }
@@ -157,7 +165,7 @@ public class WVMS_Outprocess {
                     if (SendToMobile == 1) {
                         DelOutSmsQPre.setInt(1, MsgId);
                         if (DelOutSmsQPre.executeUpdate() == 0) {
-                            generic.tracesForAll("Query Failed " + DelOutSmsQPre.toString() + "- Failed");
+                            logger.info("Query Failed " + DelOutSmsQPre.toString() + "- Failed");
                             WVMS_PerfDatabase.dbDiscon(conDb);
                             throw new SQLException("Delete execution failed.");
                         }
@@ -167,7 +175,7 @@ public class WVMS_Outprocess {
                             writeOutLog("Message sending failed after configured retry for msg id ::" + MsgId);
                             failedMsgPrep.setInt(1, MsgId);
                             if (failedMsgPrep.executeUpdate() == 0) {
-                                generic.tracesForAll("Query Failed " + failedMsgPrep.toString() + "- Failed");
+                                logger.info("Query Failed " + failedMsgPrep.toString() + "- Failed");
                                 WVMS_PerfDatabase.dbDiscon(conDb);
                                 throw new SQLException("Failed message update execution failed.");
                             }
@@ -175,7 +183,7 @@ public class WVMS_Outprocess {
                             writeOutLog("Updating Message with msg id ::" + MsgId + " as message sending has failed ");
                             updateOutSmsQPreN.setInt(1, MsgId);
                             if (updateOutSmsQPreN.executeUpdate() == 0) {
-                                generic.tracesForAll("Query Failed " + updateOutSmsQPreN.toString() + "- Failed");
+                                logger.info("Query Failed " + updateOutSmsQPreN.toString() + "- Failed");
                                 WVMS_PerfDatabase.dbDiscon(conDb);
                                 throw new SQLException("Retry update execution failed.");
                             }
@@ -183,7 +191,7 @@ public class WVMS_Outprocess {
                     }
                 }
                 res.close();
-                Thread.sleep(WVMS_SLEEP_TIME * 1000L);
+                Thread.sleep(Integer.parseInt(WVMS_SLEEP_TIME) * 1000L);
             } catch (SQLException | InterruptedException e) {
                 logger.log(Level.SEVERE, "Exception in mainProcess: ", e);
                 Thread.currentThread().interrupt();
@@ -214,8 +222,8 @@ public class WVMS_Outprocess {
         }
 
         // Read Configs
-        WVMS_SLEEP_TIME = Integer.parseInt(generic.openConfig("WVMS_SLEEP_TIME"));
-        retryConfig = Integer.parseInt(generic.openConfig("WVMS_MSG_RETY_CNT"));
+        WVMS_SLEEP_TIME = WVMS_SLEEP_TIME;
+        retryConfig = Integer.parseInt(WVMS_MSG_RETY_CNT);
 
         String SelOutSmsQ = "SELECT MSG_ID, DEST_MSISDN, FROM_MSISDN, MESSAGE, UDH, SENDSMS_PORT, OPTIONAL_FLAG, RETRY_COUNT FROM OUT_SMS_Q WHERE MSG_STAT='N' AND DATE_TIME < SYSDATE AND OUT_PROCESS_ID = ? AND ROWNUM < 30 ORDER BY MSG_ID";
         SelOutSmsQPre = conDb.prepareStatement(SelOutSmsQ);
@@ -229,7 +237,7 @@ public class WVMS_Outprocess {
 
         String updateOutSmsQN = "UPDATE OUT_SMS_Q SET MSG_STAT='N', DATE_TIME = (SYSDATE + (?/86400)), RETRY_COUNT=RETRY_COUNT+1 WHERE MSG_ID = ? AND MSG_STAT='P'";
         updateOutSmsQPreN = conDb.prepareStatement(updateOutSmsQN);
-        updateOutSmsQPreN.setInt(1, WVMS_SLEEP_TIME);
+        updateOutSmsQPreN.setInt(1, Integer.parseInt(WVMS_SLEEP_TIME));
 
         String failedMsg = "UPDATE OUT_SMS_Q SET MSG_STAT='F' WHERE MSG_ID = ?";
         failedMsgPrep = conDb.prepareStatement(failedMsg);
@@ -243,8 +251,8 @@ public class WVMS_Outprocess {
         res.close();
         stmt.close();
 
-        ccCode = generic.openConfig("WVMS_COUNTRY_CODE");
-        SENDSMSURL = generic.openConfig("WVMS_SENDSMS_URL");
+        ccCode = WVMS_COUNTRY_CODE;
+        SENDSMSURL =WVMS_SENDSMS_URL;
     }
 
     private static int getURLContent(String url) {
@@ -295,15 +303,15 @@ public class WVMS_Outprocess {
     private static void writeLog(String msg) {
         String now = getCurrentTimestamp();
         String logDate = getCurrentLogDate();
-        String file = System.getenv("VMS_HOME") + "/" + System.getenv("VMS_LOG_PATH") + "/" + logDate + "WVMS_OutSmsQSuccess.log";
+        String file = VMS_HOME + "/" + VMS_LOG_PATH + "/" + logDate + "WVMS_OutSmsQSuccess.log";
         appendToFile(file, now + "\t" + processId + "\t" + msg);
     }
 
     private static void writeHeartLog(String msg) {
         String now = getCurrentTimestamp();
         String logDate = getCurrentLogDate();
-        String file1 = System.getenv("VMS_HOME") + "/" + System.getenv("VMS_LOG_PATH") + "/" + logDate + "WVMS_issueWithKannel.log";
-        String file2 = System.getenv("VMS_HOME") + "/" + System.getenv("VMS_LOG_PATH") + "/" + logDate + "WVMS_issueWithKannelBacked.log";
+        String file1 = VMS_HOME + "/" + VMS_LOG_PATH + "/" + logDate + "WVMS_issueWithKannel.log";
+        String file2 = VMS_HOME + "/" + VMS_LOG_PATH + "/" + logDate + "WVMS_issueWithKannelBacked.log";
         appendToFile(file1, now + "\t" + processId + "\t" + msg);
         appendToFile(file2, now + "\t" + processId + "\t" + msg);
     }
@@ -311,21 +319,21 @@ public class WVMS_Outprocess {
     private static void writeFailureLog(String msg) {
         String now = getCurrentTimestamp();
         String logDate = getCurrentLogDate();
-        String file = System.getenv("VMS_HOME") + "/" + System.getenv("VMS_LOG_PATH") + "/" + logDate + "WVMS_OutSmsQFailure.log";
+        String file = VMS_HOME + "/" + VMS_LOG_PATH + "/" + logDate + "WVMS_OutSmsQFailure.log";
         appendToFile(file, now + "\t" + processId + "\t" + msg);
     }
 
     private static void writeDBLog(String msg) {
         String now = getCurrentTimestamp();
         String logDate = getCurrentLogDate();
-        String fileName = System.getenv("VMS_HOME") + "/" + System.getenv("VMS_LOG_PATH") + "/" + logDate + "WVMS_OutProcessDb.log";
+        String fileName = VMS_HOME + "/" + VMS_LOG_PATH + "/" + logDate + "WVMS_OutProcessDb.log";
         appendToFile(fileName, now + " => " + msg);
     }
 
     private static void writeOutLog(String msg) {
         String now = getCurrentTimestamp();
         String logDate = getCurrentLogDate();
-        String fileName = System.getenv("VMS_HOME") + "/" + System.getenv("VMS_LOG_PATH") + "/" + logDate + "WVMS_OutProcess.log";
+        String fileName = VMS_HOME + "/" + VMS_LOG_PATH + "/" + logDate + "WVMS_OutProcess.log";
         appendToFile(fileName, now + " => " + msg);
     }
 
@@ -394,22 +402,3 @@ class WVMS_PerfDatabase {
     }
 }
 
-class WVMS_Generic {
-    private static final Logger logger = Logger.getLogger(WVMS_Generic.class.getName());
-
-    public String openConfig(String configName) {
-       
-        Properties props = new Properties();
-        try {
-            props.load(getClass().getClassLoader().getResourceAsStream("application.properties"));
-            return props.getProperty(configName);
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "Failed to load configuration for " + configName, e);
-            return "";
-        }
-    }
-
-    public void tracesForAll(String message) {
-        logger.info(message);
-    }
-}

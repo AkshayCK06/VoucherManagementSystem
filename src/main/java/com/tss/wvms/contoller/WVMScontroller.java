@@ -32,9 +32,9 @@ public class WVMScontroller {
         );
     }
 
-    @GetMapping("/query")
-    public String queryTransaction(@RequestParam String transId) {
-        return wvmsICPInterface.queryTransaction(transId);
-    }
+    // @GetMapping("/query")
+    // public String queryTransaction(@RequestParam String transId) {
+    //     return wvmsICPInterface.queryTransaction(transId);
+    // }
 }
 

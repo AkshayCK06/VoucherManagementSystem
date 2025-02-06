@@ -57,6 +57,18 @@ public class WVMSICPInterface {
 
     private static String queryTransReq;
 
+    @Value("${WVMS_WICP_TRSNACTION_URL}")
+    private static String WVMS_WICP_TRSNACTION_URL;
+
+    @Value("${WVMS_APPLICATION_NAME}")
+    private static String WVMS_APPLICATION_NAME;
+
+    @Value("${WVMS_AUTH_HEADER}")
+    private static String WVMS_AUTH_HEADER;
+
+    @Value("${WVMS_ICP_GETBUCKET_DETAILS}")
+    private static String WVMS_ICP_GETBUCKET_DETAILS;
+
     private final RestTemplate restTemplate;
     private final JdbcTemplate jdbcTemplate;
 
@@ -134,7 +146,7 @@ public class WVMSICPInterface {
         String resp = "";
 
         try {
-            url = readConf("WVMS_WICP_TRSNACTION_URL");
+            url = WVMS_WICP_TRSNACTION_URL;
             url = url.replaceAll("__REFID__", refId);
             mainReq = mainReq.replaceAll("__MOBNOS__", subNos);
             mainReq = mainReq.replaceAll("__APPREFID__", refId);
@@ -180,41 +192,41 @@ public class WVMSICPInterface {
         return value.toString().trim();
     }
 
-    public static String readConf(String searchString) throws IOException {
-        // creating file path
-        String filePath = vmsHome + "/" + vmsCfgDir + "/" + configFilename;
-        Path path = Paths.get(filePath);
+    // public static String readConf(String searchString) throws IOException {
+    //     // creating file path
+    //     String filePath = vmsHome + "/" + vmsCfgDir + "/" + configFilename;
+    //     Path path = Paths.get(filePath);
 
-        if (!Files.exists(path)) {
-            throw new FileNotFoundException("Cannot open file: " + filePath);
-        }
-        Pattern pattern = Pattern.compile("^" + searchString + "\s*=\s*(.*?)\s*$", Pattern.CASE_INSENSITIVE);
-        String value = "0"; // Default value
+    //     if (!Files.exists(path)) {
+    //         throw new FileNotFoundException("Cannot open file: " + filePath);
+    //     }
+    //     Pattern pattern = Pattern.compile("^" + searchString + "\s*=\s*(.*?)\s*$", Pattern.CASE_INSENSITIVE);
+    //     String value = "0"; // Default value
 
-        // Read file with locking
-        try (RandomAccessFile file = new RandomAccessFile(filePath, "r");
-                FileChannel fileChannel = file.getChannel();
-                FileLock lock = fileChannel.lock(0, Long.MAX_VALUE, true)) { // Shared lock (READ mode)
+    //     // Read file with locking
+    //     try (RandomAccessFile file = new RandomAccessFile(filePath, "r");
+    //             FileChannel fileChannel = file.getChannel();
+    //             FileLock lock = fileChannel.lock(0, Long.MAX_VALUE, true)) { // Shared lock (READ mode)
 
-            String line;
-            while ((line = file.readLine()) != null) {
-                Matcher matcher = pattern.matcher(line);
-                if (matcher.find()) {
-                    value = matcher.group(1);
-                    break;
-                }
-            }
-        }
+    //         String line;
+    //         while ((line = file.readLine()) != null) {
+    //             Matcher matcher = pattern.matcher(line);
+    //             if (matcher.find()) {
+    //                 value = matcher.group(1);
+    //                 break;
+    //             }
+    //         }
+    //     }
 
-        return value;
-    }
+    //     return value;
+    // }
 
     public static String sendRequest(String msg, String url) throws IOException {
         System.out.println(" sendRequest : msg = " + msg + " | url=" + url);
 
         // Auth Value
-        String authVal = readConf("WVMS_AUTH_HEADER");
-        String authNam = readConf("WVMS_APPLICATION_NAME");
+        String authVal = WVMS_AUTH_HEADER;
+        String authNam = WVMS_APPLICATION_NAME;
         System.out.println(" sendRequest : authVal = " + authVal + " | authNam=" + authNam + "|url=" + url);
 
         String auth1 = Base64.getEncoder().encodeToString(authVal.getBytes(StandardCharsets.UTF_8));
@@ -248,7 +260,7 @@ public class WVMSICPInterface {
         String url;
         String resp = "";
         try {
-            url = readConf("WVMS_ICP_GETBUCKET_DETAILS");
+            url = WVMS_ICP_GETBUCKET_DETAILS;
             url = url.replaceAll("__MSISDN__", subNos);
             url = url.replaceAll("__APPREFID__", refId);
             resp = sendRequestGet("", url);
@@ -263,8 +275,8 @@ public class WVMSICPInterface {
 
     public String sendRequestGet(String msg, String url) throws Exception {
         System.out.println(" sendRequest : msg = " + msg + " | url=" + url);
-        String authVal = readConf("WVMS_AUTH_HEADER");
-        String authNam = readConf("WVMS_APPLICATION_NAME");
+        String authVal = WVMS_AUTH_HEADER;
+        String authNam = WVMS_APPLICATION_NAME;
         System.out.println(" sendRequest : authVal = " + authVal + " | authNam=" + authNam + "|url=" + url);
         String auth1 = Base64.getEncoder().encodeToString(authVal.getBytes());
 
