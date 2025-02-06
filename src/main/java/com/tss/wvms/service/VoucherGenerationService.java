@@ -2,8 +2,6 @@ package com.tss.wvms.service;
 
 import java.util.ArrayList;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -204,7 +202,7 @@ public class VoucherGenerationService {
                                 	  
                                 	  voucherLoader +=","+batchId+","+voucherNumber+","+serialNumber+",-1\n";
                                 	  
-                          }
+                      }
 		        	  isRecordInserted = loadVoucher(batchId,voucherLoader);
             		    
               		  if(isRecordInserted)

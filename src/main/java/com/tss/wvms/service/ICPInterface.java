@@ -91,7 +91,6 @@ public class ICPInterface {
 
 		    bucketReq = bucketReq.replaceAll("__BID__",key);
 		    bucketReq = bucketReq.replaceAll("__BAMT__",serviceUnit);
-		    bucketReq = bucketReq.replaceAll("__NOD__",serviceValidityDate);
 		    bucketReq = bucketReq.replaceAll("__BALEXPDATE__",serviceValidity);
             
             finalBucketRequest+=bucketReq;
@@ -100,8 +99,7 @@ public class ICPInterface {
             
             log.info("[recharge]::::::::::finalBucketRequest::::::::::::::"+finalBucketRequest);
             
-            mainRequest = mainRequest.replaceAll("__ACCESSNO__", String.valueOf(subsNo));
-            mainRequest = mainRequest.replaceAll("__MOBNOS__", String.valueOf(subsNo));
+
             mainRequest = mainRequest.replaceAll("__APPREFID__", String.valueOf(transactionId));
             mainRequest = mainRequest.replaceAll("__BALANCES__", finalBucketRequest);
             mainRequest = mainRequest.replaceAll("__FACEVAL__", String.valueOf(faceValue));
@@ -109,7 +107,7 @@ public class ICPInterface {
             mainRequest = mainRequest.replaceAll("__BATCHNUM__", String.valueOf(batchNumber));
             mainRequest = mainRequest.replaceAll("__COMMENT__", comment);
             mainRequest = mainRequest.replaceAll("__CHANNEL__", channel);
-            mainRequest = mainRequest.replaceAll("__VOUCHERNUM__", voucherNumber);
+            
            
             log.info("[recharge]::::::::::mainRequest::::::::::::::"+mainRequest);
 		   
