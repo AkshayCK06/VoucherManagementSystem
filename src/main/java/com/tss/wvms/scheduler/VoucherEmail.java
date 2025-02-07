@@ -1,8 +1,5 @@
 package com.tss.wvms.scheduler;
 
-import java.io.BufferedWriter;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,13 +9,26 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.SecureRandom;
+
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.model.ZipParameters;
+import net.lingala.zip4j.util.Zip4jConstants;
+
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -89,7 +99,7 @@ public class VoucherEmail {
 	    	String isCSVEmailSent = "",isPasswordEmailSent="",isSuperiorMailSent="";
 	    	
 	    	int upperLimit=99999,lowerLimit=10000,filePassword=0;
-	    	boolean isEmailDetTableUpdated = false,isZIPFileCreated=false;
+	    	boolean isEmailDetTableUpdated = false,isZIPFileCreated=false,isCSVFileCreated=false;
 	    	Random random = new Random();
 	    	HashMap<String,Integer> params = new HashMap<String,Integer>();
 	    	
@@ -182,7 +192,7 @@ public class VoucherEmail {
 			            	    {	
 			            	    	//formatting cvs file content
 			            	    	//format 0 <7 digit serialNumber> 0000 <12 digit Voucher number>
-			            	    	fileContent+="'0+"+String.format("%07d",voucher.getSerialNumber())+"0000"+String.format("%012d",voucher.getVoucherNumber())+"'\n";
+			            	    	fileContent+="'0"+String.format("%07d",voucher.getSerialNumber())+"0000"+String.format("%012d",voucher.getVoucherNumber())+"'\n";
 			            	    }
 			            	    
 			            	
@@ -236,105 +246,117 @@ public class VoucherEmail {
 				    		isEmailDetTableUpdated=false;
 				    	}
 			        	
-			        	isZIPFileCreated=createZipFile(vmsHome,vmsCfgDir,csvFilePath,fileName,fileData,String.valueOf(filePassword));
+			        	isCSVFileCreated = createFile(vmsHome+vmsCfgDir+csvFilePath+fileName+".csv", fileData);
+			        	isZIPFileCreated = createZipFile(vmsHome+vmsCfgDir+csvFilePath+fileName+".csv",vmsHome+vmsCfgDir+csvFilePath+fileName+".zip",String.valueOf(filePassword));
+			        	
 			        	
 			        	//to fetch cvs,password and superior mail body message from WVMS_MESSAGE_MAST_1 where message_id(1002-cvsMailBody,1001-passwordMailBody,1003-superiorMailBody)
 			        	//===========================================================================================
-			        	
-			        	int[] messageIdArray = {1002,1001,1003};
-			        	
-			        	for(int messageId : messageIdArray)
+			        	if(isCSVFileCreated && isZIPFileCreated)
 			        	{	
-			        		query = "SELECT MESSAGE FROM WVMS_MESSAGE_MAST_1 WHERE MESSAGE_ID=:messageId";
-			        		params.put("messageId",messageId);
 			        		
-			        		if(messageId==1002)
-			        		{	
-			        			csvFileMailBody = namedDbJdbcTemplate.queryForObject(superiorEmailTemplate, params, String.class);
-			        		}
-			        		else if(messageId==1001)
-			        		{	
-			        			passwordMailBody = namedDbJdbcTemplate.queryForObject(superiorEmailTemplate, params, String.class);
-			        		}
-			        		else
-			        		{	
-			        			superiorMailBody = namedDbJdbcTemplate.queryForObject(superiorEmailTemplate, params, String.class);
-			        		}
-			        		
+			        	
+				        	int[] messageIdArray = {1002,1001,1003};
+				        	
+				        	for(int messageId : messageIdArray)
+				        	{	
+				        		query = "SELECT MESSAGE FROM WVMS_MESSAGE_MAST_1 WHERE MESSAGE_ID=:messageId";
+				        		params.put("messageId",messageId);
+				        		
+				        		if(messageId==1002)
+				        		{	
+				        			csvFileMailBody = namedDbJdbcTemplate.queryForObject(query, params, String.class);
+				        		}
+				        		else if(messageId==1001)
+				        		{	
+				        			passwordMailBody = namedDbJdbcTemplate.queryForObject(query, params, String.class);
+				        		}
+				        		else
+				        		{	
+				        			superiorMailBody = namedDbJdbcTemplate.queryForObject(query, params, String.class);
+				        		}
+				        		
+				        	}
+				        	log.info("[generateVoucherPrint]:::::::::::::csvFileMailBody:::::::::::"+csvFileMailBody);
+				        	log.info("[generateVoucherPrint]:::::::::::::passwordMailBody:::::::::::"+passwordMailBody);
+				        	log.info("[generateVoucherPrint]:::::::::::::superiorMailBody:::::::::::"+superiorMailBody);
+				        	
+				        	//reading the emailFileTmeplate into corresponding variables
+				        	
+				        	cvsEmailTemplate = readFileContent(cvsTemplate,vmsHome,vmsCfgDir);
+				        	passwordEmailTemplate = readFileContent(passwordTemplate,vmsHome,vmsCfgDir);
+				        	superiorEmailTemplate = readFileContent(superiorTemplate,vmsHome,vmsCfgDir);
+				        	
+				        	log.info("[generateVoucherPrint]:::::::::::::cvsEmailTemplate:::::::::::"+cvsEmailTemplate);
+				        	log.info("[generateVoucherPrint]:::::::::::::passwordEmailTemplate:::::::::::"+passwordEmailTemplate);
+				        	log.info("[generateVoucherPrint]:::::::::::::superiorEmailTemplate:::::::::::"+superiorEmailTemplate);
+			
+			                //replacing the MAIL_BODY in the emailTemplates to the MAILBODY retrieved from WVMS_MESSAGE_MAST_1 table
+				        	
+				        	
+				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__MAILBODY__", csvFileMailBody);
+				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__MAILBODY__", passwordMailBody);
+				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__MAILBODY__", superiorMailBody);
+				        	
+				        	//replacing the PLACEHOLDERS present in the MAILBODY retrieved from WVMS_MESSAGE_MAST_1 table
+				        	
+				        	log.info("[generateVoucherPrint]::::::::::emailRecord::::::::::::::"+emailRecord);
+			                 
+				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__BATCHNAME__", emailDet.getBatchName());
+				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__FILENAME__", fileName+".zip");
+				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
+				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
+				        	
+				        	log.info("[generateVoucherPrint]:::::::::::::cvsEmailTemplate after replaceAll:::::::::::"+cvsEmailTemplate);
+				      
+				        	log.info("[generateVoucherPrint]::::::filePassword:::::"+filePassword+"::::::batchName:::::"+emailRecord.getBatchName()+":::::::fileName::::::"+fileName+".zip"+"::::::serialEnd::::::"+emailRecord.getSerialTo()+"::::::::::serialStart::::::::"+emailRecord.getSerialFrom());
+				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__PASSWORD__",String.valueOf(filePassword));
+				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__BATCHNAME__", emailDet.getBatchName());
+				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__FILENAME__", fileName+".zip");
+				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
+				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
+				        	
+				        	log.info("[generateVoucherPrint]:::::::::::::passwordEmailTemplate after replaceAll:::::::::::"+passwordEmailTemplate);
+				        	
+				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__PASSWORD__", String.valueOf(filePassword));
+				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__BATCHNAME__", emailDet.getBatchName());
+				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__FILENAME__",fileName+".zip");
+				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
+				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
+				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__FILEMAIL__",emailDet.getCsvToEmail());
+				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__PASSEMAIL__",emailDet.getPassToEmail());
+			
+				        	log.info("[generateVoucherPrint]:::::::::::::superiorEmailTemplate after replaceAll:::::::::::"+superiorEmailTemplate);
+				          	
+				        	isCSVEmailSent = genericFunctions.sendMail(emailDet.getCsvToEmail(),fromMailId,cvsEmailTemplate,csvMailSubject,vmsHome + vmsCfgDir +csvFilePath,emailDet.getCsvCCEmail(),emailDet.getCsvBCCEmail(),fromEmailName);
+				        	if(!isCSVEmailSent.equals("1"))
+				        	{	
+				        		//to update WVMS_EMAIL_DET status(5:Failed To Send)
+				        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
+				        		log.error("[generateVoucherPrint]:::::::::::::Unable to send CSV mail::::::::::::::");
+				        	}
+				        	
+				        	isPasswordEmailSent = genericFunctions.sendMail(emailDet.getPassToEmail(),fromMailId,passwordEmailTemplate,passwordEmailSubject,"",emailDet.getPassCCEmail(),emailDet.getPassBCCEmail(),fromEmailName);
+				        	if(!isPasswordEmailSent.equals("1"))
+				        	{	
+				        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
+				        		log.error("[generateVoucherPrint]:::::::::::::Unable to send Password mail::::::::::::::");
+				        	}	 
+				        	
+				        	if(!emailRecord.getSuperiorEmail().equals(""))
+				        	{	
+				        		isSuperiorMailSent = genericFunctions.sendMail(emailDet.getSuperiorEmail(),fromMailId,superiorEmailTemplate,superiorEmailSubject,"","","",fromEmailName);
+				      
+				        	}
+				        	if(!isSuperiorMailSent.equals("1"))
+				        	{	
+				        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
+				        		log.error("[generateVoucherPrint]:::::::::::::Unable to send Superior mail::::::::::::::");
+				        	}
+				        	
+				        	//update WVMS_EMAIL_DET status (6:Email Sent)
+				        	isEmailDetTableUpdated = updateEmailDet(6,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
 			        	}
-			        	log.info("[generateVoucherPrint]:::::::::::::csvFileMailBody:::::::::::"+csvFileMailBody);
-			        	log.info("[generateVoucherPrint]:::::::::::::passwordMailBody:::::::::::"+passwordMailBody);
-			        	log.info("[generateVoucherPrint]:::::::::::::superiorMailBody:::::::::::"+superiorMailBody);
-			        	
-			        	//reading the emailFileTmeplate into corresponding variables
-			        	
-			        	cvsEmailTemplate = readFileContent(cvsTemplate,vmsHome,vmsCfgDir);
-			        	passwordEmailTemplate = readFileContent(passwordTemplate,vmsHome,vmsCfgDir);
-			        	superiorEmailTemplate = readFileContent(superiorTemplate,vmsHome,vmsCfgDir);
-			        	
-			        	log.info("[generateVoucherPrint]:::::::::::::cvsEmailTemplate:::::::::::"+cvsEmailTemplate);
-			        	log.info("[generateVoucherPrint]:::::::::::::passwordEmailTemplate:::::::::::"+passwordEmailTemplate);
-			        	log.info("[generateVoucherPrint]:::::::::::::superiorEmailTemplate:::::::::::"+superiorEmailTemplate);
-		
-		                //replacing the MAIL_BODY in the emailTemplates to the MAILBODY retrieved from WVMS_MESSAGE_MAST_1 table
-			        	
-			        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__MAILBODY__", csvFileMailBody);
-			        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__MAILBODY__", passwordMailBody);
-			        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__MAILBODY__", superiorMailBody);
-			        	
-			        	//replacing the PLACEHOLDERS present in the MAILBODY retrieved from WVMS_MESSAGE_MAST_1 table
-		                 
-			        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__BATCHNAME__", emailRecord.getBatchName());
-			        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__FILENAME__", fileName+".zip");
-			        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
-			        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
-			        	
-			      
-			        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__PASSWORD__",String.valueOf(filePassword));
-			        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__BATCHNAME__",emailRecord.getBatchName());
-			        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__FILENAME__", fileName+".zip");
-			        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
-			        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
-			        	
-			        	
-			        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__PASSWORD__", String.valueOf(filePassword));
-			        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__BATCHNAME__", emailRecord.getBatchName());
-			        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__FILENAME__",fileName+".zip");
-			        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
-			        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
-			        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__FILEMAIL__",emailRecord.getCsvToEmail());
-			        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__PASSEMAIL__",emailRecord.getPassToEmail());
-		
-			          	
-			        	isCSVEmailSent = genericFunctions.sendMail(emailRecord.getCsvToEmail(),fromMailId,cvsEmailTemplate,csvMailSubject,vmsHome + vmsCfgDir +csvFilePath,emailRecord.getCsvCCEmail(),emailRecord.getCsvBCCEmail(),fromEmailName);
-			        	if(!isCSVEmailSent.equals("1"))
-			        	{	
-			        		//to update WVMS_EMAIL_DET status(5:Failed To Send)
-			        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
-			        		log.error("[generateVoucherPrint]:::::::::::::Unable to send CSV mail::::::::::::::");
-			        	}
-			        	
-			        	isPasswordEmailSent = genericFunctions.sendMail(emailRecord.getPassToEmail(),fromMailId,passwordEmailTemplate,passwordEmailSubject,"",emailRecord.getPassCCEmail(),emailRecord.getPassBCCEmail(),fromEmailName);
-			        	if(!isPasswordEmailSent.equals("1"))
-			        	{	
-			        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
-			        		log.error("[generateVoucherPrint]:::::::::::::Unable to send Password mail::::::::::::::");
-			        	}	 
-			        	
-			        	if(!emailRecord.getSuperiorEmail().equals(""))
-			        	{	
-			        		isSuperiorMailSent = genericFunctions.sendMail(emailRecord.getSuperiorEmail(),fromMailId,superiorEmailTemplate,superiorEmailSubject,"","","",fromEmailName);
-			      
-			        	}
-			        	if(!isSuperiorMailSent.equals("1"))
-			        	{	
-			        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
-			        		log.error("[generateVoucherPrint]:::::::::::::Unable to send Superior mail::::::::::::::");
-			        	}
-			        	
-			        	//update WVMS_EMAIL_DET status (6:Email Sent)
-			        	isEmailDetTableUpdated = updateEmailDet(6,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
-			        	
 	        	
 	        	
 	        	}
@@ -348,50 +370,67 @@ public class VoucherEmail {
 	        
 	   }
 	    
-	    private static boolean createZipFile(String vmsHome, String vmsCfgDir, String filePathTemp, String fileName,String fileData, String filePassword) throws Exception {
-	        boolean isCSVFileCreated = false, isZIPFileCreated = false;
+	  
+	  public static boolean createZipFile (String fileName, String zipFileName, String password) {
 
-	        // Normalize file path to remove redundant slashes
-	        String filePath = (vmsHome + vmsCfgDir + filePathTemp);
-	        
-	        // Ensure the target directory exists
-	        File targetDir = new File(filePath);
-	        if (!targetDir.exists()) {
-	            targetDir.mkdirs(); // Create directories if they don't exist
-	        }
+          try {
+        	     log.info("[createZipFile]:::::::::::fileName::::::::::::::"+fileName);
+        	     log.info("[createZipFile]:::::::::::zipFileName::::::::::::::"+zipFileName);
+        	     log.info("[createZipFile]:::::::::::password::::::::::::::"+password);
 
-	        // Define CSV file path
-	        String csvFilePath = filePath + fileName + ".csv";
-	        
-	        log.info("CSV File Path: " + csvFilePath);
+                  //genObj.writeLog(logFileName,"Inside createZipFile. fileName="+fileName+" | zipFileName="+zipFileName,logFlag);
+                  //This is name and path of zip file to be created
+                  //ZipFile zipFile = new ZipFile(zipFileName);
+        	     ZipFile zipFile = new ZipFile(zipFileName);
+        	     zipFile.setPassword(password.toCharArray());
 
-	        // Content to be written in CSV
-	        String fileContent = fileData;
+                  //Add files to be archived into zip file
+                  ArrayList<File> filesToAdd = new ArrayList<File>();
+                  filesToAdd.add(new File(fileName));
 
-	        // Create the CSV file
-	        isCSVFileCreated = createFile(csvFilePath, fileContent);
+                  //Initiate Zip Parameters which define various properties
+                  ZipParameters parameters = new ZipParameters();
+                  parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE); // set compression method to deflate compression
 
-	        if (isCSVFileCreated) {
-	            log.info("[generateVoucherPrint]::::::::::::Successfully created the CSV file::::::::::::::::");
+                  //DEFLATE_LEVEL_FASTEST     - Lowest compression level but higher speed of compression
+                  //DEFLATE_LEVEL_FAST        - Low compression level but higher speed of compression
+                  //DEFLATE_LEVEL_NORMAL  - Optimal balance between compression level/speed
+                  //DEFLATE_LEVEL_MAXIMUM     - High compression level with a compromise of speed
+                  //DEFLATE_LEVEL_ULTRA       - Highest compression level but low speed
+                  parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
 
-	            // Define ZIP file path (Ensure it's stored in the correct directory)
-	            String zipFilePath = vmsHome + vmsCfgDir + filePathTemp + fileName + ".zip";
+                  //Set the encryption flag to true
+                  parameters.setEncryptFiles(true);
 
-	            // Encrypt and compress the CSV file into ZIP
-	            isZIPFileCreated = encryptFile(csvFilePath, zipFilePath, filePassword);
+                  //Set the encryption method to AES Zip Encryption
+                  parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
 
-	            if (isZIPFileCreated) {
-	                log.info("[generateVoucherPrint]:::::::::::Successfully created the ZIP file:::::::::::::::: " + zipFilePath);
-	            } else {
-	                log.error("[generateVoucherPrint]:::::::::::Failed to create the ZIP file:::::::::::::::::::");
-	            }
-	        } else {
-	            log.error("[generateVoucherPrint]:::::::::::::Failed to create the CSV file::::::::::::::::::::::");
-	        }
+                  //AES_STRENGTH_128 - For both encryption and decryption
+                  //AES_STRENGTH_192 - For decryption only
+                  //AES_STRENGTH_256 - For both encryption and decryption
+                  //Key strength 192 cannot be used for encryption. But if a zip file already has a
+                  //file encrypted with key strength of 192, then Zip4j can decrypt this file
+                  parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);
 
-	        return isCSVFileCreated && isZIPFileCreated;
-	    }
+                  //Set password
+                  parameters.setPassword(password);
 
+                  //Now add files to the zip file
+                  zipFile.addFiles(filesToAdd, parameters);
+
+                  log.info("[createZipFile]:::::::::::Successfully created the zip file::::::::::::::");
+                  //genObj.writeLog(logFileName,logText,logFlag);
+
+                  return true;
+          }
+          catch (ZipException e)
+          {
+        	  log.error("[createZipFile]:::::::::::Exception found while creating the zip. Exception - " + e.getMessage());
+                  //genObj.writeLog(logFileName,logText,logFlag);
+                  return false;
+          }
+       }
+	    
 	    
 	    private static boolean createFile(String filePath, String content) throws IOException {
 	    	try
@@ -417,39 +456,7 @@ public class VoucherEmail {
     		return true;
 	    	
 	    }
-	    
-	    public static boolean encryptFile(String sourceFilePath, String encryptedFilePath, String password) throws Exception {
-	        // Generate AES key from password
-	        SecureRandom sr = new SecureRandom(password.getBytes());
-	        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-	        keyGen.init(128, sr);
-	        SecretKey secretKey = keyGen.generateKey();
-
-	        // Initialize Cipher
-	        Cipher cipher = Cipher.getInstance("AES");
-	        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-
-	        // Encrypt the file
-	        try (FileInputStream fis = new FileInputStream(sourceFilePath);
-	             FileOutputStream fos = new FileOutputStream(encryptedFilePath);
-	             CipherOutputStream cos = new CipherOutputStream(fos, cipher)) {
-
-	            byte[] buffer = new byte[1024];
-	            int length;
-	            while ((length = fis.read(buffer)) > 0) {
-	                cos.write(buffer, 0, length);
-	            }
-	        }
-	        catch (Exception e)
-	    	{
-	    		log.error("Error in creating zip file "+e.getMessage());
-	    		return false;
-	    	}
-	        log.info("[generateVoucherPrint]::::Successfully created the zip file::::::::");
-    		return true;
 	
-	        
-	    }
 
 	    
 	    public boolean updateEmailDet(int status,int serialStart ,int serialEnd)
