@@ -2,15 +2,15 @@ package com.tss.wvms.model;
 
 public class FreeBeeDet {
 
-	private int freeBeeType;
+	private String freeBeeType;
 	private int freeBeeValue;
 	private int freebeeValidity;
 	private int freebeeId;
 	
-	public int getFreeBeeType() {
+	public String getFreeBeeType() {
 		return freeBeeType;
 	}
-	public void setFreeBeeType(int freeBeeType) {
+	public void setFreeBeeType(String freeBeeType) {
 		this.freeBeeType = freeBeeType;
 	}
 	public int getFreeBeeValue() {
@@ -37,14 +37,14 @@ public class FreeBeeDet {
 		
 	}
 	
-	public FreeBeeDet(int freeBeeType, int freeBeeValue, int freebeeValidity) {
+	public FreeBeeDet(String freeBeeType, int freeBeeValue, int freebeeValidity) {
 		super();
 		this.freeBeeType = freeBeeType;
 		this.freeBeeValue = freeBeeValue;
 		this.freebeeValidity = freebeeValidity;
 	}
 	
-	public FreeBeeDet(int freeBeeType, int freeBeeValue, int freebeeValidity, int freebeeId) {
+	public FreeBeeDet(String freeBeeType, int freeBeeValue, int freebeeValidity, int freebeeId) {
 		super();
 		this.freeBeeType = freeBeeType;
 		this.freeBeeValue = freeBeeValue;

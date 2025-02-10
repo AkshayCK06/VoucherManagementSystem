@@ -2,6 +2,8 @@ package com.tss.wvms.service;
 
 
 import java.io.File;
+
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -97,18 +99,18 @@ public class GenericFunctions {
                 helper.setText(alert, true); // true for HTML content
             } else {
                 // Email with attachment
-                String boundary = "PREMIUM-ATTACH-BOUNDARY------";
-                StringBuilder emailBody = new StringBuilder();
-                emailBody.append("MIME-Version: 1.0\n")
-                        .append("Content-Type: multipart/mixed; boundary=\"")
-                        .append(boundary)
-                        .append("\"\n")
-                        .append("\n--")
-                        .append(boundary)
-                        .append("\n")
-                        .append("Content-type: text/html\n\n")
-                        .append(alert)
-                        .append("\n");
+                //String boundary = "PREMIUM-ATTACH-BOUNDARY------";
+               // StringBuilder emailBody = new StringBuilder();
+//                emailBody.append("MIME-Version: 1.0\n")
+//                        .append("Content-Type: multipart/mixed; boundary=\"")
+//                        .append(boundary)
+//                        .append("\"\n")
+//                        .append("\n--")
+//                        .append(boundary)
+//                        .append("\n")
+//                        .append("Content-type: text/html\n\n")
+//                        .append(alert)
+//                        .append("\n");
 
                 // File attachment processing
                 File file = new File(resultFilePath);
@@ -116,24 +118,25 @@ public class GenericFunctions {
                     String encodedContent = encodeFileToBase64(file);
                     String contentType = java.nio.file.Files.probeContentType(file.toPath());
 
-                    emailBody.append("\n--")
-                            .append(boundary)
-                            .append("\n")
-                            .append("Content-Type: ")
-                            .append(contentType)
-                            .append("; name=\"")
-                            .append(file.getName())
-                            .append("\"\n")
-                            .append("Content-Transfer-Encoding: base64\n")
-                            .append("Content-Disposition: attachment; filename=\"")
-                            .append(file.getName())
-                            .append("\"\n\n")
-                            .append(encodedContent)
-                            .append("\n--")
-                            .append(boundary)
-                            .append("--\n");
+//                    emailBody.append("\n--")
+//                            .append(boundary)
+//                            .append("\n")
+//                            .append("Content-Type: ")
+//                            .append(contentType)
+//                            .append("; name=\"")
+//                            .append(file.getName())
+//                            .append("\"\n")
+//                            .append("Content-Transfer-Encoding: base64\n")
+//                            .append("Content-Disposition: attachment; filename=\"")
+//                            .append(file.getName())
+//                            .append("\"\n\n")
+//                            .append(encodedContent)
+//                            .append("\n--")
+//                            .append(boundary)
+//                            .append("--\n");
+                    helper.addAttachment(file.getName(), file);
                 }
-                helper.setText(emailBody.toString(), true);
+                //helper.setText(emailBody.toString(), true);
             }
 
             // Send email

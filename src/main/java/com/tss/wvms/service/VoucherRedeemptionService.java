@@ -892,6 +892,7 @@ public class VoucherRedeemptionService {
     	
     	Map<String,String> responseHash = new HashMap<String,String>();
     	Map<String,String> params = new HashMap<String,String>();
+    	Map<String,Integer> paramsInt = new HashMap<String,Integer>();
         ArrayList<Integer> cosList = new ArrayList<Integer>();
         Map<String,String> allowedAccessTypes = generic.stringToHash(allowedAccessTypeForRedeem,",");
         
@@ -987,13 +988,13 @@ public class VoucherRedeemptionService {
         		      log.info("[getDenomDetails]:::::::::Credit details for id:::::::"+denominationDetails.getFreeBeeId());
                       
         		      query = "SELECT FREEBEE_TYPE,FREEBEE_VALUE,FREEBEE_VALIDITY FROM FREEBEE_DET WHERE FREEBEE_ID =:freebeeId";
-        		      params.put("freebeeId",String.valueOf(denominationDetails.getFreeBeeId()));
+        		      paramsInt.put("freebeeId",denominationDetails.getFreeBeeId());
         		      
         		      log.info("[getDenomDetails]::::::::::query to fetch credit/freebee details::::::::::::"+query);
-        		      List<FreeBeeDet> creditDetails = namedDbJdbcTemplate.query(query, params,
+        		      List<FreeBeeDet> creditDetails = namedDbJdbcTemplate.query(query, paramsInt,
         		    		    
         		    		        (rs,rowNum) -> new FreeBeeDet(
-        		    		        		       rs.getInt("FREEBEE_TYPE"),
+        		    		        		       rs.getString("FREEBEE_TYPE"),
         		    		        		       rs.getInt("FREEBEE_VALUE"),
         		    		        		       rs.getInt("FREEBEE_VALIDITY")
         		    		        		)
@@ -1132,6 +1133,7 @@ public class VoucherRedeemptionService {
                 processId = generic.getProcesId(noOfProcessInstances, serverUp) + rtbsProcessId;
                 if(migrationFlag.equals("1"))
                 {
+                	    log.info("[insertIntoTransactionMast]:::::::::MSISDN:::::::::::::"+voucherRedeemRequest.getMsisdn());
                 	    query="INSERT INTO TRANSACTION_MAST(SEQ_ID,TRANSACTION_ID,REQ_DATE,SUBSCRIBER_MSISDN,STATUS,BATCH_NUMBER,REQ_MODE,VOUCHER_NUMBER,PROCESS_ID,APPLICABLE_COS,SERIAL_NUMBER,REQ_TYPE,VOUCHER_AMOUNT,EXPIRY_DATE) VALUES(TRANSACTION_MAST_SEQ.NEXTVAL,:transactionId,SYSDATE,:msisdn,0,:batchNo,:username,:voucherNo,:processId,:cosVal,:serialNo,:voucherFlag,:voucherAmount,:expiryDate)";
                 	    
                 	    params.put("transactionId",transactionId);
@@ -1158,6 +1160,7 @@ public class VoucherRedeemptionService {
                 }
                 else
                 {
+                	    log.info("[insertIntoTransactionMast]:::::::::MSISDN:::::::::::::"+voucherRedeemRequest.getMsisdn());
             	        query = "INSERT INTO TRANSACTION_MAST(SEQ_ID,TRANSACTION_ID,REQ_DATE,SUBSCRIBER_MSISDN,STATUS,REQ_MODE,PROCESS_ID,REQ_TYPE,VOUCHER_NUMBER) VALUES(TRANSACTION_MAST_SEQ.NEXTVAL,:transactionId,SYSDATE,:msisdn,0,:username,:processId,:voucherFlag,:voucherNo)";
                       
             	        params.put("transactionId",transactionId);
@@ -1361,7 +1364,7 @@ public class VoucherRedeemptionService {
                     else
                     {
 
-                            if(responseCode.equals("0000"))
+                            if(responseCode.equals("0000") || responseCode.equals("0"))
                             {
                                  
                                     List<BalanceInfo> ivrBalInfoList = (List<BalanceInfo>) new BalanceInfo();

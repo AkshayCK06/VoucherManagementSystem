@@ -24,7 +24,7 @@ public class ResetFraudCounter {
 	@Autowired
 	private NamedParameterJdbcTemplate namedDbJdbcTemplate;
 
-	  @Scheduled(cron = "0 50 3 * * *") // 3:50am every day
+	  //@Scheduled(cron = "0 50 3 * * *") // 3:50am every day
 	  public void resetFraudCounter() throws Exception {
 		    
 	      log.info(":::::::::::::resetFraudCounter::::::::::::");

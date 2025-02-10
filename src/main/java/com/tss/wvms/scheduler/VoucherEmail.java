@@ -71,7 +71,6 @@ public class VoucherEmail {
       @Value("${WVMS_FILE_MAIL_SUBJECT}")
       private String csvMailSubject;   
       
-      @Value("${WVMS_MAIL_FROM_NAME}")
       private String fromEmailName;
       
       @Value("${WVMS_PASSWORD_MAIL_SUBJECT}")
@@ -88,7 +87,7 @@ public class VoucherEmail {
 	  @Autowired
 	  private NamedParameterJdbcTemplate namedDbJdbcTemplate;
 	  
-	  @Scheduled(fixedDelay = 3000) // Runs every 3 seconds
+	  //@Scheduled(fixedDelay = 3000) // Runs every 3 seconds
 	  public void generateVoucherPrint() throws Exception {
         	
 	    	String query="",fileContent="",fileName="",fileHeader="",fileData="";
@@ -328,7 +327,7 @@ public class VoucherEmail {
 			
 				        	log.info("[generateVoucherPrint]:::::::::::::superiorEmailTemplate after replaceAll:::::::::::"+superiorEmailTemplate);
 				          	
-				        	isCSVEmailSent = genericFunctions.sendMail(emailDet.getCsvToEmail(),fromMailId,cvsEmailTemplate,csvMailSubject,vmsHome + vmsCfgDir +csvFilePath,emailDet.getCsvCCEmail(),emailDet.getCsvBCCEmail(),fromEmailName);
+				        	isCSVEmailSent = genericFunctions.sendMail(emailDet.getCsvToEmail(),fromMailId,cvsEmailTemplate,csvMailSubject,vmsHome+vmsCfgDir+csvFilePath+fileName+".zip",emailDet.getCsvCCEmail(),emailDet.getCsvBCCEmail(),fromEmailName);
 				        	if(!isCSVEmailSent.equals("1"))
 				        	{	
 				        		//to update WVMS_EMAIL_DET status(5:Failed To Send)
@@ -343,7 +342,7 @@ public class VoucherEmail {
 				        		log.error("[generateVoucherPrint]:::::::::::::Unable to send Password mail::::::::::::::");
 				        	}	 
 				        	
-				        	if(!emailRecord.getSuperiorEmail().equals(""))
+				        	if(!emailDet.getSuperiorEmail().equals(""))
 				        	{	
 				        		isSuperiorMailSent = genericFunctions.sendMail(emailDet.getSuperiorEmail(),fromMailId,superiorEmailTemplate,superiorEmailSubject,"","","",fromEmailName);
 				      

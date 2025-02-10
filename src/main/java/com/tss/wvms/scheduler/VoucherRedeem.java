@@ -79,7 +79,7 @@ public class VoucherRedeem {
 						       rs.getInt("SEQ_ID"),
 						       rs.getLong("TRANSACTION_ID"),
 						       rs.getString("REQ_DATE"),
-						       rs.getInt("SUBSCRIBER_MSISDN"),
+						       rs.getString("SUBSCRIBER_MSISDN"),
 						       rs.getInt("STATUS"),
 						       rs.getInt("BATCH_NUMBER"),
 						       rs.getInt("REQ_MODE"),
@@ -183,6 +183,7 @@ public class VoucherRedeem {
 			     String serviceHashValue = t.getServiceName()+"|"+serviceUnitT+"|"+t.getServiceStatus()+"|"+t.getServiceValididtyDate()+"|"+t.getRequestDate()+"|"+t.getTransactionType()+"|"+t.getServiceValidity();
 			     serviceHash.put(String.valueOf(t.getServiceType()), serviceHashValue);
 			 }
+			 log.info("[voucherRedeem(Scheduler Process)]:::::::::::::::transaction::::::::::::::"+transaction.getMsisdn());
 			 creditRequest(transaction,subTransactionId,serviceHash,rechargeDetails);
 			 log.info("[voucherRedeem(Scheduler Process)]:::::::::::::::serviceHash::::::::::::::"+serviceHash);
 		}
@@ -222,6 +223,7 @@ public class VoucherRedeem {
 
         // Message ID Mapping
         HashMap<String, String> msgIdCombo = new HashMap<String, String>();
+        msgIdCombo.put("2", "1");
         msgIdCombo.put("3", "2");
         msgIdCombo.put("4", "3");
 
@@ -231,6 +233,7 @@ public class VoucherRedeem {
         voucherStatCombo.put("3", "1");
         voucherStatCombo.put("4", "4");
 	    
+        log.info("[voucherRedeem(creditRequest)]::::::::::::::::MSISDN::::::::::::::::"+transactionMastDetails.getMsisdn());
 	    
 	    responseMapper = icpInterface.recharge(transactionMastDetails.getMsisdn(),subTransactionId,transactionMastDetails.getVoucherAmount(),transactionMastDetails.getSerialNumber(),transactionMastDetails.getBatchNumber(),comment,channel,transactionMastDetails.getVoucherAmount(),voucherNumber,serviceHash);
 	    
