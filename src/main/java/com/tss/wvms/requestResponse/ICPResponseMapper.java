@@ -1,20 +1,26 @@
 package com.tss.wvms.requestResponse;
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tss.wvms.requestResponse.ICPResponse;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ICPResponseMapper {
-    
-    
+
     @JsonProperty("response")
     private ICPResponse icpResponse;
-    
+
+    @JsonProperty("appTxnRefId")
     private String appTxnRefId;
+
+    @JsonProperty("ocsTxnRefId")
     private String ocsTxnRefId;
+
+    @JsonProperty("accountValidity")
     private String accountValidity;
+
+    @JsonProperty("balances")
     private List<BalanceInfo> balances;
 
     public ICPResponse getIcpResponse() {
@@ -41,14 +47,6 @@ public class ICPResponseMapper {
         this.ocsTxnRefId = ocsTxnRefId;
     }
 
-    public List<BalanceInfo> getBalances() {
-        return balances;
-    }
-
-    public void setBalances(List<BalanceInfo> balances) {
-        this.balances = balances;
-    }
-
     public String getAccountValidity() {
         return accountValidity;
     }
@@ -57,21 +55,43 @@ public class ICPResponseMapper {
         this.accountValidity = accountValidity;
     }
 
+    public List<BalanceInfo> getBalances() {
+        return balances;
+    }
+
+    public void setBalances(List<BalanceInfo> balances) {
+        this.balances = balances;
+    }
+
+    @Override
+    public String toString() {
+        return "ICPResponseMapper [icpResponse=" + icpResponse + ", appTxnRefId=" + appTxnRefId + ", ocsTxnRefId="
+                + ocsTxnRefId + ", accountValidity=" + accountValidity + ", balances=" + balances + "]";
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class BalanceInfo {
-        private String name;
+
+        @JsonProperty("id")
         private int id;
+
+        @JsonProperty("name")
+        private String name;
+
+        @JsonProperty("changeInBalance")
         private int changeInBalance;
+
+        @JsonProperty("newBalance")
         private int newBalance;
+
+        @JsonProperty("expiry")
         private String expiry;
 
-        
-        public String getName() {
-            return name;
-        }
+        @JsonProperty("packageId")
+        private int packageId;
 
-        public void setName(String name) {
-            this.name = name;
-        }
+        @JsonProperty("SmartTag")
+        private String smartTag;
 
         public int getId() {
             return id;
@@ -79,6 +99,14 @@ public class ICPResponseMapper {
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
 
         public int getChangeInBalance() {
@@ -105,29 +133,26 @@ public class ICPResponseMapper {
             this.expiry = expiry;
         }
 
+        public int getPackageId() {
+            return packageId;
+        }
+
+        public void setPackageId(int packageId) {
+            this.packageId = packageId;
+        }
+
+        public String getSmartTag() {
+            return smartTag;
+        }
+
+        public void setSmartTag(String smartTag) {
+            this.smartTag = smartTag;
+        }
+
         @Override
         public String toString() {
-            return "BalanceInfo [name=" + name + ", id=" + id + ", changeInBalance=" + changeInBalance
-                    + ", newBalance=" + newBalance + ", expiry=" + expiry + "]";
+            return "BalanceInfo [id=" + id + ", name=" + name + ", changeInBalance=" + changeInBalance
+                    + ", newBalance=" + newBalance + ", expiry=" + expiry + ", packageId=" + packageId + ", smartTag=" + smartTag + "]";
         }
-    }
-
-    public ICPResponseMapper() {
-    }
-
-    public ICPResponseMapper(ICPResponse icpResponse, String appTxnRefId, String ocsTxnRefId, String accountValidity,
-            List<BalanceInfo> balances) {
-        super();
-        this.icpResponse = icpResponse;
-        this.appTxnRefId = appTxnRefId;
-        this.ocsTxnRefId = ocsTxnRefId;
-        this.accountValidity = accountValidity;
-        this.balances = balances;
-    }
-
-    @Override
-    public String toString() {
-        return "ICPResponseMapper [icpResponse=" + icpResponse + ", appTxnRefId=" + appTxnRefId + ", ocsTxnRefId="
-                + ocsTxnRefId + ", accountValidity=" + accountValidity + ", balances=" + balances + "]";
     }
 }

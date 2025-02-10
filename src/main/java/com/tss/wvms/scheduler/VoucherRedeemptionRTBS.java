@@ -79,7 +79,7 @@ public class VoucherRedeemptionRTBS
     			       rs.getInt("SEQ_ID"),
     			       rs.getLong("TRANSACTION_ID"),
     			       rs.getString("REQ_DATE"),
-    			       rs.getInt("SUBSCRIBER_MSISDN"),
+    			       rs.getString("SUBSCRIBER_MSISDN"),
     			       rs.getInt("STATUS"),
     			       rs.getInt("BATCH_NUMBER"),
     			       rs.getInt("REQ_MODE"),

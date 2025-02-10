@@ -54,7 +54,7 @@ public class BonusRedeemption {
 	 ICPInterface icpInterface;
 		
 	 
-	 @Scheduled(fixedDelay=2000) // Runs for every 2 seconds
+	 //@Scheduled(fixedDelay=2000) // Runs for every 2 seconds
 	 
 	 //This module to send the voucher redemption request to ICP system for bonus
 	 //Request comes here once the main denomination request is success
@@ -79,7 +79,7 @@ public class BonusRedeemption {
 	    				 rs.getInt("SEQ_ID"),
 	    				 rs.getLong("TRANSACTION_ID"),
 	    				 rs.getString("REQ_DATE"),
-	    				 rs.getInt("SUBSCRIBER_MSISDN"),
+	    				 rs.getString("SUBSCRIBER_MSISDN"),
 	    				 rs.getInt("STATUS"),
 	    				 rs.getInt("BATCH_NUMBER"),
 	    				 rs.getInt("REQ_MODE"),

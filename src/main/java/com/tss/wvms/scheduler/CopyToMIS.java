@@ -41,7 +41,7 @@ public class CopyToMIS {
 	    		        		 rs.getLong("TRANSACTION_ID"),
 	    		        		 rs.getString("REQ_DATE"),
 	    		        		 rs.getString("REQ_MONTH_YEAR_FORMAT"),
-	    		        		 rs.getInt("SUBSCRIBER_MSISDN"),
+	    		        		 rs.getString("SUBSCRIBER_MSISDN"),
 	    		        		 rs.getInt("STATUS"),
 	    		        		 rs.getInt("BATCH_NUMBER"),
 	    		        		 rs.getInt("REQ_MODE"),

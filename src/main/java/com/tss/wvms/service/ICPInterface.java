@@ -2,6 +2,7 @@ package com.tss.wvms.service;
 
 import java.io.BufferedReader;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -41,7 +42,7 @@ public class ICPInterface {
 	private String icpAuthorizationName;
 
 	
-	public ICPResponseMapper recharge(int subsNo,long transactionId,int faceValue,int serialNumber,int batchNumber,String comment,String channel,int voucherAmount,String voucherNumber,HashMap<String,String> serviceHash)
+	public ICPResponseMapper recharge(String subsNo,long transactionId,int faceValue,int serialNumber,int batchNumber,String comment,String channel,int voucherAmount,String voucherNumber,HashMap<String,String> serviceHash)
 	{
 		
 		log.info("::::::::::::::::::recharge::::::::::::::::::::");
@@ -91,17 +92,17 @@ public class ICPInterface {
 
 		    bucketReq = bucketReq.replaceAll("__BID__",key);
 		    bucketReq = bucketReq.replaceAll("__BAMT__",serviceUnit);
-		    bucketReq = bucketReq.replaceAll("__BALEXPDATE__",serviceValidity);
+		    bucketReq = bucketReq.replaceAll("__BALEXPDATE__",serviceValidityDate);
             
             finalBucketRequest+=bucketReq;
             
-            finalBucketRequest.replaceAll(",$", "");
+           // finalBucketRequest.replaceAll(",$","");
             
             log.info("[recharge]::::::::::finalBucketRequest::::::::::::::"+finalBucketRequest);
             
 
             mainRequest = mainRequest.replaceAll("__APPREFID__", String.valueOf(transactionId));
-            mainRequest = mainRequest.replaceAll("__BALANCES__", finalBucketRequest);
+            mainRequest = mainRequest.replaceAll("__BALANCES__", finalBucketRequest);  
             mainRequest = mainRequest.replaceAll("__FACEVAL__", String.valueOf(faceValue));
             mainRequest = mainRequest.replaceAll("__SERIALNUM__", String.valueOf(serialNumber));
             mainRequest = mainRequest.replaceAll("__BATCHNUM__", String.valueOf(batchNumber));
@@ -120,11 +121,11 @@ public class ICPInterface {
 	
 	
 	
-	public ICPResponseMapper sendRequest(int subsNo,String mainRequest,String urlString)
+	public ICPResponseMapper sendRequest(String subsNo,String mainRequest,String urlString)
 	{
 		log.info("::::::::::::::::::sendRequest::::::::::::::::::::");	
 		
-		urlString = urlString.replaceAll("__MSISDN__",String.valueOf(subsNo));
+		urlString = urlString.replaceAll("__MSISDN__",subsNo);
 		log.info("[sendRequest]:::::::::urlString::::::::"+urlString);
 		log.info("[sendRequest]:::::::::mainRequest::::::::"+mainRequest);
 		log.info("[sendRequest]:::::::::icpAuthorizationValue::::::::"+icpAuthorizationValue+"::::::::::icpAuthorizationName::::::"+icpAuthorizationName);

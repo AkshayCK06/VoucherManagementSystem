@@ -6,7 +6,7 @@ public class TransactionMast {
 	private long transactionId;
 	private String requestDate;
 	private String requestDateMonthWise;
-	private int msisdn;
+	private String msisdn;
 	private int status;
 	private int batchNumber;
 	private int requestMode;
@@ -45,11 +45,11 @@ public class TransactionMast {
 		this.requestDate = requestDate;
 	}
 
-	public int getMsisdn() {
+	public String getMsisdn() {
 		return msisdn;
 	}
 
-	public void setMsisdn(int msisdn) {
+	public void setMsisdn(String msisdn) {
 		this.msisdn = msisdn;
 	}
 
@@ -171,7 +171,7 @@ public class TransactionMast {
 	}
 	
 	
-	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, int msisdn, int status,
+	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, String msisdn, int status,
 			int batchNumber, int requestMode, long voucherNumber, int applicableCOS, int serviceFullfillmentCOS,
 			int voucherAmount, int serialNumber) {
 		super();
@@ -190,7 +190,7 @@ public class TransactionMast {
 	}
 	
 
-	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, int msisdn, int status,
+	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, String msisdn, int status,
 			int batchNumber, int requestMode, long voucherNumber, int applicableCOS, int serviceFullfillmentCOS) {
 		super();
 		this.transactionSequenceId = transactionSequenceId;
@@ -208,7 +208,7 @@ public class TransactionMast {
 	
 	
 	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate,
-			String requestDateMonthWise, int msisdn, int status, int batchNumber, int requestMode, long voucherNumber,
+			String requestDateMonthWise, String msisdn, int status, int batchNumber, int requestMode, long voucherNumber,
 			int applicableCOS, int serviceFullfillmentCOS,int responseCode, int serialNumber, int requestType,int voucherAmount) {
 		super();
 		this.transactionSequenceId = transactionSequenceId;
@@ -228,7 +228,7 @@ public class TransactionMast {
 		this.voucherAmount = voucherAmount;
 	}
 	
-	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, int msisdn, int status,
+	public TransactionMast(int transactionSequenceId, long transactionId, String requestDate, String msisdn, int status,
 			int batchNumber, int requestMode, long voucherNumber, int applicableCOS, int serviceFullfillmentCOS,
 			int voucherAmount, int serialNumber, String responseDescription) {
 		super();
