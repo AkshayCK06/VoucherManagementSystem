@@ -41,9 +41,14 @@ public class VoucherGenerationService {
       
       @Value("${PECLOAD_DATAFILEPATH}")
       private String pecFilePath;
+      
+      @Autowired
+      private GenericFunctions genericFunction;
   
 	  @Autowired
 	  private NamedParameterJdbcTemplate namedDbJdbcTemplate;
+	  
+	  private String fileName ="WVMS_VoucherGeneration";
 
 	  
 	  public Response generateVouchers(int batchId) {
@@ -61,8 +66,11 @@ public class VoucherGenerationService {
 	            
 	            //To fetch batch details from BATCH_MAST Table where STATUS in (2,5) [2:Generated Request,5:Generation]
 	            
+	            genericFunction.logFunction(fileName,"::::::::::::::::::::::::::[generateVouchers]:::::::::::::::::::::::::");
 	            query = "SELECT BATCH_ID, DENOMINATION_ID, CREATOR_ID, CREATION_DATE,VOUCHER_QUANTITY, BONUS_ID, SERIAL_START, SERIAL_END, BATCH_NAME, RATE_ID FROM batch_mast WHERE BATCH_ID = :batchId AND STATUS IN (2, 5)";
-	            log.info(":::::::::::batchDetails query:::::::"+query);
+	            //log.info(":::::::::::batchDetails query:::::::"+query);
+	            
+	            genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::batchDetails query:::::::"+query);
 	            params.put("batchId", batchId);
 	              
 
@@ -88,13 +96,15 @@ public class VoucherGenerationService {
 	            
 	            
 	            serialNumber = Integer.parseInt(batchDetails.get(0).getSerialStart());
-		        System.out.println("::::batchDetails:::::::::::"+batchDetails);  
+	            genericFunction.logFunction(fileName,"[generateVouchers]::::batchDetails:::::::::::"+batchDetails);
+		        //System.out.println("::::batchDetails:::::::::::"+batchDetails);  
 		        
 		        //=====================================================================================================
 		        //To fetch the denomination details by denominationId from DENOMINATION_MAST Table
 		        
 		        query = "SELECT SLAB_ID,AMOUNT,ACCESS_TYPE,DENO_DESC,CARD_TYPE,DENOMINATION_VALIDITY,VALIDITY_TYPE FROM DENOMINATION_MAST where DENOMINATION_ID=:denominationId";
-		        log.info(":::::::::::denominationDetails query:::::::"+query);
+		        genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::denominationDetails query:::::::"+query);
+		        //log.info(":::::::::::denominationDetails query:::::::"+query);
 		        params.put("denominationId", batchDetails.get(0).getDenomainationId());
 		        
 		        List<DenominationMast> denominationDetails = namedDbJdbcTemplate.query(query, params,
@@ -107,14 +117,18 @@ public class VoucherGenerationService {
 		        				rs.getInt("VALIDITY_TYPE")
 		        ));
 		        denominationDetails.get(0).setDenominationId(batchDetails.get(0).getDenomainationId());
-		        log.info(":::::::::::denominationDetails::::::::::"+denominationDetails);
+		        genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::denominationDetails::::::::::"+denominationDetails);
+		        
+		        //log.info(":::::::::::denominationDetails::::::::::"+denominationDetails);
 		        
 		        
 		        //======================================================================================================
 		        //To update BATCH_MAST table STATUS=3 to indicate Generated Intermidiate (Request is processing) 
 		        
 		        query = "UPDATE BATCH_MAST SET STATUS=3 WHERE BATCH_ID=:batchId and SERIAL_START=:serialStart and SERIAL_END=:serialEnd";
-		        log.info(":::::::::::update BATCH_MAST query:::::::"+query);
+		        genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::update BATCH_MAST query:::::::"+query);
+		        
+		        //log.info(":::::::::::update BATCH_MAST query:::::::"+query);
 		        
 		        params.put("batchId", batchId);
 		        params.put("serialStart",batchDetails.get(0).getSerialStart());
@@ -122,7 +136,8 @@ public class VoucherGenerationService {
 		        
 		        isRecordsUpdated = namedDbJdbcTemplate.update(query, params) > 0 ;
 		        
-		        log.info(":::::::::: isRecordsUpdated in BATCH_MAST table:::::::"+isRecordsUpdated);
+		        genericFunction.logFunction(fileName,"[generateVouchers]:::::::::: isRecordsUpdated in BATCH_MAST table:::::::"+isRecordsUpdated);
+		        //log.info(":::::::::: isRecordsUpdated in BATCH_MAST table:::::::"+isRecordsUpdated);
 		        
 		        
 		        //=====================================================================================================
@@ -132,6 +147,7 @@ public class VoucherGenerationService {
 		        {	
 		        	
 		        	System.out.println(":::::::::::Calling Card Vouchers::::::::::");
+		        	genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::Calling Card Vouchers::::::::::");
 		        	
 		        	//To check if vouchers already exist for the batchId in VOUCHER_DET Table
 		        	
@@ -153,7 +169,8 @@ public class VoucherGenerationService {
 		        		        rs.getInt("SLAB_AMOUNT"),
 		        		        rs.getInt("SLAB_VALIDITY")
 		        		));
-		        		log.info(":::::::::::slabDetails::::::::::"+slabDetails);
+		        		genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::slabDetails::::::::::"+slabDetails);
+		        		//log.info(":::::::::::slabDetails::::::::::"+slabDetails);
 		        		
 		        		
 		        		//Preparing values to be inserted into PEC(PREPAID) table
@@ -174,10 +191,15 @@ public class VoucherGenerationService {
 		        		slabValidityInHours = slabDetails.get(0).getSlabValidity() *24;
 		        		slabAmountI = slabDetails.get(0).getSlabAmount() * 10000;
 		        		
-		        		log.info(":::::::::::dateToAdd::::::::::::::::::"+dateToAdd);
-		        		log.info(":::::::::::voucherExpiryDate::::::::::"+voucherExpiryDate);
-		        		log.info(":::::::::::slabValidityInHours::::::::"+slabValidityInHours);
-		        		log.info(":::::::::::slabAmountI::::::::::::::::"+slabAmountI);
+		        		genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::dateToAdd::::::::::::::::::"+dateToAdd);
+		        		genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::voucherExpiryDate::::::::::"+voucherExpiryDate);
+		        		genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::slabValidityInHours::::::::"+slabValidityInHours);
+		        		genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::slabAmountI::::::::::::::::"+slabAmountI);
+		        		
+		        		//.info(":::::::::::dateToAdd::::::::::::::::::"+dateToAdd);
+		        		//log.info(":::::::::::voucherExpiryDate::::::::::"+voucherExpiryDate);
+		        		//log.info(":::::::::::slabValidityInHours::::::::"+slabValidityInHours);
+		        		//log.info(":::::::::::slabAmountI::::::::::::::::"+slabAmountI);
 		        		
 		        		
 		        		for(int i = 0; i < batchDetails.get(0).getVoucherQuantity(); i++)
@@ -189,7 +211,7 @@ public class VoucherGenerationService {
                                 		  	try {
                                 			    query = "SELECT VMS_getVoucherNumber() FROM DUAL";
                                 			    voucherNumber = namedDbJdbcTemplate.queryForObject(query, new HashMap<>(), Long.class);
-                                			    System.out.println(":::::::voucherNumber:::::::::" + voucherNumber);
+                                			    //System.out.println(":::::::voucherNumber:::::::::" + voucherNumber);
                                 			} catch (Exception e) {
                                 			    System.out.println("Error executing query: " + e.getMessage());
                                 			}
@@ -224,8 +246,11 @@ public class VoucherGenerationService {
                       	 
               		  }
               		  
-              		  log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
-              		  log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
+              		  genericFunction.logFunction(fileName,"[generateVouchers]::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
+              		  genericFunction.logFunction(fileName,"[generateVouchers]::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
+              		  
+              		  //log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
+              		  //log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
 
 		        	
 		            }
@@ -234,7 +259,9 @@ public class VoucherGenerationService {
 		        else
 		        {	
 		        	//Prepaid Card
-		        	log.info(":::::::::::Prepaid Card Vouchers::::::::::");
+		        	//log.info(":::::::::::Prepaid Card Vouchers::::::::::");
+		        	genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::Prepaid Card Vouchers::::::::::");
+		        	
 		        	for(int i = 0; i < batchDetails.get(0).getVoucherQuantity(); i++)
 	                {
                                 
@@ -244,7 +271,7 @@ public class VoucherGenerationService {
                             		  	try {
                             			    query = "SELECT VMS_getVoucherNumber() FROM DUAL";
                             			    voucherNumber = namedDbJdbcTemplate.queryForObject(query, new HashMap<>(), Long.class);
-                            			    log.info(":::::::voucherNumber:::::::::" + voucherNumber);
+                            			    //log.info(":::::::voucherNumber:::::::::" + voucherNumber);
                             			} catch (Exception e) {
                             				log.info("Error executing query: " + e.getMessage());
                             			}
@@ -264,10 +291,11 @@ public class VoucherGenerationService {
                       }
 		        	  isRecordInserted = loadVoucher(batchId,voucherLoader);
          		    
-	           	
+		        	  genericFunction.logFunction(fileName,"[generateVouchers]::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
+		        	  genericFunction.logFunction(fileName,"[generateVouchers]::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
 	           		  
-	           		  log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
-	           		  log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
+	           		  //log.info("::::::::voucherNumberHashMap::::::::::"+voucherNumberHashMap.toString());
+	           		  //log.info("::::::::serialNumber::::::::::"+serialNumber+":::::VoucherQuantity:::::"+batchDetails.get(0).getVoucherQuantity());
 
 		        	
 		        }
@@ -292,7 +320,9 @@ public class VoucherGenerationService {
 	  
 	  
 	  public boolean loadVoucher(int batchId, String voucherDetloader) {
-		    log.info("`:::::::::::::::::loadVoucher:::::::::::::::::::::`");
+		    //log.info("`:::::::::::::::::loadVoucher:::::::::::::::::::::`");
+		    genericFunction.logFunction(fileName,"[generateVouchers]:::::::::::::::::loadVoucher:::::::::::::::::::::");
+		    
 	        try {
 	            // Define file paths based on environment variables
 	            String ctlFileContent = vmsHome + "/" + vmsCfgDir + "/controlFileContent.tmpl";
@@ -326,17 +356,19 @@ public class VoucherGenerationService {
 	            // Execute the shell script
 	            String shFilePath = vmsHome + "/etc/scripts/WVMS_loadVoucherGenerated.sh";
 	            ProcessBuilder pb = new ProcessBuilder("sh", shFilePath, ctlFile);
-	            pb.environment().put("VMS_HOME", vmsHome); // Add environment variable if needed
+	            pb.environment().put("VMS_HOME", vmsHome);
 
 	            // Log command execution (can be enhanced with a logging framework)
 	            System.out.println("Executing: " + "source " + vmsHome + "/etc/scripts/VMS_env.env; sh " + shFilePath + " " + ctlFile);
-	            log.info("Executing: " + "source " + vmsHome + "/etc/scripts/VMS_env.env; sh " + shFilePath + " " + ctlFile);
+	            //log.info("Executing: " + "source " + vmsHome + "/etc/scripts/VMS_env.env; sh " + shFilePath + " " + ctlFile);
 
+	            genericFunction.logFunction(fileName,"[generateVouchers]:::::::::Executing: " + "source " + vmsHome + "/etc/scripts/VMS_env.env; sh " + shFilePath + " " + ctlFile);
 	            Process process = pb.start();
 	            int exitCode = process.waitFor();
 
 	            // Log the process exit code
-	            System.out.println("Command exited with code: " + exitCode);
+	            genericFunction.logFunction(fileName,"[generateVouchers]:::::::::Command exited with code:" + exitCode);
+	            //System.out.println("Command exited with code: " + exitCode);
 	            log.info("Command exited with code: " + exitCode);
 
 	            return true;

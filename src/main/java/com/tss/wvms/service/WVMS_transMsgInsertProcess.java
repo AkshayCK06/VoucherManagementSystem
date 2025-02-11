@@ -113,6 +113,7 @@ public class WVMS_transMsgInsertProcess {
         // (Signals already handled above)
 
         while (true) {
+        	System.out.println(":::::::::::::::::::[WVMS_transMsgInsertProcess]:::::::::::::::::::::");
             try {
                 generic.logfunction(logTraceFile, moduleName + " " + processId + " Connecting to Database*** ");
                 conDb = new WVMS_perlDatabase();

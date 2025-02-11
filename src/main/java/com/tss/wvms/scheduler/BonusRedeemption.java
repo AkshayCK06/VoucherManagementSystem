@@ -54,7 +54,7 @@ public class BonusRedeemption {
 	 ICPInterface icpInterface;
 		
 	 
-	 //@Scheduled(fixedDelay=2000) // Runs for every 2 seconds
+	 @Scheduled(fixedDelay=2000) // Runs for every 2 seconds
 	 
 	 //This module to send the voucher redemption request to ICP system for bonus
 	 //Request comes here once the main denomination request is success

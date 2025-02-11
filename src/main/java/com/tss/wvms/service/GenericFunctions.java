@@ -1,11 +1,15 @@
 package com.tss.wvms.service;
 
 
+import java.io.BufferedWriter;
 import java.io.File;
 
 
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
@@ -13,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -20,12 +25,20 @@ import org.springframework.stereotype.Service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class GenericFunctions {
 
     private static JdbcTemplate jdbcTemplate;
 
+    @Value("${VMS_LOG_PATH}")
+    private String vmsLogPath;
+    
+    @Value("${VMS_HOME}")
+    private String vmsHome;
+    
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -99,18 +112,8 @@ public class GenericFunctions {
                 helper.setText(alert, true); // true for HTML content
             } else {
                 // Email with attachment
-                //String boundary = "PREMIUM-ATTACH-BOUNDARY------";
-               // StringBuilder emailBody = new StringBuilder();
-//                emailBody.append("MIME-Version: 1.0\n")
-//                        .append("Content-Type: multipart/mixed; boundary=\"")
-//                        .append(boundary)
-//                        .append("\"\n")
-//                        .append("\n--")
-//                        .append(boundary)
-//                        .append("\n")
-//                        .append("Content-type: text/html\n\n")
-//                        .append(alert)
-//                        .append("\n");
+               
+                StringBuilder emailBody = new StringBuilder();
 
                 // File attachment processing
                 File file = new File(resultFilePath);
@@ -118,25 +121,9 @@ public class GenericFunctions {
                     String encodedContent = encodeFileToBase64(file);
                     String contentType = java.nio.file.Files.probeContentType(file.toPath());
 
-//                    emailBody.append("\n--")
-//                            .append(boundary)
-//                            .append("\n")
-//                            .append("Content-Type: ")
-//                            .append(contentType)
-//                            .append("; name=\"")
-//                            .append(file.getName())
-//                            .append("\"\n")
-//                            .append("Content-Transfer-Encoding: base64\n")
-//                            .append("Content-Disposition: attachment; filename=\"")
-//                            .append(file.getName())
-//                            .append("\"\n\n")
-//                            .append(encodedContent)
-//                            .append("\n--")
-//                            .append(boundary)
-//                            .append("--\n");
                     helper.addAttachment(file.getName(), file);
                 }
-                //helper.setText(emailBody.toString(), true);
+                helper.setText(emailBody.toString(), true);
             }
 
             // Send email
@@ -157,4 +144,38 @@ public class GenericFunctions {
         }
     }
 
+    
+    public void logFunction(String fileName, String contentToFile) {
+        fileName = fileName.replaceAll("\\s", ""); // Remove spaces from filename
+        
+        // Get current date for log file name
+        String logDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+
+        // Get timestamp with milliseconds
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss:SSS");
+        String logHours = timeFormat.format(new Date());
+
+        if (vmsHome == null || vmsLogPath == null) {
+            System.err.println("Environment variables VMS_HOME or VMS_LOG_PATH are not set!");
+            return;
+        }
+
+        String logFilePath = vmsHome + "/" + vmsLogPath + "/" + logDate + "-" + fileName;
+        log.info("[logFunction]::::::::logFilePath:::::::::::::"+logFilePath);
+
+        // Append log content to the file
+        try {
+            File logFile = new File(logFilePath);
+            Files.createDirectories(Paths.get(logFile.getParent())); // Ensure directory exists
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))) {
+                String logEntry = logHours + " :: => " + contentToFile + "\n";
+                writer.write(logEntry);
+            }
+            
+            System.out.println("Log written to: " + logFilePath);
+        } catch (IOException e) {
+            System.err.println("Error writing log: " + e.getMessage());
+        }
+    }
 }
