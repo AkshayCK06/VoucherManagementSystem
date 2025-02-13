@@ -1,6 +1,7 @@
 package com.tss.wvms.service;
 
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -21,6 +22,7 @@ import java.util.Map.Entry;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.tss.wvms.requestResponse.ICPResponse;
@@ -46,28 +48,32 @@ public class ICPInterface {
 	@Value("${WVMS_APPLICATION_NAME}")
 	private String icpAuthorizationName;
 
+	@Autowired
+    private GenericFunctions genericFunction;
+	
+	private String logFileName ="WVMS_VoucherRedemption.log";
 	
 	public ICPResponseMapper recharge(String subsNo,long transactionId,int faceValue,int serialNumber,int batchNumber,String comment,String channel,int voucherAmount,String voucherNumber,HashMap<String,String> serviceHash)
 	{
 		
-		log.info("::::::::::::::::::recharge::::::::::::::::::::");
+		genericFunction.logFunction(logFileName,"::::::::::::::::::recharge::::::::::::::::::::");
 		ICPResponseMapper response = new ICPResponseMapper();
 		
-		log.info("======== Recharge Method Called ========");
-        log.info("Subscriber No: {}", subsNo);
-        log.info("Transaction ID: {}", transactionId);
-        log.info("Face Value: {}", faceValue);
-        log.info("Serial Number: {}", serialNumber);
-        log.info("Batch Number: {}", batchNumber);
-        log.info("Comment: {}", comment);
-        log.info("Channel: {}", channel);
-        log.info("Voucher Amount: {}", voucherAmount);
-        log.info("Voucher Number: {}", voucherNumber);
-        log.info("Service Hash: {}", serviceHash);
+		genericFunction.logFunction(logFileName,"======== Recharge Method Called ========");
+		genericFunction.logFunction(logFileName,"Subscriber No:"+ subsNo);
+		genericFunction.logFunction(logFileName,"Transaction ID:"+transactionId);
+		genericFunction.logFunction(logFileName,"Face Value:"+faceValue);
+		genericFunction.logFunction(logFileName,"Serial Number:"+serialNumber);
+		genericFunction.logFunction(logFileName,"Batch Number"+batchNumber);
+		genericFunction.logFunction(logFileName,"Comment:"+comment);
+		genericFunction.logFunction(logFileName,"Channel:"+channel);
+		genericFunction.logFunction(logFileName,"Voucher Amount:"+voucherAmount);
+		genericFunction.logFunction(logFileName,"Voucher Number:"+voucherNumber);
+		genericFunction.logFunction(logFileName,"Service Hash:"+serviceHash);
         
 		
 		String[]  requestArray =icpRequest.split("::::"); 
-		log.info("::::::::::::::::::requestArray::::::::::::::::::::"+requestArray[0]);
+		genericFunction.logFunction(logFileName,"::::::::::::::::::requestArray::::::::::::::::::::"+requestArray[0]);
 		String mainRequest = requestArray[0],bucketRequest = requestArray[1];
 		
 		
@@ -83,7 +89,7 @@ public class ICPInterface {
 			String[] serviceArray = values.split("\\|");
 
 		    if (serviceArray.length < 7) {
-		        log.error("[recharge]::::::::::::::Invalid service data format: " + values);
+		    	genericFunction.logFunction(logFileName,"[recharge]::::::::::::::Invalid service data format: " + values);
 		        continue;
 		    }
 
@@ -99,11 +105,13 @@ public class ICPInterface {
 		    bucketReq = bucketReq.replaceAll("__BAMT__",serviceUnit);
 		    bucketReq = bucketReq.replaceAll("__BALEXPDATE__",serviceValidityDate);
             
-            finalBucketRequest+=bucketReq;
+		    genericFunction.logFunction(logFileName,"[recharge]::::::::::bucketReq::::::::::::::"+bucketReq);
+            finalBucketRequest+=bucketReq+",";
+		   } 
             
-           // finalBucketRequest.replaceAll(",$","");
+			finalBucketRequest=finalBucketRequest.replaceAll(",$","");
             
-            log.info("[recharge]::::::::::finalBucketRequest::::::::::::::"+finalBucketRequest);
+            genericFunction.logFunction(logFileName,"[recharge]::::::::::finalBucketRequest::::::::::::::"+finalBucketRequest);
             
 
             mainRequest = mainRequest.replaceAll("__APPREFID__", String.valueOf(transactionId));
@@ -115,12 +123,12 @@ public class ICPInterface {
             mainRequest = mainRequest.replaceAll("__CHANNEL__", channel);
             
            
-            log.info("[recharge]::::::::::mainRequest::::::::::::::"+mainRequest);
+            genericFunction.logFunction(logFileName,"[recharge]::::::::::mainRequest::::::::::::::"+mainRequest);
 		   
-		}
+		
 		
 		response  = sendRequest(subsNo,mainRequest,icpRechageURL);
-		log.info("[recharge]:::::::::::response::::::::::::::::::"+response);
+		genericFunction.logFunction(logFileName,"[recharge]:::::::::::response::::::::::::::::::"+response);
 		return response;
 	}
 	
@@ -128,12 +136,12 @@ public class ICPInterface {
 	
 	public ICPResponseMapper sendRequest(String subsNo,String mainRequest,String urlString)
 	{
-		log.info("::::::::::::::::::sendRequest::::::::::::::::::::");	
+		genericFunction.logFunction(logFileName,"::::::::::::::::::sendRequest::::::::::::::::::::");	
 		
 		urlString = urlString.replaceAll("__MSISDN__",subsNo);
-		log.info("[sendRequest]:::::::::urlString::::::::"+urlString);
-		log.info("[sendRequest]:::::::::mainRequest::::::::"+mainRequest);
-		log.info("[sendRequest]:::::::::icpAuthorizationValue::::::::"+icpAuthorizationValue+"::::::::::icpAuthorizationName::::::"+icpAuthorizationName);
+		genericFunction.logFunction(logFileName,"[sendRequest]:::::::::urlString::::::::"+urlString);
+		genericFunction.logFunction(logFileName,"[sendRequest]:::::::::mainRequest::::::::"+mainRequest);
+		genericFunction.logFunction(logFileName,"[sendRequest]:::::::::icpAuthorizationValue::::::::"+icpAuthorizationValue+"::::::::::icpAuthorizationName::::::"+icpAuthorizationName);
 		ICPResponseMapper responseWrapper = new ICPResponseMapper();
 		String authorize = Base64.getEncoder().encodeToString(icpAuthorizationValue.getBytes());
 		
@@ -148,6 +156,7 @@ public class ICPInterface {
             connection.setRequestProperty("Authorization", "Basic " + authorize);
             connection.setRequestProperty("ApplicationName", icpAuthorizationName);
             connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            connection.setRequestProperty("X-Real-IP", "192.168.120.6");
 
             // Send request body
             try (OutputStream os = connection.getOutputStream()) {
@@ -158,18 +167,18 @@ public class ICPInterface {
             // Read response
             int responseCode = connection.getResponseCode();
             
-            log.info("[sendRequest]: connection :: " + connection);
-            log.info("[sendRequest]: responseCode :: " + responseCode);
+            genericFunction.logFunction(logFileName,"[sendRequest]: connection :: " + connection);
+            genericFunction.logFunction(logFileName,"[sendRequest]: responseCode :: " + responseCode);
             InputStream is = (responseCode == 200) ? connection.getInputStream() : connection.getErrorStream();
             
             ObjectMapper objectMapper = new ObjectMapper();
 	         // Deserialize JSON into the ResponseWrapper object
 	         responseWrapper = objectMapper.readValue(is, ICPResponseMapper.class);
 
-            log.info("[sendRequest]: Response :: " + responseWrapper);
+	         genericFunction.logFunction(logFileName,"[sendRequest]: Response :: " + responseWrapper);
 
         } catch (IOException e) {
-            log.info("[sendRequest]: Exception :: " + e.getMessage());
+        	genericFunction.logFunction(logFileName,"[sendRequest]: Exception :: " + e.getMessage());
         }
 		return responseWrapper;
 	}

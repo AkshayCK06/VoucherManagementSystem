@@ -113,7 +113,7 @@ public class DenominationMast {
 	
 	public DenominationMast(int slabId,int freeBeeId,int cosId,int modeType, int denominationValidity, int validationType,int amount,
 			 int accessType) {
-		super();
+	
 		this.slabId = slabId;
 		this.freeBeeId = freeBeeId;
 		this.cosId = cosId;
@@ -136,8 +136,10 @@ public class DenominationMast {
 		return "DenominationMast [slabId=" + slabId + ", amount=" + amount + ", accessType=" + accessType
 				+ ", denominationDescription=" + denominationDescription + ", cardType=" + cardType
 				+ ", denominationValidity=" + denominationValidity + ", validationType=" + validationType
-				+ ", denominationId=" + denominationId + "]";
+				+ ", denominationId=" + denominationId + ", voucherQuantity=" + voucherQuantity + ", freeBeeId="
+				+ freeBeeId + ", cosId=" + cosId + ", modeType=" + modeType + "]";
 	}
+	
 	
 	
 }

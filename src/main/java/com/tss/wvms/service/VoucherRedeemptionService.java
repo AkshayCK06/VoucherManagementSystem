@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -135,6 +136,11 @@ public class VoucherRedeemptionService {
 	@Autowired
 	private Generic generic;
 	
+	@Autowired
+    private GenericFunctions genericFunction;
+	
+	private String logFileName ="WVMS_VoucherRedemption.log";
+	
 	private int SLAB_COSVAL = 0, COS_COSVAL = 0, FREEBIE_COSVAL = 0, voucherStatusChecker = 1,processId=0;
 	
 	private Date expiryDate = null;
@@ -152,7 +158,7 @@ public class VoucherRedeemptionService {
 	
 	public VoucherRedeemResponse redeemVoucher(VoucherRedeemRequest voucherRedeemRequest) throws Exception
 	{
-		
+		genericFunction.logFunction(logFileName,"::::::::::::::::::::::::::[redeemVoucher]:::::::::::::::::::::::::");
 		String transactionId = generic.getTransactionId();
 		String responseDescription ="" ,responseCode = "0000",query="";
 		boolean responseData = false;
@@ -161,7 +167,6 @@ public class VoucherRedeemptionService {
 			if(transactionId.equals(""))
 			{
 				responseDescription = "Unable to fetch transaction id";
-				log.error(responseDescription);
 				
 				voucherRedeemResponse.setRespCode("1014");
 				voucherRedeemResponse.setRespDesc(responseDescription);
@@ -192,32 +197,32 @@ public class VoucherRedeemptionService {
 			
 			if(migrationFlag.equals("1"))
 	        {
-				    log.info("[redeemVoucher]::::::::::migrationFlag::::::::::"+migrationFlag);
+					genericFunction.logFunction(logFileName,"[redeemVoucher]::::::::::migrationFlag::::::::::"+migrationFlag);
 	                switch(String.valueOf(voucherRedeemRequest.getVoucherFlag()))
 	                {
 	                        case "2" :
-	                        			log.info("[redeemVoucher]:::::::::::(VOUCHER):::::::::::::");
+	                        			genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::(VOUCHER):::::::::::::");
 	                        	        
 	                        			query = "SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)";
 		                                responseData = getData(query,voucherRedeemRequest.getVoucherFlag(),voucherRedeemRequest,transactionId);
 		                                
-		                                log.info("[redeemVoucher]:::::::::::responseData(VOUCHER):::::::::::::"+responseData);
+		                                genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseData(VOUCHER):::::::::::::"+responseData);
 		                                
 		                                if(responseData == false)
 		                                {
 		                                		responseCode = manageCustomerMast(voucherRedeemRequest,transactionId);
-		                                		log.info("[redeemVoucher]:::::::::::responseCode(VOUCHER):::::::::::::"+responseCode);
+		                                		genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseCode(VOUCHER):::::::::::::"+responseCode);
 		                                        throw new Exception(responseCode);
 		                                }
 		                                break;
 	                        case "1" :
 	                        	        query = "SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE SERIAL_NUMBER =:serialNumber AND BATCH_ID =:batchId";
 		                        		responseData = getData(query, voucherRedeemRequest.getVoucherFlag(),voucherRedeemRequest,transactionId);
-		                        		log.info("[redeemVoucher]:::::::::::responseData(SERIAL NUMBER):::::::::::::"+responseData);
+		                        		genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseData(SERIAL NUMBER):::::::::::::"+responseData);
 		                        		
 		                        		if(responseData == false)
 		                                {
-		                        				log.info("[redeemVoucher]:::::::::::responseCode(SERIAL NUMBER):::::::::::::"+responseCode);
+		                        				genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseCode(SERIAL NUMBER):::::::::::::"+responseCode);
 		                                        throw new Exception("1003");
 		                                }
 		                                break;
@@ -225,7 +230,7 @@ public class VoucherRedeemptionService {
 	                                	throw new Exception("1005");
 	                }
 	        }
-			log.info("::::;before insert into insertIntoTransactionMast:::::::");
+			genericFunction.logFunction(logFileName,"::::;before insert into insertIntoTransactionMast:::::::");
 			responseCode = insertIntoTransactionMast(voucherRedeemRequest,transactionId);
 		}
 		catch (Exception e)
@@ -249,8 +254,8 @@ public class VoucherRedeemptionService {
         {
                 redeemVoucherList.remove(voucherRedeemRequest.toString());
                 voucherRedeemResponse = constructResponseJson(responseCode,null);
-                log.info("[processRequest] :: RESPONSE : "+voucherRedeemResponse);
-                log.trace("****************Voucher Redemption completed****************");
+                genericFunction.logFunction(logFileName,"[processRequest] :: RESPONSE : "+voucherRedeemResponse);
+                genericFunction.logFunction(logFileName,"****************Voucher Redemption completed****************");
         }
 
 
@@ -263,10 +268,10 @@ public class VoucherRedeemptionService {
 	
 	private VoucherRedeemResponse parseRequest(VoucherRedeemRequest voucherRedeemRequest,String transactionId)
 	{
-		log.info(":::::::::::parseRequest:::::::::::::::::::");
+		genericFunction.logFunction(logFileName,":::::::::::parseRequest:::::::::::::::::::");
 		if(voucherRedeemRequest.toString().isEmpty())
 		{	
-			log.warn("Request content is null");
+			genericFunction.logFunction(logFileName,"Request content is null");
 			//throw new Exception("1005");
 			voucherRedeemResponse.setRespCode("1005");
 			voucherRedeemResponse.setRespDesc("Request content is null for transactionId:"+transactionId);
@@ -274,7 +279,7 @@ public class VoucherRedeemptionService {
 		}
 		else if(voucherRedeemRequest.getVoucherFlag().isEmpty() || voucherRedeemRequest.getVoucherNo().isEmpty() || voucherRedeemRequest.getMsisdn().isEmpty())
 		{	
-			log.warn("Invalid Request for transactionId:"+transactionId);
+			genericFunction.logFunction(logFileName,"Invalid Request for transactionId:"+transactionId);
 			//throw new Exception("1005");
 			voucherRedeemResponse.setRespCode("1005");
 			voucherRedeemResponse.setRespDesc("Invalid Request for transactionId:"+transactionId);
@@ -290,13 +295,13 @@ public class VoucherRedeemptionService {
 	
     private VoucherRedeemResponse validateData(VoucherRedeemRequest voucherRedeemRequest,String transactionId) throws Exception
     {
-    		log.info(":::::::::::validateData:::::::::::::::::::");
+    		genericFunction.logFunction(logFileName,":::::::::::validateData:::::::::::::::::::");
     		String responseDescription="";
             try{
                     if(!voucherRedeemRequest.getMsisdn().matches(msisdnRegEx))
                     {
                     	    responseDescription="Msisdn Not Matching With RegEx for transactionId:"+transactionId;
-                    	    log.warn(responseDescription);
+                    	    genericFunction.logFunction(logFileName,responseDescription);
                             
                     	    //throw new Exception("1008");
                 			voucherRedeemResponse.setRespCode("1008");
@@ -309,7 +314,7 @@ public class VoucherRedeemptionService {
                                     if(!voucherRedeemRequest.getVoucherNo().trim().matches(serialNoRegEx))
                                     {
                                     		responseDescription="Serial Number Not Matching With RegEx for transactionId:"+transactionId;
-                                    	    log.warn(responseDescription);
+                                    		genericFunction.logFunction(logFileName,responseDescription);
                                     	    
                                             //throw new Exception("1003");
                                 			voucherRedeemResponse.setRespCode("1003");
@@ -321,7 +326,7 @@ public class VoucherRedeemptionService {
                                     if(!voucherRedeemRequest.getVoucherNo().trim().matches(voucherNoRegEx))
                                     {
 	                                    	responseDescription="Voucher number Not Matching With RegEx for transactionId:"+transactionId;
-	                                	    log.warn(responseDescription);
+	                                    	genericFunction.logFunction(logFileName,responseDescription);
                                             
                                             String respCode = manageCustomerMast(voucherRedeemRequest,transactionId);
                                             //throw new Exception("respCode");
@@ -336,7 +341,7 @@ public class VoucherRedeemptionService {
             }catch(NullPointerException e)
             {
 	            	responseDescription="Request Data Not Available for transactionId:"+transactionId;
-	        	    log.warn(responseDescription);
+	            	genericFunction.logFunction(logFileName,responseDescription);
                 
                     //throw new Exception("1004");
                     voucherRedeemResponse.setRespCode("1004");
@@ -351,7 +356,7 @@ public class VoucherRedeemptionService {
     
 	public String manageCustomerMast(VoucherRedeemRequest voucherRedeemRequest,String transactionId) throws Exception 
     {
-    	log.info(":::::::::::manageCustomerMast:::::::::::::::::::");
+		genericFunction.logFunction(logFileName,":::::::::::manageCustomerMast:::::::::::::::::::");
 
     	boolean isRecordsUpdated = false;
     	
@@ -380,23 +385,24 @@ public class VoucherRedeemptionService {
             query = "SELECT FAIL_COUNT FROM CUSTOMER_MAST WHERE SUBSCRIBER_MSISDN =:msisdn";
             params.put("msisdn",voucherRedeemRequest.getMsisdn());
             
-            log.info("[manageCustomerMast]::::::fecthing fail count from CUSTOMER_MAST:::::::::"+query);
+            genericFunction.logFunction(logFileName,"[manageCustomerMast]::::::fecthing fail count from CUSTOMER_MAST:::::::::"+query);
             
             List<String> failCounts = namedDbJdbcTemplate.query(query, params, 
             	    (rs, rowNum) -> rs.getString("FAIL_COUNT")
             	);
 
         	if (failCounts.isEmpty()) {
-        	    log.warn("No fail count found for MSISDN: " + voucherRedeemRequest.getMsisdn());
+        		genericFunction.logFunction(logFileName,"No fail count found for MSISDN: " + voucherRedeemRequest.getMsisdn());
         	    str_fail_count = "0"; // Handle this case as needed (e.g., default value or exception)
         	} else {
         	    str_fail_count = failCounts.get(0);
         	}
             
-            log.info("[manageCustomerMast]::::::fail count from CUSTOMER_MAST for msisdn:::::::::"+voucherRedeemRequest.getMsisdn()+"::::::::str_fail_count::::"+str_fail_count);
-            log.info("::::str_fail_count:::::"+str_fail_count+":::::::maxFailCount:::::"+maxFailCount+"::::::multiBlockCallFlag:::::::"+multiBlockCallFlag);
+        	genericFunction.logFunction(logFileName,"[manageCustomerMast]::::::fail count from CUSTOMER_MAST for msisdn:::::::::"+voucherRedeemRequest.getMsisdn()+"::::::::str_fail_count::::"+str_fail_count);
+        	genericFunction.logFunction(logFileName,"::::str_fail_count:::::"+str_fail_count+":::::::maxFailCount:::::"+maxFailCount+"::::::multiBlockCallFlag:::::::"+multiBlockCallFlag);
             
-            if(!str_fail_count.equals("0"))
+            
+        	if(!failCounts.isEmpty())
             {	
             	fraudJson.put("accessNo",voucherRedeemRequest.getMsisdn());
             	fraudJson.put("appTxnRefId",transactionId);
@@ -419,13 +425,13 @@ public class VoucherRedeemptionService {
             		responseCode="1011";
             		if(multiBlockCallFlag == 2)
                     {
-                         log.info("[manageCustomerMast]::::::multiple time block call initiation:::::::");
+            			 genericFunction.logFunction(logFileName,"[manageCustomerMast]::::::multiple time block call initiation:::::::");
                          blockResponse = blockSubscriber(voucherRedeemRequest.getMsisdn(),blockSubscriberUrl,fraudJson,transactionId);
                          
-                         log.info(":: ICP Fraud Response : "+blockResponse);
+                         genericFunction.logFunction(logFileName,":: ICP Fraud Response : "+blockResponse);
                          if(blockResponse.length()!= 0)
                          {
-                                 log.warn(" :: User with msisdn : "+voucherRedeemRequest.getMsisdn()+" blocked for fraud");
+                        	 	 genericFunction.logFunction(logFileName," :: User with msisdn : "+voucherRedeemRequest.getMsisdn()+" blocked for fraud");
                                  JSONObject blockSubResponse=new JSONObject(blockResponse);                                    
 
                                  if(blockSubResponse.getInt("statusCode") == 0)
@@ -436,31 +442,31 @@ public class VoucherRedeemptionService {
                                          }
                                          else
                                          {
-                                                 log.trace("[manageCustomerMast]::::Fraud SMS is disabled:::");
+                                        	 	 genericFunction.logFunction(logFileName,"[manageCustomerMast]::::Fraud SMS is disabled:::");
                                          }
                                  }
                                  else
                                  {
-                                         log.trace("[manageCustomerMast]:: failed to block in ICP");
+                                	 	 genericFunction.logFunction(logFileName,"[manageCustomerMast]:: failed to block in ICP");
                                          throw new Exception(""+blockSubResponse.getJSONObject("response").getInt("errorCode"))
 ;
                                  }
                          }
                          else
                          {
-                                 log.trace("[manageCustomerMast]:: Empty response from ICP");
+                        	 	 genericFunction.logFunction(logFileName,"[manageCustomerMast]:: Empty response from ICP");
                                  throw new Exception("1014");
                          }
                     }
             		else if(multiBlockCallFlag ==1  && Integer.parseInt(str_fail_count) == maxFailCount)
                     {
-                            log.trace("one time block call initiation");
+            				genericFunction.logFunction(logFileName,"one time block call initiation");
                             blockResponse = blockSubscriber(voucherRedeemRequest.getMsisdn(),blockSubscriberUrl, fraudJson,transactionId);
-                            log.info(":: ICP Fraud Response : "+blockResponse);
+                            genericFunction.logFunction(logFileName,":: ICP Fraud Response : "+blockResponse);
                             
                             if(blockResponse.length()!= 0)
                             {
-                                    log.warn(":: User with msisdn : "+voucherRedeemRequest.getMsisdn()+" blocked for fraud");
+                            	    genericFunction.logFunction(logFileName,":: User with msisdn : "+voucherRedeemRequest.getMsisdn()+" blocked for fraud");
                                     JSONObject blockSubResponse=new JSONObject(blockResponse);
                                     if(blockSubResponse.getInt("statusCode") == 0)
                                     {
@@ -470,18 +476,18 @@ public class VoucherRedeemptionService {
                                             }
                                             else
                                             {
-                                                    log.trace("[manageCustomerMast]:: Fraud SMS is disabled");
+                                            	    genericFunction.logFunction(logFileName,"[manageCustomerMast]:: Fraud SMS is disabled");
                                             }
                                     }
                                     else
                                     {
-                                            log.trace("[manageCustomerMast]::failed to block in ICP");
+                                    		genericFunction.logFunction(logFileName,"[manageCustomerMast]::failed to block in ICP");
                                             throw new Exception(""+blockSubResponse.getJSONObject("response").getInt("errorCode"));
                                     }
                             }
                             else
                             {
-                                    log.trace("[manageCustomerMast]::Empty response from ICP");
+                            		genericFunction.logFunction(logFileName,"[manageCustomerMast]::Empty response from ICP");
                                     throw new Exception("1014");
                             }
                     }
@@ -489,14 +495,14 @@ public class VoucherRedeemptionService {
             	}
             	else if(Integer.parseInt(blockThreshold) == Integer.parseInt(str_fail_count))
                 {
-                        log.warn("[manageCustomerMast]:::User Reached to maximum fraud Attempt");
+            			genericFunction.logFunction(logFileName,"[manageCustomerMast]:::User Reached to maximum fraud Attempt");
                         if(fraudBlockHash.get("1").equals("true"))
                         {
                                 sendSms(messageHash.get("1004"), voucherRedeemRequest.getMsisdn(), smsPort, transactionId);
                         }
                         else
                         {
-                                log.trace("[manageCustomerMast]:::: Pre Fraud SMS is disabled");
+                        		genericFunction.logFunction(logFileName,"[manageCustomerMast]:::: Pre Fraud SMS is disabled");
                         }
                 }
             	
@@ -505,35 +511,35 @@ public class VoucherRedeemptionService {
             	params.put("failCount",String.valueOf(Integer.parseInt(str_fail_count)+1));
             	params.put("msisdn", voucherRedeemRequest.getMsisdn());
             	
-            	log.info("[manageCustomerMast]::::::updating CUSTOMER_MAST::::::::"+query);
+            	genericFunction.logFunction(logFileName,"[manageCustomerMast]::::::updating CUSTOMER_MAST::::::::"+query);
             	
             	try {
             		isRecordsUpdated = namedDbJdbcTemplate.update(query, params) > 0;
-                    log.info("[manageCustomerMast]:::::isRecordsUpdated to CUSTOMER_MAST:::::::"+isRecordsUpdated);
+            		genericFunction.logFunction(logFileName,"[manageCustomerMast]:::::isRecordsUpdated to CUSTOMER_MAST:::::::"+isRecordsUpdated);
             	}
             	catch (Exception e)
             	{
-            		log.error("[manageCustomerMast]:::::Error in updating records to CUSTOMER_MAST:::::::"+e.getMessage());
+            		genericFunction.logFunction(logFileName,"[manageCustomerMast]:::::Error in updating records to CUSTOMER_MAST:::::::"+e.getMessage());
             	}
             	
             }
             else
             {
-            	log.info("[manageCustomerMast]::::::::::inside else::::::::::::::::::::::");
+            	genericFunction.logFunction(logFileName,"[manageCustomerMast]::::::::::inside else::::::::::::::::::::::");
             	query = "INSERT INTO CUSTOMER_MAST(SUBSCRIBER_MSISDN,FAIL_COUNT,LAST_MOD_DATE) VALUES(:msisdn,:str_fail_count,SYSDATE)";
             	
             	params.put("msisdn", voucherRedeemRequest.getMsisdn());
             	params.put("str_fail_count","1");
             	
-            	log.info("[manageCustomerMast]::::::Inserting CUSTOMER_MAST::::::::"+query);
+            	genericFunction.logFunction(logFileName,"[manageCustomerMast]::::::Inserting CUSTOMER_MAST::::::::"+query);
             	
             	try {
             		isRecordsUpdated = namedDbJdbcTemplate.update(query, params) > 0;
-                    log.info("[manageCustomerMast]:::::isRecordsUpdated to CUSTOMER_MAST:::::::"+isRecordsUpdated);
+            		genericFunction.logFunction(logFileName,"[manageCustomerMast]:::::isRecordsUpdated to CUSTOMER_MAST:::::::"+isRecordsUpdated);
             	}
             	catch (Exception e)
             	{
-            		log.error("[manageCustomerMast]:::::Error in Inserting records to CUSTOMER_MAST:::::::"+e.getMessage());
+            		genericFunction.logFunction(logFileName,"[manageCustomerMast]:::::Error in Inserting records to CUSTOMER_MAST:::::::"+e.getMessage());
             	}
             	
             }
@@ -541,7 +547,7 @@ public class VoucherRedeemptionService {
         }    
         catch(Exception e)
         {
-        	log.warn("[manageCustomerMast]:::::Exception in manageCustomerMast:::::"+e.getMessage());
+        	genericFunction.logFunction(logFileName,"[manageCustomerMast]:::::Exception in manageCustomerMast:::::"+e.getMessage());
         }
 
 
@@ -556,8 +562,8 @@ public class VoucherRedeemptionService {
     public String blockSubscriber(String msisdn,String url, JSONObject data, String transactionId) throws Exception {
         String output = "";
 
-        log.info("::::::::::::blockSubscriber:::::::");
-        log.info("[blockSubscriber]:: URL : " + url + " | data : " + data +" | userName : "+userName+"|password :"+password);
+        genericFunction.logFunction(logFileName,"::::::::::::blockSubscriber:::::::");
+        genericFunction.logFunction(logFileName,"[blockSubscriber]:: URL : " + url + " | data : " + data +" | userName : "+userName+"|password :"+password);
 
         try {
             // Create client and configure timeout properties
@@ -579,7 +585,7 @@ public class VoucherRedeemptionService {
             // Correct use of Entity for sending a plain string
             Response response = invocationBuilder.post(Entity.text(data.toString()));
 
-            log.info("[blockSubscriber]:: Response Status ::: for transactionId ::: " + transactionId + " ::: is :: " + response.getStatus());
+            genericFunction.logFunction(logFileName,"[blockSubscriber]:: Response Status ::: for transactionId ::: " + transactionId + " ::: is :: " + response.getStatus());
 
             if (response.getStatus() != 200) {
                 log.warn(":: Block Request Rejected ");
@@ -590,9 +596,9 @@ public class VoucherRedeemptionService {
             output = response.readEntity(String.class);
             output = output.replace("\n", "");
 
-            log.info("[blockSubscriber]::Response for transactionId ::: " + transactionId + " ::: is ::: " + output);
+            genericFunction.logFunction(logFileName,"[blockSubscriber]::Response for transactionId ::: " + transactionId + " ::: is ::: " + output);
         } catch (Exception st) {
-            log.warn("[blockSubscriber]::Exception in blockSubscriber: " + st.getMessage());
+        	genericFunction.logFunction(logFileName,"[blockSubscriber]::Exception in blockSubscriber: " + st.getMessage());
             throw new Exception("1014");
         }
 
@@ -616,16 +622,16 @@ public class VoucherRedeemptionService {
             params.put("message",message);
             params.put("transactionId",transactionId);
             
-            log.info("[sendSms]:::INSERT query:::::::"+query);
+            genericFunction.logFunction(logFileName,"[sendSms]:::INSERT query:::::::"+query);
             
             try {  	
             	recordsInsertedCount = namedDbJdbcTemplate.update(query, params);
-            	log.info("[sendSms]:::::recordsInsertedCount:::::::"+recordsInsertedCount);
+            	genericFunction.logFunction(logFileName,"[sendSms]:::::recordsInsertedCount:::::::"+recordsInsertedCount);
             }
             catch (Exception e)
             {
             	recordsInsertedCount= 0 ;
-            	log.error("[sendSms]:::Error in Insertion to OUT_SMS_Q:::::"+e.getMessage());
+            	genericFunction.logFunction(logFileName,"[sendSms]:::Error in Insertion to OUT_SMS_Q:::::"+e.getMessage());
             	
             }
             return recordsInsertedCount;
@@ -635,7 +641,7 @@ public class VoucherRedeemptionService {
     //to fetch the message from WVMS_MESSAGE_MAST_1 table
     
     private Map<String, String> getMessageHash() {
-        log.info("::::::getMessageHash:::::::::");
+    	genericFunction.logFunction(logFileName,"::::::getMessageHash:::::::::");
         String query = "";
         Map<String, String> messageHash = new HashMap<>();
         try {
@@ -649,10 +655,10 @@ public class VoucherRedeemptionService {
                 }).stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)); // Collect into a Map
             
-            log.info("[getMessageHash]::::::messageHash:::::::::" + messageHash);
+            genericFunction.logFunction(logFileName,"[getMessageHash]::::::messageHash:::::::::" + messageHash);
 
         } catch (Exception e) {
-            log.warn("[getMessageHash]::::::::::Exception in getMessageHash: " + e.getMessage());
+        	genericFunction.logFunction(logFileName,"[getMessageHash]::::::::::Exception in getMessageHash: " + e.getMessage());
         }
 
         return messageHash;
@@ -664,8 +670,8 @@ public class VoucherRedeemptionService {
     private boolean getData(String query, String voucherFlag,VoucherRedeemRequest voucherRedeemRequest,String transactionId) throws Exception
     {
 
-    	log.info("::::::::::::::getData::::::::::::::::");
-    	log.info("[getData]:::::::::::::query to fetch details based on voucher flag:::::::::::::::::::"+query);
+    	genericFunction.logFunction(logFileName,"::::::::::::::getData::::::::::::::::");
+    	genericFunction.logFunction(logFileName,"[getData]:::::::::::::query to fetch details based on voucher flag:::::::::::::::::::"+query);
     	
     	String batchId = "",denominationId = "", freebieId = "", slabId = "", cosId = "", bonusId = "", batchStatus = "",serialNumber="";
         int voucherStatus = 1;
@@ -714,19 +720,19 @@ public class VoucherRedeemptionService {
         		serialNumber = String.valueOf(voucherDetails.getSerialNumber());
                 voucherStatus = voucherDetails.getStatus();
                 
-                log.info("[getData]:::batchId::::"+batchId+"::::::voucherNumber::::::"+voucherNumber+":::::::serialNumber:::::::"+serialNumber+":::::::voucherStatus::::::"+voucherStatus);
+                genericFunction.logFunction(logFileName,"[getData]:::batchId::::"+batchId+"::::::voucherNumber::::::"+voucherNumber+":::::::serialNumber:::::::"+serialNumber+":::::::voucherStatus::::::"+voucherStatus);
             	
         	}
         	else
         	{
-        		log.warn("[getData]:::::Voucher details not found for transactionId:::::"+transactionId);
+        		genericFunction.logFunction(logFileName,"[getData]:::::Voucher details not found for transactionId:::::"+transactionId);
                 return false; // voucher details not found
 
         	}
         }
         catch(Exception e)
         {
-        	log.error("[getData]:::::::::Exception in fetching details based on voucherFlag::::::::::"+e.getMessage());
+        	genericFunction.logFunction(logFileName,"[getData]:::::::::Exception in fetching details based on voucherFlag::::::::::"+e.getMessage());
         	 throw new Exception("1014");
         }
         
@@ -736,33 +742,33 @@ public class VoucherRedeemptionService {
         
                 
                 case 0 :
-                        log.warn("[getData]::::Voucher is genrated but not active");
+                	    genericFunction.logFunction(logFileName,"[getData]::::Voucher is genrated but not active");
                         return false;
                         
 
-                case 2 : log.warn("[getData]::::Voucher is processing"); //getting processed
+                case 2 : genericFunction.logFunction(logFileName,"[getData]::::Voucher is processing"); //getting processed
                          break;
                 case 4 : // Timed-out
                         String tmpMsisdn = getCustomerDet(voucherNumber,batchId);
                         if(voucherRedeemRequest.getMsisdn().equals(tmpMsisdn))
                         {
-                                log.warn("[getData]::::Voucher is in timeout state");
+                        	    genericFunction.logFunction(logFileName,"[getData]::::Voucher is in timeout state");
                                 throw new Exception("1009"); // Voucher is being processed
                         }
                         else
                         {
-                                log.warn("[getData]::::Voucher is redeemed for other user");
+                        	    genericFunction.logFunction(logFileName,"[getData]::::Voucher is redeemed for other user");
                                 throw new Exception("1010"); // Voucher is redeemed for other user
                         }
                        
                 case 3 :
-                        log.warn("[getData]::::Voucher is redeemed");
+                		genericFunction.logFunction(logFileName,"[getData]::::Voucher is redeemed");
                         throw new Exception("1010"); // Voucher is redeemed
                 case 5 :
-                        log.warn("[getData]::::Voucher is expired");
+                		genericFunction.logFunction(logFileName,"[getData]::::Voucher is expired");
                         return false; // Voucher is Expired
         }
-        log.info("[getData]::::::::::::::::::::after vouchflag switch::::::::::::::::::::::::");
+        genericFunction.logFunction(logFileName,"[getData]::::::::::::::::::::after vouchflag switch::::::::::::::::::::::::");
         updateVoucherStatus(serialNumber, batchId, 2);
         
         if(!batchId.equals(""))
@@ -771,7 +777,7 @@ public class VoucherRedeemptionService {
         	query ="SELECT BATCH_ID,STATUS,DENOMINATION_ID,BONUS_ID,ENABLE_DATE FROM BATCH_MAST WHERE BATCH_ID =:batchId";
         	params.put("batchId", batchId);
         	
-        	log.info("[getData]::::::::::: query to fetch batch details:::::::::::::::::"+query);
+        	genericFunction.logFunction(logFileName,"[getData]::::::::::: query to fetch batch details:::::::::::::::::"+query);
         	
         	try{
         		 batchDetails = namedDbJdbcTemplate.query(query, params,
@@ -787,20 +793,27 @@ public class VoucherRedeemptionService {
         			   
 	        	).get(0);
         		denominationId = String.valueOf(batchDetails.getDenomainationId());
-	        	log.info("[getData]:::::::::::batch details:::::::::::::::::"+batchDetails);
+        		genericFunction.logFunction(logFileName,"[getData]:::::::::::batch details:::::::::::::::::"+batchDetails);
         	}
         	catch(Exception e)
         	{
-        		log.info("[getData]:::::::::::Exception while fetching batch details:::::::::::::::::"+e.getMessage());	
+        		genericFunction.logFunction(logFileName,"[getData]:::::::::::Exception while fetching batch details:::::::::::::::::"+e.getMessage());	
         		throw new Exception("1014");
         	}
         	
         	if(!denominationId.equals(null))
         	{	
+        		genericFunction.logFunction(logFileName,"[getData]:::::::::::bonusId::::::::::::::"+batchDetails.getBonusId());
+        		if(!String.valueOf(batchDetails.getBonusId()).equals(null) && !String.valueOf(batchDetails.getBonusId()).equals(""))
+                {
+                    bonusHash = getDenomDetails(String.valueOf(batchDetails.getBonusId()));
+                    genericFunction.logFunction(logFileName,"[getData]:::::::::::bonusHash hash:::::::::::::::::"+bonusHash);
+                      
+                }
         		if(!denominationId.equals(""))
         		{	
         			denomHash = getDenomDetails(denominationId);
-        			log.info("[getData]:::::::::::denomination hash:::::::::::::::::"+denomHash);	
+        			genericFunction.logFunction(logFileName,"[getData]:::::::::::denomination hash:::::::::::::::::"+denomHash);	
         		}
         		if(batchDetails.getEnableDate()!=null && batchDetails.getEnableDate().isEmpty())
         		{
@@ -810,21 +823,14 @@ public class VoucherRedeemptionService {
     	            }
         		}
 	    		
-	    		if(!String.valueOf(batchDetails.getBonusId()).equals(null) && !String.valueOf(batchDetails.getBonusId()).equals(""))
-                {
-                        if(!bonusId.equals(""))
-                        {
-                                bonusHash = getDenomDetails(bonusId);
-                                log.info("[getData]:::::::::::bonusHash hash:::::::::::::::::"+bonusHash);
-                        }
-                }
+	    		
         		
         	}
         	
         }
         else
         {	
-        	log.warn("[getData]::::Batch details are not present");
+        	genericFunction.logFunction(logFileName,"[getData]::::Batch details are not present");
             return false; 
         }
 
@@ -834,7 +840,7 @@ public class VoucherRedeemptionService {
     
     private String getCustomerDet(long voucherNumber,String batchId) throws Exception
     {
-    	    log.info("::::::::::::::::getCustomerDet::::::::::::::::");
+    	    genericFunction.logFunction(logFileName,"::::::::::::::::getCustomerDet::::::::::::::::");
             String tmpMsisdn = "",query="";
             HashMap<String,String> params = new HashMap<String,String>();
             try{
@@ -842,12 +848,12 @@ public class VoucherRedeemptionService {
                     params.put("voucherNumber",String.valueOf(voucherNumber));
                     params.put("batchId", batchId);
                     
-                    log.info("[getCustomerDet]::::::query to fetch details from TRANSACTION_MAST:::::::::"+query);
+                    genericFunction.logFunction(logFileName,"[getCustomerDet]::::::query to fetch details from TRANSACTION_MAST:::::::::"+query);
                     tmpMsisdn = namedDbJdbcTemplate.queryForObject(query, params, String.class);
                   
             }catch(Exception e)
             {
-                    log.error("[getCustomerDet]::::::Error while fetching details from TRANSACTION_MAST:::::: "+e.getMessage());
+            		genericFunction.logFunction(logFileName,"[getCustomerDet]::::::Error while fetching details from TRANSACTION_MAST:::::: "+e.getMessage());
                     throw new Exception("1014");
             }
             return tmpMsisdn;
@@ -857,7 +863,7 @@ public class VoucherRedeemptionService {
 
     private void updateVoucherStatus(String voucherNo, String batchId, int status)throws Exception
     {
-    	    log.info(":::::::::::::::::::::updateVoucherStatus::::::::::::::::");
+    		genericFunction.logFunction(logFileName,":::::::::::::::::::::updateVoucherStatus::::::::::::::::");
             voucherStatusChecker = status;
             String query="";
             boolean isRecorsUpdated =false;
@@ -870,14 +876,14 @@ public class VoucherRedeemptionService {
                         params.put("voucherNo",voucherNo);
                         params.put("batchId",batchId);
                         
-                        log.info("[updateVoucherStatus]:::::::;query to update VOUCHER_DET:::::::::"+query);
+                        genericFunction.logFunction(logFileName,"[updateVoucherStatus]:::::::;query to update VOUCHER_DET:::::::::"+query);
                         
                         isRecorsUpdated = namedDbJdbcTemplate.update(query, params)>0;
                         
                     }
             }catch(Exception e)
             {
-                    log.error("[updateVoucherStatus]:::::::::;Exception in updateVoucherStatus::::::"+e.getMessage());
+            		genericFunction.logFunction(logFileName,"[updateVoucherStatus]:::::::::;Exception in updateVoucherStatus::::::"+e.getMessage());
                     throw new Exception("1014");
             }
     }
@@ -886,7 +892,7 @@ public class VoucherRedeemptionService {
     //to fetch denomination details
     private Map<String,String> getDenomDetails(String denominationId) throws Exception
     {
-    	log.info(":::::::::::::::::::::getDenomDetails::::::::::::::::");
+    	genericFunction.logFunction(logFileName,":::::::::::::::::::::getDenomDetails::::::::::::::::");
     	String slabId = "", cosId = "", freebieId = "", accessType = "",query="";
     	int bonusReqMode = 0;
     	
@@ -903,40 +909,39 @@ public class VoucherRedeemptionService {
         {
         	if(!denominationId.equals(""))
         	{
-        		query="SELECT SLAB_ID,FREEBEE_ID,COS_ID,MODE_TYPE,DENOMINATION_VALIDITY,VALIDITY_TYPE,NVL(AMOUNT,0),ACCESS_TYPE FROM DENOMINATION_MAST WHERE DENOMINATION_ID =:denominationId";
+        		query="SELECT SLAB_ID,FREEBEE_ID,COS_ID,MODE_TYPE,DENOMINATION_VALIDITY,VALIDITY_TYPE,NVL(AMOUNT,0) AS AMOUNT,ACCESS_TYPE FROM DENOMINATION_MAST WHERE DENOMINATION_ID =:denominationId";
         	    params.put("denominationId",denominationId);
         	    
-        	    log.info("[getDenomDetails]::::::::::query to fetch denomination details::::::::::::::::"+query);
-        	    denominationDetails = namedDbJdbcTemplate.query(query,params,
+        	    genericFunction.logFunction(logFileName,"[getDenomDetails]::::::::::query to fetch denomination details::::::::::::::::"+query);
+        	    RowMapper<DenominationMast> rowMapper = (rs, rowNum) -> new DenominationMast(
+        	    	    rs.getInt("SLAB_ID"),
+        	    	    rs.getInt("FREEBEE_ID"),
+        	    	    rs.getInt("COS_ID"),
+        	    	    rs.getInt("MODE_TYPE"),
+        	    	    rs.getInt("DENOMINATION_VALIDITY"),
+        	    	    rs.getInt("VALIDITY_TYPE"),
+        	    	    rs.getInt("AMOUNT"),
+        	    	    rs.getInt("ACCESS_TYPE")
+        	    	);
+
+        	    denominationDetails = namedDbJdbcTemplate.query(query, params, rowMapper).get(0);
         	    		
-        	    		(rs,rowNum)-> new DenominationMast(
-        	    				
-        	    				  rs.getInt("SLAB_ID"),
-        	    				  rs.getInt("FREEBEE_ID"),
-        	    				  rs.getInt("COS_ID"),
-        	    				  rs.getInt("MODE_TYPE"),
-        	    				  rs.getInt("DENOMINATION_VALIDITY"),
-        	    				  rs.getInt("VALIDITY_TYPE"),
-        	    				  rs.getInt("NVL(AMOUNT,0)"),
-        	    				  rs.getInt("ACCESS_TYPE")
-        	    				)
-        	    		).get(0);
-        	    		
-        	    log.info("[getDenomDetails]::::::::::denomination details::::::::::::::::"+denominationDetails);
+        	    genericFunction.logFunction(logFileName,"[getDenomDetails]::::::::::denomination details::::::::::::::::"+denominationDetails);
         	  	
         	}
         	
-        	if(!String.valueOf(denominationDetails.getAccessType()).equals("") && !String.valueOf(denominationDetails.getAccessType()).equals("null"))
+        	if(!String.valueOf(denominationDetails.getAccessType()).equals("") && !String.valueOf(denominationDetails.getAccessType()).equals(null))
         	{
-        		log.info("[getDenomDetails] :: Card Access type : "+denominationDetails.getAccessType());
-        		log.info("[getDenomDetails]:::::::::allowedAccessTypes:::::::::::"+allowedAccessTypes+"::::::accessType::::"+denominationDetails.getAccessType());
+        		genericFunction.logFunction(logFileName,"[getDenomDetails] :: Card Access type : "+denominationDetails.getAccessType());
+        		genericFunction.logFunction(logFileName,"[getDenomDetails]:::::::::allowedAccessTypes:::::::::::"+allowedAccessTypes+"::::::accessType::::"+denominationDetails.getAccessType());
         		if (accessType != null && !accessType.isEmpty() 
         		        && allowedAccessTypes.containsKey(accessType)) {
         		    String accessTypeValue = allowedAccessTypes.get(accessType);
         		    
         		    if (accessTypeValue != null && accessTypeValue.equals("0")) {
-        		        log.warn("[getDenomDetails] :: Card Access Type Not Allowed:::::");
-        		        return responseHash;
+        		    	genericFunction.logFunction(logFileName,"[getDenomDetails] :: Card Access Type Not Allowed:::::");
+        		      
+        		    	return responseHash;
         		    }
         		}
 
@@ -944,26 +949,27 @@ public class VoucherRedeemptionService {
         	
         	 if(denominationDetails.getModeType()!= 0)
              {
+        		 	 genericFunction.logFunction(logFileName,"[getDenomDetails]:::::::::getModeType:::::::::::"+denominationDetails.getModeType());
         		     
                      cosList = Generic.getCosValues(denominationDetails.getModeType());
-                     log.info("[getDenomDetails] :: Denomination Id : "+denominationId+"|Cos list : "+cosList+"| reqMode : "+Integer.parseInt(userName)+"| bonusReqMode : "+denominationDetails.getModeType());
+                     genericFunction.logFunction(logFileName,"[getDenomDetails] :: Denomination Id : "+denominationId+"|Cos list : "+cosList+"| Username : "+userName+"| bonusReqMode : "+denominationDetails.getModeType());
                      if(!cosList.contains(Integer.parseInt(userName)))
                      {
-                             log.warn("[getDenomDetails] :: Request Mode Not Applicable For Bonus");
+                    	 	 genericFunction.logFunction(logFileName,"[getDenomDetails] :: Request Mode Not Applicable For Bonus");
                              return responseHash;
                      }
              }
 
-        	 log.info("[getDenomDetails]:::denominationDetails.getSlabId():::::::::"+denominationDetails.getSlabId());
-        	 if(!String.valueOf(denominationDetails.getSlabId()).equals(null) && !String.valueOf(denominationDetails.getSlabId()).equals(""))
+        	 genericFunction.logFunction(logFileName,"[getDenomDetails]:::denominationDetails.getSlabId():::::::::"+denominationDetails.getSlabId());
+        	 if(!String.valueOf(denominationDetails.getSlabId()).equals("-1") && !String.valueOf(denominationDetails.getSlabId()).equals(null) && !String.valueOf(denominationDetails.getSlabId()).equals(""))
              {
         		       
-        		       log.info("[getDenomDetails]::::to fetch the Talktime details for id:::::::::"+denominationDetails.getSlabId());
+        		 	   genericFunction.logFunction(logFileName,"[getDenomDetails]::::to fetch the Talktime details for id:::::::::"+denominationDetails.getSlabId());
                       
         		       query="SELECT SLAB_AMOUNT,SLAB_VALIDITY FROM RECHARGE_MAST WHERE SLAB_ID =:slabId";
         		       params.put("slabId",String.valueOf(denominationDetails.getSlabId()));
         		       
-        		       log.info("[getDenomDetails]:::: query to fetch the Talktime details::::::;"+query);
+        		       genericFunction.logFunction(logFileName,"[getDenomDetails]:::: query to fetch the Talktime details::::::;"+query);
                        
         		       RechargeMast slabDetails = namedDbJdbcTemplate.query(query, params,
         		    	    
@@ -973,7 +979,7 @@ public class VoucherRedeemptionService {
         		    				  )
         		       ).get(0);
         		       
-        		       log.info("[getDenomDetails]::::Talktime details:::::::::"+slabDetails);
+        		       genericFunction.logFunction(logFileName,"[getDenomDetails]::::Talktime details:::::::::"+slabDetails);
                        
         		       if(!String.valueOf(slabDetails.getSlabAmount()).isEmpty() && !String.valueOf(slabDetails.getSlabValidity()).isEmpty())
         		       {
@@ -985,12 +991,12 @@ public class VoucherRedeemptionService {
         	  if(!String.valueOf(denominationDetails.getFreeBeeId()).equals(null) && !String.valueOf(denominationDetails.getFreeBeeId()).equals(""))
               {
         		  
-        		      log.info("[getDenomDetails]:::::::::Credit details for id:::::::"+denominationDetails.getFreeBeeId());
+        		  	  genericFunction.logFunction(logFileName,"[getDenomDetails]:::::::::Credit details for id:::::::"+denominationDetails.getFreeBeeId());
                       
         		      query = "SELECT FREEBEE_TYPE,FREEBEE_VALUE,FREEBEE_VALIDITY FROM FREEBEE_DET WHERE FREEBEE_ID =:freebeeId";
         		      paramsInt.put("freebeeId",denominationDetails.getFreeBeeId());
         		      
-        		      log.info("[getDenomDetails]::::::::::query to fetch credit/freebee details::::::::::::"+query);
+        		      genericFunction.logFunction(logFileName,"[getDenomDetails]::::::::::query to fetch credit/freebee details::::::::::::"+query);
         		      List<FreeBeeDet> creditDetails = namedDbJdbcTemplate.query(query, paramsInt,
         		    		    
         		    		        (rs,rowNum) -> new FreeBeeDet(
@@ -1000,7 +1006,7 @@ public class VoucherRedeemptionService {
         		    		        		)
         		    		  );
         		      
-        		      log.info("[getDenomDetails]::::::::::credit/freebee details::::::::::::"+creditDetails);
+        		      genericFunction.logFunction(logFileName,"[getDenomDetails]::::::::::credit/freebee details::::::::::::"+creditDetails);
                     
         		      for (FreeBeeDet credit : creditDetails)
         		      {	  
@@ -1013,7 +1019,7 @@ public class VoucherRedeemptionService {
         }
         catch(Exception e)
         {
-        	log.error("[getDenomDetails]::::::Exception in fetching denomaination details:::::::::::"+e.getMessage());
+        	genericFunction.logFunction(logFileName,"[getDenomDetails]::::::Exception in fetching denomaination details:::::::::::"+e.getMessage());
         }
         
         return responseHash;
@@ -1023,8 +1029,8 @@ public class VoucherRedeemptionService {
 
     private boolean checkExpiry(Date enableDate) throws Exception
     {
-    	    log.info("::::::::::checkExpiry::::::::::::::::::::");
-    	    log.info("::::::::enableDate:::::::::::::"+enableDate);
+    		genericFunction.logFunction(logFileName,"::::::::::checkExpiry::::::::::::::::::::");
+    		genericFunction.logFunction(logFileName,"::::::::enableDate:::::::::::::"+enableDate);
     	    Map<String,String> timeMultiplierHash = Generic.stringToHash(timeMultiplier,",");
             boolean result = true;
             try{
@@ -1040,19 +1046,19 @@ public class VoucherRedeemptionService {
                         expiryDate = cal.getTime();
 
                         if (expiryDate != null && !expiryDate.after(today)) {
-                            log.warn("[checkExpiry] :: Voucher is expired");
-                            log.info("[checkExpiry] :: Expiry Date : " + expiryDate + " | Current Date : " + today);
+                        	genericFunction.logFunction(logFileName,"[checkExpiry] :: Voucher is expired");
+                        	genericFunction.logFunction(logFileName,"[checkExpiry] :: Expiry Date : " + expiryDate + " | Current Date : " + today);
                             result = false;
                         }
                     } else {
-                        log.error("[checkExpiry] :: Expiry Date is null, cannot proceed with expiry check");
+                    	genericFunction.logFunction(logFileName,"[checkExpiry] :: Expiry Date is null, cannot proceed with expiry check");
                         result = false;
                     }
                     
 
             }catch(Exception e)
             {
-                    log.error("[checkExpiry] :: "+e.getMessage());
+            		genericFunction.logFunction(logFileName,"[checkExpiry] :: "+e.getMessage());
                     throw new Exception("1014");
             }
             return result;
@@ -1062,7 +1068,7 @@ public class VoucherRedeemptionService {
     //to insert records into TRANSACTION_MAST table
     private String insertIntoTransactionMast(VoucherRedeemRequest voucherRedeemRequest,String transactionId)throws Exception
     {
-    	log.info("::::::::::::insertIntoTransactionMast::::::");
+    	genericFunction.logFunction(logFileName,"::::::::::::insertIntoTransactionMast::::::");
     	
     	int res = 0, rtbsProcessId = 0;
     	String query="";
@@ -1074,12 +1080,13 @@ public class VoucherRedeemptionService {
         {
         	if(!denomHash.isEmpty())
             {
+        			genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]::::::::::::denomHash::::::"+denomHash);
                     for(String key : denomHash.keySet())
                     {
                     	    int isRecordInsertedIntoTransactionDet =  insertIntoTransactionDet(denomHash.get(key).split("\\|")[0],denomHash.get(key).split("\\|")[1],denomHash.get(key).split("\\|")[2],"1",transactionId+"1",key,transactionId);
                             res = res + isRecordInsertedIntoTransactionDet;
                             
-                            log.info("[insertIntoTransactionMast]:::::RecordInsertedIntoTransactionDet(Denomination):::::::"+ isRecordInsertedIntoTransactionDet);
+                            genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]:::::RecordInsertedIntoTransactionDet(Denomination):::::::"+ isRecordInsertedIntoTransactionDet);
                             
                             if(key.equals("TALKTIME"))
                             {
@@ -1098,12 +1105,15 @@ public class VoucherRedeemptionService {
         	
             if(!bonusHash.isEmpty())
             {
-                    for(String key : bonusHash.keySet())
+            		genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]::::::::::::bonusHash::::::"+bonusHash);
+                    int counter = 2;
+            		for(String key : bonusHash.keySet())
                     {
-                    	    int isRecordInsertedIntoTransactionDetBonus = insertIntoTransactionDet(bonusHash.get(key).split("\\|")[0],bonusHash.get(key).split("\\|")[1],bonusHash.get(key).split("\\|")[2],"0",transactionId+"2",key,transactionId);
+            			    //int isRecordInsertedIntoTransactionDetBonus = insertIntoTransactionDet(bonusHash.get(key).split("\\|")[0],bonusHash.get(key).split("\\|")[1],bonusHash.get(key).split("\\|")[2],"0",transactionId+String.valueOf(counter),key,transactionId);
+                    	    int isRecordInsertedIntoTransactionDetBonus = insertIntoTransactionDet(bonusHash.get(key).split("\\|")[0],bonusHash.get(key).split("\\|")[1],bonusHash.get(key).split("\\|")[2],"0",transactionId+counter,key,transactionId);
                             res = res + isRecordInsertedIntoTransactionDetBonus;
                             
-                            log.info("[insertIntoTransactionMast]::::::RecordInsertedIntoTransactionDet(Bonus)::::::::"+isRecordInsertedIntoTransactionDetBonus);
+                            genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]::::::RecordInsertedIntoTransactionDet(Bonus)::::::::"+isRecordInsertedIntoTransactionDetBonus);
                             if(key.equals("TALKTIME"))
                             {
                                     SLAB_COSVAL = 1;
@@ -1116,13 +1126,14 @@ public class VoucherRedeemptionService {
                             {
                                     FREEBIE_COSVAL = 4;
                             }
+                            counter = counter+1;
                     }
             }
 
         }
         else
         {
-                log.trace("insertIntoTransactionMast :: RTBS is Active host");
+        		genericFunction.logFunction(logFileName,"insertIntoTransactionMast :: RTBS is Active host");
                 res = 1;
                 rtbsProcessId = 10;
         }
@@ -1133,7 +1144,7 @@ public class VoucherRedeemptionService {
                 processId = generic.getProcesId(noOfProcessInstances, serverUp) + rtbsProcessId;
                 if(migrationFlag.equals("1"))
                 {
-                	    log.info("[insertIntoTransactionMast]:::::::::MSISDN:::::::::::::"+voucherRedeemRequest.getMsisdn());
+                		genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]:::::::::MSISDN:::::::::::::"+voucherRedeemRequest.getMsisdn());
                 	    query="INSERT INTO TRANSACTION_MAST(SEQ_ID,TRANSACTION_ID,REQ_DATE,SUBSCRIBER_MSISDN,STATUS,BATCH_NUMBER,REQ_MODE,VOUCHER_NUMBER,PROCESS_ID,APPLICABLE_COS,SERIAL_NUMBER,REQ_TYPE,VOUCHER_AMOUNT,EXPIRY_DATE) VALUES(TRANSACTION_MAST_SEQ.NEXTVAL,:transactionId,SYSDATE,:msisdn,0,:batchNo,:username,:voucherNo,:processId,:cosVal,:serialNo,:voucherFlag,:voucherAmount,:expiryDate)";
                 	    
                 	    params.put("transactionId",transactionId);
@@ -1160,7 +1171,7 @@ public class VoucherRedeemptionService {
                 }
                 else
                 {
-                	    log.info("[insertIntoTransactionMast]:::::::::MSISDN:::::::::::::"+voucherRedeemRequest.getMsisdn());
+                		genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]:::::::::MSISDN:::::::::::::"+voucherRedeemRequest.getMsisdn());
             	        query = "INSERT INTO TRANSACTION_MAST(SEQ_ID,TRANSACTION_ID,REQ_DATE,SUBSCRIBER_MSISDN,STATUS,REQ_MODE,PROCESS_ID,REQ_TYPE,VOUCHER_NUMBER) VALUES(TRANSACTION_MAST_SEQ.NEXTVAL,:transactionId,SYSDATE,:msisdn,0,:username,:processId,:voucherFlag,:voucherNo)";
                       
             	        params.put("transactionId",transactionId);
@@ -1172,39 +1183,59 @@ public class VoucherRedeemptionService {
                 	    
             	       
                 }
-                log.info("[insertIntoTransactionMast]::::::query to insert into TRANSACTION_MAST table::::::::"+query);                       
+                genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]::::::query to insert into TRANSACTION_MAST table::::::::"+query);                       
                 
                 try {
                 	isRecordInserted = namedDbJdbcTemplate.update(query,params)>0;
                 	
-                	log.info("[insertIntoTransactionMast]::::::isRecordInserted in TRANSACTION_MAST table:::::::"+isRecordInserted);
+                	genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]::::::isRecordInserted in TRANSACTION_MAST table:::::::"+isRecordInserted);
                 }
                 catch(Exception e)
                 {
-                	log.error("[insertIntoTransactionMast] :: Record not inserted in TRANSACTION_MAST table:::::::"+e.getMessage());
+                	genericFunction.logFunction(logFileName,"[insertIntoTransactionMast] :: Record not inserted in TRANSACTION_MAST table:::::::"+e.getMessage());
                     throw new Exception("1014");
                 }
             
 
                 if(isRecordInserted)
                 {
-                          log.warn("[insertIntoTransactionMast] :: Record inserted inserted into transaction table");
+                	      int customerMastRecordCount = 0;
+                	       
+                		  genericFunction.logFunction(logFileName,"[insertIntoTransactionMast] :: Record inserted inserted into transaction table");
+                		  		  
+                		  query = "SELECT COUNT(*) FROM CUSTOMER_MAST WHERE SUBSCRIBER_MSISDN=:msisdn";
+                		  params.put("msisdn",voucherRedeemRequest.getMsisdn());
+                		  
+                		  genericFunction.logFunction(logFileName,"[insertIntoTransactionMast] :: query to check in msisdn exist in CUSTOMER_MAST table:::::::"+query);
+                		  
+                		  customerMastRecordCount = namedDbJdbcTemplate.queryForObject(query,params,Integer.class);
+                		  
+                		  genericFunction.logFunction(logFileName,"[insertIntoTransactionMast] :::::::customerMastRecordCount:::::::"+customerMastRecordCount);
+                		  
+                		  genericFunction.logFunction(logFileName,"[insertIntoTransactionMast] :: query to update CUSTOMER_MAST table:::::::"+query);
+                		  if(customerMastRecordCount>0)
+                		  {	  
+                			  query = "UPDATE CUSTOMER_MAST SET FAIL_COUNT =:failCount ,LAST_MOD_DATE = SYSDATE WHERE SUBSCRIBER_MSISDN =:msisdn";
+                		  }
+                		  else
+                		  {	  
+                			  query = "INSERT INTO CUSTOMER_MAST(SUBSCRIBER_MSISDN,FAIL_COUNT,LAST_MOD_DATE) VALUES(:msisdn,:failCount,SYSDATE)";
+                		  }
                           
-                          query = "UPDATE CUSTOMER_MAST SET FAIL_COUNT =:failCount , LAST_MOD_DATE = SYSDATE WHERE SUBSCRIBER_MSISDN =:msisdn";
  
                           params.put("failCount","0");
                           params.put("msisdn",voucherRedeemRequest.getMsisdn());
                           
-                          log.info("[insertIntoTransactionMast] :: query to update CUSTOMER_MAST table:::::::"+query);
+                          genericFunction.logFunction(logFileName,"[insertIntoTransactionMast] :: query to update CUSTOMER_MAST table:::::::"+query);
                          
                           try 
                           {
                         	  isRecordUpdated=namedDbJdbcTemplate.update(query,params)>0;
-                        	  log.info("[insertIntoTransactionMast]::::::isRecordUpdated in CUSTOMER_MAST table:::::::"+isRecordUpdated);
+                        	  genericFunction.logFunction(logFileName,"[insertIntoTransactionMast]::::::isRecordUpdated in CUSTOMER_MAST table:::::::"+isRecordUpdated);
                           }
                           catch(Exception e)
                           {
-                        	  log.error("[insertIntoTransactionMast] :: Record not updated in CUSTOMER_MAST table::::::::::"+e.getMessage());
+                        	  genericFunction.logFunction(logFileName,"[insertIntoTransactionMast] :: Record not updated in CUSTOMER_MAST table::::::::::"+e.getMessage());
                         	  throw new Exception("1014");
                           }
                           return checkStatus(transactionId);
@@ -1212,19 +1243,19 @@ public class VoucherRedeemptionService {
         }
         else
         {
-                log.error("[insertIntoTransactionMast] :: Record not inserted in Transaction det");
+        		genericFunction.logFunction(logFileName,"[insertIntoTransactionMast] :: Record not inserted in Transaction det");
                 throw new Exception("1014");
         }
 
-    	return "1014";
+    	return "0000";
     }
     
     
     //to insert records into TRANSACTION_DET table
     private int insertIntoTransactionDet(String bucketId, String value, String validity, String transType, String subTransId, String bucketName,String transactionId) throws Exception
     {
-    	log.info(":::::::::::insertIntoTransactionDet::::::");
-        log.info("[insertIntoTransactionDet] :: bucketId :"+bucketId+"|value :"+value+"|validity :"+validity+"|transType :"+transType+"|subTransId :"+subTransId+"|bucketName :"+bucketName);
+    	genericFunction.logFunction(logFileName,":::::::::::insertIntoTransactionDet::::::");
+    	genericFunction.logFunction(logFileName,"[insertIntoTransactionDet] :: bucketId :"+bucketId+"|value :"+value+"|validity :"+validity+"|transType :"+transType+"|subTransId :"+subTransId+"|bucketName :"+bucketName);
            
         String query="";
         int isRecordInserted = 0;
@@ -1240,15 +1271,15 @@ public class VoucherRedeemptionService {
         params.put("subTransId",subTransId);
         params.put("bucketName",bucketName);
         
-        log.info("[insertIntoTransactionDet]:::::::::::query to insert record into TRANSACTION_DET table::::::::::::"+query);
+        genericFunction.logFunction(logFileName,"[insertIntoTransactionDet]:::::::::::query to insert record into TRANSACTION_DET table::::::::::::"+query);
         try
         {
         		isRecordInserted = namedDbJdbcTemplate.update(query, params);
 
         }catch(Exception e)
         {
-                log.error("[insertIntoTransactionDet] ::"+e.getMessage());
-                log.info("[insertIntoTransactionDet] :: bucketId :"+bucketId+"|value :"+value+"|validity :"+validity+"|transType :"+transType+"|subTransId :"+subTransId+"|bucketName :"+bucketName);
+        		genericFunction.logFunction(logFileName,"[insertIntoTransactionDet] ::"+e.getMessage());
+        		genericFunction.logFunction(logFileName,"[insertIntoTransactionDet] :: bucketId :"+bucketId+"|value :"+value+"|validity :"+validity+"|transType :"+transType+"|subTransId :"+subTransId+"|bucketName :"+bucketName);
                 return 0;
         }
         return isRecordInserted;
@@ -1256,7 +1287,7 @@ public class VoucherRedeemptionService {
     
     
     private String checkStatus(String transactionId) throws Exception {
-        log.info(":::::::::::checkStatus::::::::::");
+    	genericFunction.logFunction(logFileName,":::::::::::checkStatus::::::::::");
         
         int status = 0;
         String responseCode = "", query = "";    
@@ -1271,10 +1302,10 @@ public class VoucherRedeemptionService {
                     "WHERE TRANSACTION_ID = :transactionId AND STATUS != 0";                    
             params.put("transactionId", transactionId);
 
-            log.info("[checkStatus] Query to fetch status, responseCode, balanceInfo from TRANSACTION_MAST: {}", query);
+            genericFunction.logFunction(logFileName,"[checkStatus] Query to fetch status, responseCode, balanceInfo from TRANSACTION_MAST:"+ query);
 
             for (int i = 1; i <= maxCheckStatusTries; i++) {
-                log.info("[checkStatus] Attempt: {}", i);
+            	genericFunction.logFunction(logFileName,"[checkStatus] Attempt:"+ i);
 
                  transactionList = namedDbJdbcTemplate.query(query, params,
                     (rs, rowNum) -> new TransactionMast(
@@ -1289,29 +1320,29 @@ public class VoucherRedeemptionService {
             }
             if (transactionList.size()>0) {
                 
-                TransactionMast transactionDetails = transactionList.get(0);
-                log.info("[checkStatus] Retrieved transaction details: {}", transactionDetails);
+                 transactionDetails = transactionList.get(0);
+                 genericFunction.logFunction(logFileName,"[checkStatus] Retrieved transaction details:"+transactionDetails);
 
                 if (transactionDetails.getStatus() != 0 && 
                     transactionDetails.getStatus() != 1 && 
                     transactionDetails.getStatus() != 5) {
 
-                    log.info("[checkStatus] Transaction details match condition, returning responseCode: {}", 
+                	genericFunction.logFunction(logFileName,"[checkStatus] Transaction details match condition, returning responseCode:"+ 
                              transactionDetails.getResponseCode());
                     return String.valueOf(transactionDetails.getResponseCode());
                 }
 
             }
-            log.trace("[checkStatus] TRANSACTION_MAST final status={}", status);
+            genericFunction.logFunction(logFileName,"[checkStatus] TRANSACTION_MAST final status="+status);
             if (status == 0) {
                 query = "UPDATE TRANSACTION_MAST SET STATUS = 10 WHERE TRANSACTION_ID = :transactionId";
-                log.info("[checkStatus] Query to update TRANSACTION_MAST: {}", query);
+                genericFunction.logFunction(logFileName,"[checkStatus] Query to update TRANSACTION_MAST:"+ query);
                 
                 try {
                     isRecordsUpdated = namedDbJdbcTemplate.update(query, params) > 0;
-                    log.info("[checkStatus] isRecordsUpdated in TRANSACTION_MAST: {}", isRecordsUpdated);
+                    genericFunction.logFunction(logFileName,"[checkStatus] isRecordsUpdated in TRANSACTION_MAST:"+isRecordsUpdated);
                 } catch (Exception e) {
-                    log.error("[checkStatus] Exception in updating TRANSACTION_MAST: {}", e.getMessage());
+                	genericFunction.logFunction(logFileName,"[checkStatus] Exception in updating TRANSACTION_MAST:"+e.getMessage());
                     return "1014";
                 }
 
@@ -1322,7 +1353,7 @@ public class VoucherRedeemptionService {
                 return "1009";
             }
         } catch (Exception e) {
-            log.error("[checkStatus] Exception while fetching records from TRANSACTION_MAST: {}", e.getMessage());
+        	genericFunction.logFunction(logFileName,"[checkStatus] Exception while fetching records from TRANSACTION_MAST:"+ e.getMessage());
             return "1014";
         }
     }
@@ -1332,10 +1363,10 @@ public class VoucherRedeemptionService {
     
     private VoucherRedeemResponse constructResponseJson( String responseCode, JSONObject responseData) throws JSONException
     {
-    	    log.info(":::::::::::::::::constructResponseJson::::::::::::::::::::");
+    		genericFunction.logFunction(logFileName,":::::::::::::::::constructResponseJson::::::::::::::::::::");
     	    reasonList = getReasonList();
     	    String responseDesc ="";
-    	    log.info("[constructResponseJson]:::::::::responseCode::::::::"+responseCode);
+    	    genericFunction.logFunction(logFileName,"[constructResponseJson]:::::::::responseCode::::::::"+responseCode);
             try{
 
                     if(responseCode.equals("1000"))
@@ -1367,24 +1398,28 @@ public class VoucherRedeemptionService {
                             if(responseCode.equals("0000") || responseCode.equals("0"))
                             {
                                  
-                                    List<BalanceInfo> ivrBalInfoList = (List<BalanceInfo>) new BalanceInfo();
-                                    log.trace("[constructResponseJson]:::::ivrBalanceDetails:::::"+transactionDetails.getIvrBalanceInfo());
+                                    List<BalanceInfo> ivrBalInfoList = new ArrayList<>();
+                                    genericFunction.logFunction(logFileName,"[constructResponseJson]:::::transactionDetails:::::"+transactionDetails);
+                                    genericFunction.logFunction(logFileName,"[constructResponseJson]:::::ivrBalanceDetails:::::"+transactionDetails.getIvrBalanceInfo());
                                     if(transactionDetails.getIvrBalanceInfo() != null && !transactionDetails.getIvrBalanceInfo().equals(""))
                                     {
-                                    		
+                                    		//<_>Prepaid Core||0.00||20250412 13:16:00
+//                                          
                                             String[] ivrBalanceInfoArr = transactionDetails.getIvrBalanceInfo().split("<_>");
-                                            for(String item : ivrBalanceInfoArr)
-                                            {
-                                                    
-                                                    BalanceInfo balanceDetails =  new BalanceInfo();
-                                                    if(item != null && !item.equals(""))
-                                                    {
-                                                    	balanceDetails.setName(item.split("\\|\\|")[0]);
-                                                    	balanceDetails.setNewBalance(item.split("\\|\\|")[1]);
-                                                    	balanceDetails.setNewExpiry(item.split("\\|\\|")[2]);
-                                                    
-                                                    	ivrBalInfoList.add(balanceDetails);
+                                            for (String item : ivrBalanceInfoArr) {
+                                                if (item != null && !item.trim().isEmpty()) { // Check for null and empty string
+                                                    String[] balanceDetailsArr = item.split("\\|\\|");
+                                                    if (balanceDetailsArr.length >= 3) { // Ensure we have at least 3 parts before accessing indices
+                                                        BalanceInfo balanceDetails = new BalanceInfo();
+                                                        balanceDetails.setName(balanceDetailsArr[0]);
+                                                        balanceDetails.setNewBalance(balanceDetailsArr[1]);
+                                                        balanceDetails.setNewExpiry(balanceDetailsArr[2]);
+                                                        ivrBalInfoList.add(balanceDetails);
+                                                    } else {
+                                                        // Log error or handle cases where data is incomplete
+                                                        genericFunction.logFunction(logFileName, "[constructResponseJson] Invalid balance info format: " + item);
                                                     }
+                                                }
                                             }
                                     }
                                     voucherRedeemResponse.setBalInfo(ivrBalInfoList);
@@ -1396,24 +1431,24 @@ public class VoucherRedeemptionService {
 
             }catch(Exception e)
             {
-                    log.error("[constructResponseJson] Execption in constructResponseJson:: "+e.getMessage());
+            		genericFunction.logFunction(logFileName,"[constructResponseJson] Execption in constructResponseJson:: "+e.getMessage());
                     voucherRedeemResponse.setRespCode("1000");
                     voucherRedeemResponse.setRespDesc("Something went wrong, Please retry after sometime or contact customer care for more Information.");
                   
             }
-            log.info("[constructResponseJson]:::::::::voucherRedeemResponse::::::::::::"+voucherRedeemResponse);
+            genericFunction.logFunction(logFileName,"[constructResponseJson]:::::::::voucherRedeemResponse::::::::::::"+voucherRedeemResponse);
             return voucherRedeemResponse;
     }
 
 
     public List<ReasonMast> getReasonList()
     {
-    	log.info("::::::::::::::::getReasonList:::::::::::::");
+    	genericFunction.logFunction(logFileName,"::::::::::::::::getReasonList:::::::::::::");
     	String query ="";
     	HashMap<String,String> params = new HashMap<String,String>();
     
     	query = "SELECT RESP_CODE,RESP_MSG FROM REASON_MAST";
-    	log.info("[getReasonList]:::::::query to fetcg details from REASON_MAST::::::"+query);
+    	genericFunction.logFunction(logFileName,"[getReasonList]:::::::query to fetcg details from REASON_MAST::::::"+query);
     	reasonList = namedDbJdbcTemplate.query(query, params,
     			   
     			   (rs,rowNum) -> new ReasonMast(
@@ -1436,7 +1471,7 @@ public class VoucherRedeemptionService {
     	    if(r.getResponseCode() == Integer.parseInt(responseCode))	
     	    {	
     	    	responseDescription = r.getResponseMessage();
-    	    	log.info("[getResponseDescription]::::::::responseDescription:::::::::"+responseDescription);
+    	    	genericFunction.logFunction(logFileName,"[getResponseDescription]::::::::responseDescription:::::::::"+responseDescription);
     	    }
     	}
     	

@@ -79,10 +79,10 @@ public class ICPResponseMapper {
         private String name;
 
         @JsonProperty("changeInBalance")
-        private int changeInBalance;
+        private long changeInBalance;
 
         @JsonProperty("newBalance")
-        private int newBalance;
+        private long newBalance;
 
         @JsonProperty("expiry")
         private String expiry;
@@ -90,7 +90,7 @@ public class ICPResponseMapper {
         @JsonProperty("packageId")
         private int packageId;
 
-        @JsonProperty("SmartTag")
+        @JsonProperty("smartTag")
         private String smartTag;
 
         public int getId() {
@@ -109,19 +109,19 @@ public class ICPResponseMapper {
             this.name = name;
         }
 
-        public int getChangeInBalance() {
+        public long getChangeInBalance() {
             return changeInBalance;
         }
 
-        public void setChangeInBalance(int changeInBalance) {
+        public void setChangeInBalance(long changeInBalance) {
             this.changeInBalance = changeInBalance;
         }
 
-        public int getNewBalance() {
+        public long getNewBalance() {
             return newBalance;
         }
 
-        public void setNewBalance(int newBalance) {
+        public void setNewBalance(long newBalance) {
             this.newBalance = newBalance;
         }
 

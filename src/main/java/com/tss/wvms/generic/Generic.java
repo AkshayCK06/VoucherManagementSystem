@@ -1,5 +1,8 @@
 package com.tss.wvms.generic;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,13 +22,13 @@ public class Generic {
 	
 	public String getTransactionId()
 	{
-		log.info(":::::::::::getTransactionId::::::::::");
+		//log.info(":::::::::::getTransactionId::::::::::");
 	    String transactionId= "";
 	    try
 	    {
 	      String query = "SELECT TO_CHAR(TO_NUMBER(TO_CHAR( SYSDATE, 'SS'))+13) || WVMS_TRANSACTION_ID_SEQ.NEXTVAL || TO_CHAR( SYSDATE, 'YYDDDSSSSS') AS TRANSACTIONID FROM DUAL";
 	      transactionId = namedDbJdbcTemplate.queryForObject(query, new HashMap<>(), String.class);
-	      log.info("[getTransactionId]:::::::::::transactionId::::::::"+transactionId);
+	      //log.info("[getTransactionId]:::::::::::transactionId::::::::"+transactionId);
 	    }
 	    catch (Exception localException)
 	    {
@@ -38,14 +41,14 @@ public class Generic {
 	
 	public static Map<String,String> stringToHash(String paramString1, String paramString2) throws Exception
 	{
-	    log.info(":::::::::stringToHash:::::::");
-	    log.info("[getTransactionId]:::::::::paramString1::::::::"+paramString1+"::::::::::paramString2:::::::::"+paramString2);
+	    //log.info(":::::::::stringToHash:::::::");
+	    //log.info("[getTransactionId]:::::::::paramString1::::::::"+paramString1+"::::::::::paramString2:::::::::"+paramString2);
 	    HashMap<String,String> localHashMap = new HashMap();
 	    String[] arrayOfString = paramString1.replace("\"", "").trim().split(paramString2);
 	    for (int i = 0; i < arrayOfString.length; i += 2) {
 	      localHashMap.put(arrayOfString[i], arrayOfString[(i + 1)]);
 	    }
-	    log.info("[getTransactionId]::::::::::localHashMap::::::::"+localHashMap);
+	    //log.info("[getTransactionId]::::::::::localHashMap::::::::"+localHashMap);
 	    return localHashMap;
 	}
 
@@ -79,8 +82,8 @@ public class Generic {
 	 
 	 public int getProcesId(int paramInt1, int paramInt2)
 	 {
-		log.info(":::::::::::::::::getProcesId:::::::::::::::::");
-		log.info("[getProcesId]::::paramInt1:::::::"+paramInt1+":::::paramInt2::::::::"+paramInt2);
+		//log.info(":::::::::::::::::getProcesId:::::::::::::::::");
+		//log.info("[getProcesId]::::paramInt1:::::::"+paramInt1+":::::paramInt2::::::::"+paramInt2);
 		String query="";
 		String processSeqId = "";
 	    int i = (int)(Math.random() * paramInt1) + 1;
@@ -123,6 +126,27 @@ public class Generic {
 	      return (int)(Math.random() * paramInt1 / 2.0D) + paramInt1 / 2 + 1;
 	    }
 	    return i;
+	  }
+	 
+	 
+	 
+	 public String convertDateFormat(String expiry) {
+	        try {
+	        	
+	            // Define the input and output date formats
+	            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss");
+	            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+	            // Parse the input string into LocalDateTime
+	            LocalDateTime dateTime = LocalDateTime.parse(expiry, inputFormatter);
+
+	            // Format the date into the desired output format
+	            return dateTime.format(outputFormatter);
+
+	        } catch (DateTimeParseException e) {
+	            System.err.println("ERROR: Invalid date format! Should be yyyyMMdd HH:mm:ss. Received: " + expiry);
+	            return "";
+	        }
 	  }
 
 

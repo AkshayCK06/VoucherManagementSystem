@@ -16,6 +16,7 @@ import com.tss.wvms.model.TransactionDet;
 import com.tss.wvms.model.TransactionMast;
 import com.tss.wvms.requestResponse.ICPResponseMapper;
 import com.tss.wvms.requestResponse.ICPResponseMapper.BalanceInfo;
+import com.tss.wvms.service.GenericFunctions;
 import com.tss.wvms.service.ICPInterface;
 
 @Service
@@ -52,6 +53,11 @@ public class BonusRedeemption {
 	 
 	 @Autowired
 	 ICPInterface icpInterface;
+	 
+	 @Autowired
+     private GenericFunctions genericFunction;
+	
+	 private String logFileName ="WVMS_VoucherRedemption.log";
 		
 	 
 	 @Scheduled(fixedDelay=2000) // Runs for every 2 seconds
@@ -61,6 +67,7 @@ public class BonusRedeemption {
 	 public void bonusRedeemption() throws Exception
 	 {
 
+		 genericFunction.logFunction(logFileName,"::::::::::bonusRedeemption::::::::::::::");
 		 String query="";
 		 HashMap<String,String> params = new HashMap<String,String>();
 		 boolean isRecordUpdated = false,isRecordUpdatedInTransactionDet=false;
@@ -72,7 +79,7 @@ public class BonusRedeemption {
 	     //to retrive the records from TRANSACTION_MAST where STATUS=2(Inserted based on the bonus count after successful talktime redeemption response from ICP API-VoucherRedeemption) 
 	     query =" SELECT SEQ_ID,TRANSACTION_ID,TO_CHAR(REQ_DATE,'DD-MM-YYYY HH24:MI:SS') AS REQ_DATE,SUBSCRIBER_MSISDN,STATUS,BATCH_NUMBER,REQ_MODE,VOUCHER_NUMBER,APPLICABLE_COS,SERVICE_FULFILLMENT_COS,VOUCHER_AMOUNT,SERIAL_NUMBER,RESP_DESC FROM TRANSACTION_MAST WHERE STATUS=2 AND ROWNUM<10";
 	     
-	     log.info("[bonusRedeemption(Scheduler Process)]:::::::::query to retrive the records from TRANSACTION_MAST where STATUS=2::::::::"+query);
+	     genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::query to retrive the records from TRANSACTION_MAST where STATUS=2::::::::"+query);
 	     List<TransactionMast> transactionMastDetails = namedDbJdbcTemplate.query(query,new HashMap<String, String>(), 
 	    		 
 	    		 (rs,rowNum) -> new TransactionMast( 
@@ -97,7 +104,7 @@ public class BonusRedeemption {
 	     {	 
 	    	 for(TransactionMast transaction:transactionMastDetails)
 	    	 {	 
-	    		 log.info("[bonusRedeemption(Scheduler Process)]:::::::::transaction:::::::::::"+transaction);
+	    		 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::transaction:::::::::::"+transaction);
 	    		 
 	    		 //to updated TRANSACTION_MAST STATUS=5
 	    		 query="UPDATE TRANSACTION_MAST SET STATUS=:status,RESP_CODE=:responseCode  WHERE TRANSACTION_ID=:transactionId";
@@ -109,12 +116,12 @@ public class BonusRedeemption {
 	    		 
 	    		 try {
 	    			 isRecordUpdated = namedDbJdbcTemplate.update(query, params)>0;
-	    			 log.info("[bonusRedeemption(Scheduler Process)]:::::::::isRecordUpdated in TRANSACTION_MAST table:::::::::::"+isRecordUpdated);
+	    			 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::isRecordUpdated in TRANSACTION_MAST table:::::::::::"+isRecordUpdated);
 	    		 }
 	    		 catch(Exception e)
 	    		 {
 	    			 isRecordUpdated = false;
-	    			 log.error("[bonusRedeemption(Scheduler Process)]:::::::::Exception in updating record into TRANSACTION_MAST table:::::::::::"+e.getMessage());
+	    			 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::Exception in updating record into TRANSACTION_MAST table:::::::::::"+e.getMessage());
 	    		 }
 	    		 
 	    		 if(isRecordUpdated)
@@ -124,16 +131,16 @@ public class BonusRedeemption {
 	    			 query ="UPDATE TRANSACTION_DET SET PROCESS_DATE=SYSDATE WHERE MAIN_TRANS_ID=:transactionId AND TRANS_TYPE=1";
 	    			 params.put("transactionId",String.valueOf(transaction.getTransactionId()));
 	    			 
-	    			 log.info("[bonusRedeemption(Scheduler Process)]:::::::::query to update TRANSACTION_DET table:::::::::::"+query);
+	    			 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::query to update TRANSACTION_DET table:::::::::::"+query);
 	    			 
 	    			 try {
 	    				 isRecordUpdatedInTransactionDet = namedDbJdbcTemplate.update(query, params)>0;
-		    			 log.info("[bonusRedeemption(Scheduler Process)]:::::::::isRecordUpdated in TRANSACTION_DET table:::::::::::"+isRecordUpdatedInTransactionDet);
+	    				 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::isRecordUpdated in TRANSACTION_DET table:::::::::::"+isRecordUpdatedInTransactionDet);
 		    		 }
 		    		 catch(Exception e)
 		    		 {
 		    			 isRecordUpdatedInTransactionDet = false;
-		    			 log.error("[bonusRedeemption(Scheduler Process)]:::::::::Exception in updating record into TRANSACTION_DET table:::::::::::"+e.getMessage());
+		    			 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::Exception in updating record into TRANSACTION_DET table:::::::::::"+e.getMessage());
 		    		 }
 	    			 
 	    		 }
@@ -144,7 +151,7 @@ public class BonusRedeemption {
 	    			 query = "SELECT SERVICE_TYPE,SERVICE_NAME,SERVICE_UNIT,SERVICE_STATUS,SERVICE_VALIDITY,to_char(REQUEST_DATE,'dd-mm-yyyy hh24:mi:ss') AS REQUEST_DATE,TRANS_TYPE,TRANSACTION_ID,to_char(sysdate+SERVICE_VALIDITY,'yyyymmdd hh24:mi:ss') AS SERVICE_VALIDITY_SYSDATE FROM TRANSACTION_DET WHERE MAIN_TRANS_ID=:transactionId and TRANS_TYPE=0";
 	    			 params.put("transactionId",String.valueOf(transaction.getTransactionId()));
 	    			 
-	    			 log.info("[bonusRedeemption(Scheduler Process)]:::::::::query to to fetch details from TRANSACTION_DET where TRANS_TYPE=0(Bonus)::::::::"+query);
+	    			 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::query to to fetch details from TRANSACTION_DET where TRANS_TYPE=0(Bonus)::::::::"+query);
 	    			 
 	    			 List<TransactionDet> transactionDetDetails = namedDbJdbcTemplate.query(query, params, 
 	    					 
@@ -167,10 +174,10 @@ public class BonusRedeemption {
 	    			 {
 	    				 for(TransactionDet transactionDet : transactionDetDetails)
 		    			 {	 
-	    					 log.info("[bonusRedeemption(Scheduler Process)]:::::::::transactionDet:::::::::::"+transactionDet);
+	    					 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::transactionDet:::::::::::"+transactionDet);
 	    					 rechargeDetails+=transactionDet.getServiceName()+":"+transactionDet.getServiceUnit()+"-"+transactionDet.getServiceValidity()+",";
 	    					 
-	    					 log.info("[bonusRedeemption(Scheduler Process)]:::::::::rechargeDetails:::::::::::"+rechargeDetails);
+	    					 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::rechargeDetails:::::::::::"+rechargeDetails);
 	    					 int centCovertFactor = 1,serviceUnitT=0;
 	    					 
 	    					 if(bucketIdFactorHash.containsKey(String.valueOf(transactionDet.getServiceType())))
@@ -181,7 +188,7 @@ public class BonusRedeemption {
 	    					 
 	    					 serviceHash.put(String.valueOf(transactionDet.getServiceType()),transactionDet.getServiceName()+"|"+serviceUnitT+"|"+transactionDet.getServiceStatus()+"|"+transactionDet.getServiceValididtyDate()+"|"+transactionDet.getRequestDate()+"|"+transactionDet.getTransactionType()+"|"+transactionDet.getServiceValidity());
 		    			 
-		    			     log.info("[bonusRedeemption(Scheduler Process)]:::::::::serviceHash:::::::::::"+serviceHash);
+	    					 genericFunction.logFunction(logFileName,"[bonusRedeemption(Scheduler Process)]:::::::::serviceHash:::::::::::"+serviceHash);
 		    			 
 		    			 
 		    			     creditRequest(transaction,transactionDet.getTransactionId(),serviceHash,rechargeDetails);
@@ -206,15 +213,15 @@ public class BonusRedeemption {
 	 public ICPResponseMapper creditRequest(TransactionMast transactionMastDetails,long subTransactionId,HashMap<String,String> serviceHash,String rechargeDetails) throws Exception
 	 {
 			
-			log.info("[bonusRedeemption(creditRequest)] ::::::::::::::CREDIT REQUEST::::::::::");
-		    log.info("[bonusRedeemption(creditRequest)] :::::::::::::::transactionMastDetails:::::::::"+transactionMastDetails);
-		    log.info("[bonusRedeemption(creditRequest)] :::::::::::::::subTransactionId::::::::::"+subTransactionId);
-		    log.info("[bonusRedeemption(creditRequest)] :::::::::::::;:serviceHash::::::::::::::::::::"+serviceHash);
-		    log.info("[bonusRedeemption(creditRequest)] ::::::::::::rechargeDetails:::::::::::::::"+rechargeDetails);
+		 	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)] ::::::::::::::CREDIT REQUEST::::::::::");
+		 	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)] :::::::::::::::transactionMastDetails:::::::::"+transactionMastDetails);
+		 	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)] :::::::::::::::subTransactionId::::::::::"+subTransactionId);
+		 	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)] :::::::::::::;:serviceHash::::::::::::::::::::"+serviceHash);
+		 	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)] ::::::::::::rechargeDetails:::::::::::::::"+rechargeDetails);
 		    
 		    String query="",refNos="",errorCode="",status="",desc="",ocsRespTxn="",accountVal="",ivrBalanceInfo="";
 		   
-		    String respCode="",ussdMsg=successMessage,newBalanceStr="",balanceString="",balanceDetails="",messageId="";
+		    String respCode="",ussdMsg=successMessage,newBalanceStr="",balanceString="",balanceDetails="",messageId="",expiry1="";
 		    int validFlag= 0, mastStatus=1, intStatus = 0,centCovertFactor=0,bonusRequestCount=0,voucherStatus=0,responseInMast=0;
 		    float newBalance = 0;
 		    boolean isRecordUpdated=false,isRecordInserted=false;
@@ -234,16 +241,39 @@ public class BonusRedeemption {
 			String responseHashStr = "1009,1015,1000,1017,0000,1016,1014,1018";
 			String voucherStatComboStr = "2,3,3,1,4,4";
 			
-			Map<String, String> statusCombo = generic.stringToHash(statusComboStr,",");
+			Map<String, String> statusCombo = new HashMap<String, String>();
+			statusCombo.put("2","6");
+			statusCombo.put("3","7");
+			statusCombo.put("4","4");
+			
 
 		    // Message ID Mapping
-		    Map<String, String> msgIdCombo = generic.stringToHash(messageIDStr,",");
+		    Map<String, String> msgIdCombo = new HashMap<String, String>();
+		    if(sendBonusFailure!=1)
+		    {	
+		    	msgIdCombo.put("3","2");
+		    	msgIdCombo.put("4","3");
+		    }
+		    else
+		    {
+		    	msgIdCombo.put("2","");
+		    	msgIdCombo.put("3","");
+		    	msgIdCombo.put("4","6");
+		    	
+		    }
 		     
 		    //Response ID Mapping
-		    Map<String, String> responseHash = generic.stringToHash(responseHashStr,",");
+		    Map<String, String> responseHash = new HashMap<String, String>();
+		    responseHash.put("1009","1015");
+		    responseHash.put("1000","1017");
+		    responseHash.put("0000","1016");
+		    responseHash.put("1014","1018");
 		     
 		    //Voucher Status Mapping
-		    Map<String, String> voucherStatCombo = generic.stringToHash(voucherStatComboStr,",");
+		    Map<String, String> voucherStatCombo = new HashMap<String, String>();
+		    voucherStatCombo.put("2","3");
+		    voucherStatCombo.put("3","1");
+		    voucherStatCombo.put("2","4");
 		    
 		   
 		    
@@ -255,7 +285,7 @@ public class BonusRedeemption {
 	             intStatus =4;
 	             voucherStatus=4;
 	             respCode ="1009";
-	             log.error("[bonusRedeemption(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+"DESCRIPTION : TIMEOUT FROM ICP  EVENTTYPE:1 EVENTDESC : REDEEM REQMODE:"+transactionMastDetails.getRequestMode() +"STATUS : 4");
+	             genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+"DESCRIPTION : TIMEOUT FROM ICP  EVENTTYPE:1 EVENTDESC : REDEEM REQMODE:"+transactionMastDetails.getRequestMode() +"STATUS : 4");
 		    }
 		    else if(responseMapper.getIcpResponse().getDescription().contains("500 Can't connect") || responseMapper.getIcpResponse().getDescription().contains("Internal Server Error") || responseMapper.getIcpResponse().getDescription().contains("404 Not FoundConnection") || responseMapper.getIcpResponse().getDescription().contains("Failed - System Error"))
 		    {
@@ -263,7 +293,7 @@ public class BonusRedeemption {
 		    	voucherStatus=1;
 	            respCode ="1000";
 	            
-	            log.error("[bonusRedeemption(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+"DESCRIPTION : CONNECTION ERROR  EVENTTYPE:10 EVENTDESC : REDEEM:"+transactionMastDetails.getRequestMode() +"STATUS : 3");
+	            genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+"DESCRIPTION : CONNECTION ERROR  EVENTTYPE:10 EVENTDESC : REDEEM:"+transactionMastDetails.getRequestMode() +"STATUS : 3");
 
 		    }
 		    else
@@ -271,18 +301,18 @@ public class BonusRedeemption {
 		    	if(responseMapper.toString().isEmpty())
 		    	{	
 		    		validFlag=1;
-		    		log.error("[voucherRedeem(creditRequest)]:::::::::Invalid JSON Response::::::::::::::");
+		    		genericFunction.logFunction(logFileName,"[voucherRedeem(creditRequest)]:::::::::Invalid JSON Response::::::::::::::");
 		    	}
 		    	if(validFlag ==1)
 		    	{	
 		    		intStatus =3;
 		    		voucherStatus=1;
 		    		respCode ="1000";
-		    		log.error("[voucherRedeem(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+" DESCRIPTION : INVALID JSON RESPONSE  EVENTTYPE:10 EVENTDESC : REDEEM:"+transactionMastDetails.getRequestMode() +"STATUS : 3");
+		    		genericFunction.logFunction(logFileName,"[voucherRedeem(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+" DESCRIPTION : INVALID JSON RESPONSE  EVENTTYPE:10 EVENTDESC : REDEEM:"+transactionMastDetails.getRequestMode() +"STATUS : 3");
 		    	}
 		    	else
 		    	{
-		    		log.info("[voucherRedeem(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"::::::::::::Valid JSON Response:::::::::::"+responseMapper);
+		    		genericFunction.logFunction(logFileName,"[voucherRedeem(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"::::::::::::Valid JSON Response:::::::::::"+responseMapper);
 		    		
 		    		refNos = responseMapper.getAppTxnRefId();
 		    		ocsRespTxn = responseMapper.getOcsTxnRefId();
@@ -308,48 +338,59 @@ public class BonusRedeemption {
 		    				
 		    				if(String.valueOf(b.getId()).equals("1"))
 			    			{	
+		    					expiry1 = responseMapper.getAccountValidity();
 		    					ussdMsg = ussdMsg.replaceAll("__COREVALIDITY__",responseMapper.getAccountValidity());
 		    					ussdMsg = ussdMsg.replaceAll("__COREVALUE__",newBalanceStr);
 		    					
 			    			}
-		    					
+		    				else
+		    				{
+		    					expiry1 = generic.convertDateFormat(b.getExpiry());
+		    				}	
 		    				balanceString=balanceMessage;
 		    				balanceString = balanceString.replaceAll("__BALANCE__", newBalanceStr);
-		    				balanceString = balanceString.replaceAll("__VALIDITY__",b.getExpiry());
+		    				balanceString = balanceString.replaceAll("__VALIDITY__",expiry1);
 		    				balanceString = balanceString.replaceAll("__BUCKETNAME__",b.getName());
 		    				
-		    				ivrBalanceInfo = ivrBalanceInfo+"<_>"+b.getName()+"||"+newBalanceStr+"||"+b.getExpiry();
+		    				ivrBalanceInfo = ivrBalanceInfo+"<_>"+b.getName()+"||"+newBalanceStr+"||"+expiry1;
 		    				
 		    				balanceDetails+=balanceString+",";
 		    				
 		    				intStatus =2;
 		    				respCode ="0000";
 		    				
-		    				log.info("[bonusRedeemption(creditRequest)]::::::balanceDetails::::::"+balanceDetails);
-		    				log.info("[bonusRedeemption(creditRequest)]::::::ivrBalanceInfo::::::"+ivrBalanceInfo);
-		    				log.info("[bonusRedeemption(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+" DESCRIPTION : SUCCESS JSON RESPONSE  EVENTTYPE:10 EVENTDESC : REDEEM:"+transactionMastDetails.getRequestMode() +"STATUS : 1");
+		    				genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]::::::balanceDetails::::::"+balanceDetails);
+		    				genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]::::::ivrBalanceInfo::::::"+ivrBalanceInfo);
+		    				genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+" DESCRIPTION : SUCCESS JSON RESPONSE  EVENTTYPE:10 EVENTDESC : REDEEM:"+transactionMastDetails.getRequestMode() +"STATUS : 1");
 		    				
 		    			}
 		    			   			
 		    		}
 		    		else
 		    		{	
-		    			log.info("[bonusRedeemption(creditRequest)]:::::::::::FAILED STATUS:::::::::::::::::::::::");
+		    			genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::::::FAILED STATUS:::::::::::::::::::::::");
 		    			intStatus =3;
 		    			respCode ="1000";
 		    			voucherStatus = 1;
-		    			log.info("[bonusRedeemption(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+" DESCRIPTION : FAILURE JSON RESPONSE  EVENTTYPE:10 EVENTDESC : REDEEM:"+transactionMastDetails.getRequestMode() +"STATUS : 3");
+		    			genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]::::::Voucher_redeem TRANSACTIONID : "+subTransactionId+"DESTMSISDN : "+transactionMastDetails.getMsisdn() +"VOUCHERPIN :"+transactionMastDetails.getVoucherNumber()+" DESCRIPTION : FAILURE JSON RESPONSE  EVENTTYPE:10 EVENTDESC : REDEEM:"+transactionMastDetails.getRequestMode() +"STATUS : 3");
 		    			
 		    		}		
 		    	}
 		    }
 		    
-		    
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::intStatus::::::::::"+intStatus);
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::msgIdCombo::::::::::"+msgIdCombo);
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::voucherStatCombo::::::::::"+voucherStatCombo);
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::statusCombo::::::::::"+statusCombo);
 		    
 		    messageId = msgIdCombo.get(String.valueOf(intStatus));
-		    voucherStatus = Integer.parseInt(voucherStatCombo.get(String.valueOf(intStatus)));
+		    //voucherStatus = Integer.parseInt(voucherStatCombo.get(String.valueOf(intStatus)));
 		    mastStatus= Integer.parseInt(statusCombo.get(String.valueOf(intStatus)));
-		    responseInMast = Integer.parseInt(responseHash.get(String.valueOf(voucherStatus)));
+		    responseInMast = Integer.parseInt(responseHash.get(respCode));
+		    
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::voucherStatus::::::::::"+voucherStatus);
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::mastStatus::::::::::"+mastStatus);
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::responseInMast::::::::::"+responseInMast);
 		    
 		    balanceDetails = transactionMastDetails.getResponseDescription() + balanceDetails;
 		    ussdMsg=ussdMsg.replaceAll("__BALDET__", balanceDetails);
@@ -361,15 +402,15 @@ public class BonusRedeemption {
 		    params.put("responseCode",respCode);
 		    params.put("transactionId", String.valueOf(transactionMastDetails.getTransactionId()));
 		    
-		    log.info("[bonusRedeemption(creditRequest)]:::::::query to update TRANSACTION_MAST::::::::::"+query);
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::query to update TRANSACTION_MAST::::::::::"+query);
 		    
 		    try {
 		    	isRecordUpdated = namedDbJdbcTemplate.update(query, params)>0;
-		    	log.info("[bonusRedeemption(creditRequest)]:::::isRecordUpdated into TRANSACTION_MAST:::::::::"+isRecordUpdated);
+		    	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::isRecordUpdated into TRANSACTION_MAST:::::::::"+isRecordUpdated);
 		    }
 		    catch(Exception e)
 		    {
-		    	log.error("[bonusRedeemption(creditRequest)]:::::Exception in updating record into TRANSACTION_MAST table::::::::"+e.getMessage());
+		    	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::Exception in updating record into TRANSACTION_MAST table::::::::"+e.getMessage());
 		    }
 		    
 		    
@@ -380,17 +421,17 @@ public class BonusRedeemption {
 		    params.put("responseCode",respCode);
 		    params.put("responseDescription",responseMapper.getIcpResponse().getDescription());
 		    params.put("icpReferenceId",String.valueOf(responseMapper.getAppTxnRefId()));
-		    params.put("transactionId",String.valueOf(transactionMastDetails.getTransactionId()));
+		    params.put("transactionId",String.valueOf(subTransactionId));
 		 
-		    log.info("[bonusRedeemption(creditRequest)]:::::::query to update TRANSACTION_DET::::::::::"+query);
+		    genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::query to update TRANSACTION_DET::::::::::"+query);
 		    
 		    try {
 		    	isRecordUpdated = namedDbJdbcTemplate.update(query, params)>0;
-		    	log.info("[bonusRedeemption(creditRequest)]:::::isRecordUpdated into TRANSACTION_DET:::::::::"+isRecordUpdated);
+		    	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::isRecordUpdated into TRANSACTION_DET:::::::::"+isRecordUpdated);
 		    }
 		    catch(Exception e)
 		    {
-		    	log.error("[bonusRedeemption(creditRequest)]:::::Exception in updating record into TRANSACTION_DET table::::::::"+e.getMessage());
+		    	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::Exception in updating record into TRANSACTION_DET table::::::::"+e.getMessage());
 		    }
 		    
 		    
@@ -404,15 +445,15 @@ public class BonusRedeemption {
 		    	params.put("balanceDetails", balanceDetails);
 		    	params.put("rechargeDetails", rechargeDetails);
 		    	
-		    	 log.info("[bonusRedeemption(creditRequest)]:::::::query to insert into WVMS_TRANSACTION_MESSAGES::::::::::"+query);
+		    	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::::query to insert into WVMS_TRANSACTION_MESSAGES::::::::::"+query);
 		 	    
 		 	    try {
 		 	    	isRecordInserted = namedDbJdbcTemplate.update(query, params)>0;
-		 	    	log.info("[bonusRedeemption(creditRequest)]:::::isRecordInserted into WVMS_TRANSACTION_MESSAGES:::::::::"+isRecordUpdated);
+		 	    	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::isRecordInserted into WVMS_TRANSACTION_MESSAGES:::::::::"+isRecordUpdated);
 		 	    }
 		 	    catch(Exception e)
 		 	    {
-		 	    	log.error("[bonusRedeemption(creditRequest)]:::::Exception in inserting record into WVMS_TRANSACTION_MESSAGES table::::::::"+e.getMessage());
+		 	    	genericFunction.logFunction(logFileName,"[bonusRedeemption(creditRequest)]:::::Exception in inserting record into WVMS_TRANSACTION_MESSAGES table::::::::"+e.getMessage());
 		 	    }
 		    
 		    }

@@ -83,6 +83,8 @@ public class VoucherEmail {
       @Autowired
       GenericFunctions genericFunctions;
       
+      private String logFileName ="WVMS_VoucherEmail.log";
+      
 	  public int countSeconds = 0;
 	  
 	  @Autowired
@@ -103,7 +105,9 @@ public class VoucherEmail {
 	    	Random random = new Random();
 	    	HashMap<String,Integer> params = new HashMap<String,Integer>();
 	    	
-	    	log.info(":::::::::::::::::[generateVoucherPrint]::::::::::::");
+	    	//log.info(":::::::::::::::::[generateVoucherPrint]::::::::::::");
+	    	genericFunctions.logFunction(logFileName,"::::::::::::::::::::::::::[generateVoucherPrint]:::::::::::::::::::::::::");
+	    	
 	    	
 	    	//To fetch the batch details from WVMS_EMAIL_DET table where status to send the email(0:New Record)
 	    	//=================================================================================================
@@ -134,7 +138,8 @@ public class VoucherEmail {
 			        	params.put("serialEnd", emailRecord.getSerialTo());
 			        	params.put("batchId", emailRecord.getBatchId());
 			        	
-			        	log.info("[generateVoucherPrint]::::::to fetch email details records from WVMS_EMAIL_DET table::::::"+query);
+			        	//log.info("[generateVoucherPrint]::::::to fetch email details records from WVMS_EMAIL_DET table::::::"+query);
+			        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]::::::to fetch email details records from WVMS_EMAIL_DET table::::::"+query);
 			        	
 			        	List<EmailDet> emailDetailsList = namedDbJdbcTemplate.query(query, params,
 			        			(rs,rowNum) -> new EmailDet(
@@ -156,8 +161,8 @@ public class VoucherEmail {
 			        					
 			        					)
 			        			);
-			        			
-			            log.info("[generateVoucherPrint]:::::::emailDet::::::::::::"+emailDetailsList.get(0));
+			        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::emailDet::::::::::::"+emailDetailsList.get(0));		
+			            //log.info("[generateVoucherPrint]:::::::emailDet::::::::::::"+emailDetailsList.get(0));
 			            
 			            //formatting voucher details
 		                //while(emailDetailsList.size()==1)
@@ -177,7 +182,8 @@ public class VoucherEmail {
 			            	    params.put("serialEnd", emailDet.getSerialTo());
 			            	    params.put("batchId",emailDet.getBatchId());
 			            	    
-			            	    log.info("[generateVoucherPrint]::::::to fetch voucher details from VOUCHER_DET table::::::"+query);
+			            	    //log.info("[generateVoucherPrint]::::::to fetch voucher details from VOUCHER_DET table::::::"+query);
+			            	    genericFunctions.logFunction(logFileName,"[generateVoucherPrint]::::::to fetch voucher details from VOUCHER_DET table::::::"+query);	
 			            	    
 			            	    List<VoucherDet> voucherDetails = namedDbJdbcTemplate.query(query, params,
 			            	    		
@@ -199,7 +205,8 @@ public class VoucherEmail {
 			            	}
 			            	else
 			            	{
-			            		log.error("[generateVoucherPrint]::::::::::TO MAIL ID IS MANDATORY:::::::::::::::");
+			            		//log.error("[generateVoucherPrint]::::::::::TO MAIL ID IS MANDATORY:::::::::::::::");
+			            		genericFunctions.logFunction(logFileName,"`[generateVoucherPrint]::::::::::TO MAIL ID IS MANDATORY:::::::::::::::`"+query);	
 			            	}
 			            	
 			            //}
@@ -210,7 +217,8 @@ public class VoucherEmail {
 			            params.put("serialFrom",emailDetailsList.get(0).getSerialFrom());
 		        	    params.put("serialEnd", emailDetailsList.get(0).getSerialTo());
 		        	    
-		        	    log.info("[generateVoucherPrint]::::::to fetch denomaination and voucher quantity from DENOMINATION_MAST and BATCH_MAST table::::::"+query);
+		        	    //log.info("[generateVoucherPrint]::::::to fetch denomaination and voucher quantity from DENOMINATION_MAST and BATCH_MAST table::::::"+query);
+		        	    genericFunctions.logFunction(logFileName,"[generateVoucherPrint]::::::to fetch denomaination and voucher quantity from DENOMINATION_MAST and BATCH_MAST table::::::"+query);	
 		        	    
 			        	DenominationMast denomination = namedDbJdbcTemplate.query(query, params,
 			        			(rs,rowNum)->new DenominationMast(
@@ -238,11 +246,13 @@ public class VoucherEmail {
 			        	
 			        	try {
 			        		isEmailDetTableUpdated = namedDbJdbcTemplate.update(query, params) > 0 ;
-			        		log.info("[generateVoucherPrint]:::::isEmailDetTableUpdated record updated in WVMS_EMAIL_DET Table:::::::"+isEmailDetTableUpdated);  
-				    	}
+			        	    
+			        		genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::isEmailDetTableUpdated record updated in WVMS_EMAIL_DET Table:::::::"+isEmailDetTableUpdated);  
+				    	
+			        	}
 				    	catch(Exception e)
 				    	{
-				    		log.error("[generateVoucherPrint]:::::Error while updation WVMS_EMAIL_DET:::::::"+e.getMessage());
+				    		genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::Error while updation WVMS_EMAIL_DET:::::::"+e.getMessage());
 				    		isEmailDetTableUpdated=false;
 				    	}
 			        	
@@ -277,9 +287,9 @@ public class VoucherEmail {
 				        		}
 				        		
 				        	}
-				        	log.info("[generateVoucherPrint]:::::::::::::csvFileMailBody:::::::::::"+csvFileMailBody);
-				        	log.info("[generateVoucherPrint]:::::::::::::passwordMailBody:::::::::::"+passwordMailBody);
-				        	log.info("[generateVoucherPrint]:::::::::::::superiorMailBody:::::::::::"+superiorMailBody);
+				        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::csvFileMailBody:::::::::::"+csvFileMailBody);
+				        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::passwordMailBody:::::::::::"+passwordMailBody);
+				        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::superiorMailBody:::::::::::"+superiorMailBody);
 				        	
 				        	//reading the emailFileTmeplate into corresponding variables
 				        	
@@ -287,9 +297,9 @@ public class VoucherEmail {
 				        	passwordEmailTemplate = readFileContent(passwordTemplate,vmsHome,vmsCfgDir);
 				        	superiorEmailTemplate = readFileContent(superiorTemplate,vmsHome,vmsCfgDir);
 				        	
-				        	log.info("[generateVoucherPrint]:::::::::::::cvsEmailTemplate:::::::::::"+cvsEmailTemplate);
-				        	log.info("[generateVoucherPrint]:::::::::::::passwordEmailTemplate:::::::::::"+passwordEmailTemplate);
-				        	log.info("[generateVoucherPrint]:::::::::::::superiorEmailTemplate:::::::::::"+superiorEmailTemplate);
+				        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::cvsEmailTemplate:::::::::::"+cvsEmailTemplate);
+				        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::passwordEmailTemplate:::::::::::"+passwordEmailTemplate);
+				        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::superiorEmailTemplate:::::::::::"+superiorEmailTemplate);
 			
 			                //replacing the MAIL_BODY in the emailTemplates to the MAILBODY retrieved from WVMS_MESSAGE_MAST_1 table
 				        	
@@ -300,23 +310,23 @@ public class VoucherEmail {
 				        	
 				        	//replacing the PLACEHOLDERS present in the MAILBODY retrieved from WVMS_MESSAGE_MAST_1 table
 				        	
-				        	log.info("[generateVoucherPrint]::::::::::emailRecord::::::::::::::"+emailRecord);
+				        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]::::::::::emailRecord::::::::::::::"+emailRecord);
 			                 
 				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__BATCHNAME__", emailDet.getBatchName());
 				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__FILENAME__", fileName+".zip");
 				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
 				        	cvsEmailTemplate = cvsEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
 				        	
-				        	log.info("[generateVoucherPrint]:::::::::::::cvsEmailTemplate after replaceAll:::::::::::"+cvsEmailTemplate);
+				        	//log.info("[generateVoucherPrint]:::::::::::::cvsEmailTemplate after replaceAll:::::::::::"+cvsEmailTemplate);
 				      
-				        	log.info("[generateVoucherPrint]::::::filePassword:::::"+filePassword+"::::::batchName:::::"+emailRecord.getBatchName()+":::::::fileName::::::"+fileName+".zip"+"::::::serialEnd::::::"+emailRecord.getSerialTo()+"::::::::::serialStart::::::::"+emailRecord.getSerialFrom());
+				        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]::::::filePassword:::::"+filePassword+"::::::batchName:::::"+emailRecord.getBatchName()+":::::::fileName::::::"+fileName+".zip"+"::::::serialEnd::::::"+emailRecord.getSerialTo()+"::::::::::serialStart::::::::"+emailRecord.getSerialFrom());
 				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__PASSWORD__",String.valueOf(filePassword));
 				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__BATCHNAME__", emailDet.getBatchName());
 				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__FILENAME__", fileName+".zip");
 				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__SERIALEND__",String.valueOf(emailRecord.getSerialTo()));
 				        	passwordEmailTemplate = passwordEmailTemplate.replaceAll("__SERIALSTART__", String.valueOf(emailRecord.getSerialFrom()));
 				        	
-				        	log.info("[generateVoucherPrint]:::::::::::::passwordEmailTemplate after replaceAll:::::::::::"+passwordEmailTemplate);
+				        	//log.info("[generateVoucherPrint]:::::::::::::passwordEmailTemplate after replaceAll:::::::::::"+passwordEmailTemplate);
 				        	
 				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__PASSWORD__", String.valueOf(filePassword));
 				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__BATCHNAME__", emailDet.getBatchName());
@@ -326,32 +336,32 @@ public class VoucherEmail {
 				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__FILEMAIL__",emailDet.getCsvToEmail());
 				        	superiorEmailTemplate = superiorEmailTemplate.replaceAll("__PASSEMAIL__",emailDet.getPassToEmail());
 			
-				        	log.info("[generateVoucherPrint]:::::::::::::superiorEmailTemplate after replaceAll:::::::::::"+superiorEmailTemplate);
+				        	//log.info("[generateVoucherPrint]:::::::::::::superiorEmailTemplate after replaceAll:::::::::::"+superiorEmailTemplate);
 				          	
 				        	isCSVEmailSent = genericFunctions.sendMail(emailDet.getCsvToEmail(),fromMailId,cvsEmailTemplate,csvMailSubject,vmsHome+vmsCfgDir+csvFilePath+fileName+".zip",emailDet.getCsvCCEmail(),emailDet.getCsvBCCEmail(),fromEmailName);
 				        	if(!isCSVEmailSent.equals("1"))
 				        	{	
 				        		//to update WVMS_EMAIL_DET status(5:Failed To Send)
 				        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
-				        		log.error("[generateVoucherPrint]:::::::::::::Unable to send CSV mail::::::::::::::");
+				        		genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::Unable to send CSV mail::::::::::::::");
 				        	}
 				        	
 				        	isPasswordEmailSent = genericFunctions.sendMail(emailDet.getPassToEmail(),fromMailId,passwordEmailTemplate,passwordEmailSubject,"",emailDet.getPassCCEmail(),emailDet.getPassBCCEmail(),fromEmailName);
 				        	if(!isPasswordEmailSent.equals("1"))
 				        	{	
 				        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
-				        		log.error("[generateVoucherPrint]:::::::::::::Unable to send Password mail::::::::::::::");
+				        		genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::Unable to send Password mail::::::::::::::");
 				        	}	 
 				        	
 				        	if(!emailDet.getSuperiorEmail().equals(""))
 				        	{	
-				        		isSuperiorMailSent = genericFunctions.sendMail(emailDet.getSuperiorEmail(),fromMailId,superiorEmailTemplate,superiorEmailSubject,"","","",fromEmailName);
+				        		isSuperiorMailSent = genericFunctions.sendMail(emailDet.getSuperiorEmail(),fromMailId,superiorEmailTemplate,superiorEmailSubject,"",emailDet.getPassCCEmail(),emailDet.getPassBCCEmail(),fromEmailName);
 				      
 				        	}
 				        	if(!isSuperiorMailSent.equals("1"))
 				        	{	
 				        		isEmailDetTableUpdated = updateEmailDet(5,emailRecord.getSerialFrom(),emailRecord.getSerialTo());
-				        		log.error("[generateVoucherPrint]:::::::::::::Unable to send Superior mail::::::::::::::");
+				        		genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::::Unable to send Superior mail::::::::::::::");
 				        	}
 				        	
 				        	//update WVMS_EMAIL_DET status (6:Email Sent)
@@ -370,73 +380,12 @@ public class VoucherEmail {
 	        
 	   }
 	    
-	  
-//	  public static boolean createZipFile (String fileName, String zipFileName, String password) {
-//
-//          try {
-//        	     log.info("[createZipFile]:::::::::::fileName::::::::::::::"+fileName);
-//        	     log.info("[createZipFile]:::::::::::zipFileName::::::::::::::"+zipFileName);
-//        	     log.info("[createZipFile]:::::::::::password::::::::::::::"+password);
-//
-//                  //genObj.writeLog(logFileName,"Inside createZipFile. fileName="+fileName+" | zipFileName="+zipFileName,logFlag);
-//                  //This is name and path of zip file to be created
-//                  //ZipFile zipFile = new ZipFile(zipFileName);
-//        	     ZipFile zipFile = new ZipFile(zipFileName);
-//        	     zipFile.setPassword(password.toCharArray());
-//
-//                  //Add files to be archived into zip file
-//                  ArrayList<File> filesToAdd = new ArrayList<File>();
-//                  filesToAdd.add(new File(fileName));
-//
-//                  //Initiate Zip Parameters which define various properties
-//                  ZipParameters parameters = new ZipParameters();
-//                  parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE); // set compression method to deflate compression
-//
-//                  //DEFLATE_LEVEL_FASTEST     - Lowest compression level but higher speed of compression
-//                  //DEFLATE_LEVEL_FAST        - Low compression level but higher speed of compression
-//                  //DEFLATE_LEVEL_NORMAL  - Optimal balance between compression level/speed
-//                  //DEFLATE_LEVEL_MAXIMUM     - High compression level with a compromise of speed
-//                  //DEFLATE_LEVEL_ULTRA       - Highest compression level but low speed
-//                  parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
-//
-//                  //Set the encryption flag to true
-//                  parameters.setEncryptFiles(true);
-//
-//                  //Set the encryption method to AES Zip Encryption
-//                  parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
-//
-//                  //AES_STRENGTH_128 - For both encryption and decryption
-//                  //AES_STRENGTH_192 - For decryption only
-//                  //AES_STRENGTH_256 - For both encryption and decryption
-//                  //Key strength 192 cannot be used for encryption. But if a zip file already has a
-//                  //file encrypted with key strength of 192, then Zip4j can decrypt this file
-//                  parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);
-//
-//                  //Set password
-//                  parameters.setPassword(password);
-//
-//                  //Now add files to the zip file
-//                  zipFile.addFiles(filesToAdd, parameters);
-//
-//                  log.info("[createZipFile]:::::::::::Successfully created the zip file::::::::::::::");
-//                  //genObj.writeLog(logFileName,logText,logFlag);
-//
-//                  return true;
-//          }
-//          catch (ZipException e)
-//          {
-//        	  log.error("[createZipFile]:::::::::::Exception found while creating the zip. Exception - " + e.getMessage());
-//                  //genObj.writeLog(logFileName,logText,logFlag);
-//                  return false;
-//          }
-//       }
-	    
-	    public static boolean createZipFile(String csvFilePath, String zipFilePath, String password) {
+	    public boolean createZipFile(String csvFilePath, String zipFilePath, String password) {
 	        try {
 	        	
-	        	    log.info("[createZipFile]:::::::::::fileName::::::::::::::"+csvFilePath);
-	        	    log.info("[createZipFile]:::::::::::zipFileName::::::::::::::"+zipFilePath);
-	        	    log.info("[createZipFile]:::::::::::password::::::::::::::"+password);
+	        		genericFunctions.logFunction(logFileName,"[createZipFile]:::::::::::fileName::::::::::::::"+csvFilePath);
+	        		genericFunctions.logFunction(logFileName,"[createZipFile]:::::::::::zipFileName::::::::::::::"+zipFilePath);
+	        		genericFunctions.logFunction(logFileName,"[createZipFile]:::::::::::password::::::::::::::"+password);
 	        	
 		            // Set ZIP parameters
 		            ZipParameters zipParameters = new ZipParameters();
@@ -448,11 +397,11 @@ public class VoucherEmail {
 		            ZipFile zipFile = new ZipFile(zipFilePath, password.toCharArray());
 		            zipFile.addFiles(Collections.singletonList(new File(csvFilePath)), zipParameters);
 	
-		            log.info("[createZipFile]:::::::::::Successfully created the zip file::::::::::::::");
-		            log.info("[createZipFile]:::::::::::ZIP file created successfully:::::::::::::::::::: " + zipFilePath);
+		            genericFunctions.logFunction(logFileName,"[createZipFile]:::::::::::Successfully created the zip file::::::::::::::");
+		            genericFunctions.logFunction(logFileName,"[createZipFile]:::::::::::ZIP file created successfully:::::::::::::::::::: " + zipFilePath);
 		            return true;
 	        } catch (Exception e) {
-	        	log.error("[createZipFile]:::::::::::Exception found while creating the zip. Exception - " + e.getMessage());
+	        	genericFunctions.logFunction(logFileName,"[createZipFile]:::::::::::Exception found while creating the zip. Exception - " + e.getMessage());
 	            System.err.println("Error creating ZIP file: " + e.getMessage());
 	            e.printStackTrace();
 	            return false;
@@ -460,7 +409,7 @@ public class VoucherEmail {
 	    }
 
 	    
-	    private static boolean createFile(String filePath, String content) throws IOException {
+	    private boolean createFile(String filePath, String content) throws IOException {
 	    	try
 	        {
 	    		File file = new File(filePath);
@@ -470,17 +419,17 @@ public class VoucherEmail {
 		        }
 		        catch (Exception e)
 		    	{
-		    		log.error("[generateVoucherPrint]:::::::Error in creating csv file:::::::::::::::"+e.getMessage());
+		        	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::Error in creating csv file:::::::::::::::"+e.getMessage());
 		    		return false;
 		    	}
 		        
 	        }
 	    	catch (Exception e)
 	    	{
-	    		log.error("[generateVoucherPrint]:::::::::::Error in creating csv file:::::::::::::: "+e.getMessage());
+	    		genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::::::::Error in creating csv file:::::::::::::: "+e.getMessage());
 	    		return false;
 	    	}
-	    	log.info("[generateVoucherPrint]::::Successfully created the cvs file::::::::");
+	    	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]::::Successfully created the cvs file::::::::");
     		return true;
 	    	
 	    }
@@ -494,7 +443,7 @@ public class VoucherEmail {
 	    	HashMap<String,Integer> params = new HashMap<String,Integer>();
 	    	
 	    	query = "UPDATE WVMS_EMAIL_DET SET STATUS=:status where SERIAL_FROM=:serialFrom and SERIAL_TO=:serialEnd";
-	    	log.info("[generateVoucherPrint]:::::query to update WVMS_EMAIL_DET:::::::"+query);
+	    	genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::query to update WVMS_EMAIL_DET:::::::"+query);
 	    	params.put("status",status);
 	    	params.put("serialFrom",serialStart);
 	    	params.put("serialEnd",serialEnd);
@@ -505,7 +454,7 @@ public class VoucherEmail {
 	    	}
 	    	catch(Exception e)
 	    	{
-	    		log.error("[generateVoucherPrint]:::::Error while updation WVMS_EMAIL_DET:::::::"+e.getMessage());
+	    		genericFunctions.logFunction(logFileName,"[generateVoucherPrint]:::::Error while updation WVMS_EMAIL_DET:::::::"+e.getMessage());
 	    		return false;
 	    	}
 	    	

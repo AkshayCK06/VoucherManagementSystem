@@ -48,7 +48,7 @@ public class VoucherGenerationService {
 	  @Autowired
 	  private NamedParameterJdbcTemplate namedDbJdbcTemplate;
 	  
-	  private String fileName ="WVMS_VoucherGeneration";
+	  private String fileName ="WVMS_VoucherGeneration.log";
 
 	  
 	  public Response generateVouchers(int batchId) {

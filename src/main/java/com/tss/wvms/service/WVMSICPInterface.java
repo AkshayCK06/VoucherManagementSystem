@@ -59,7 +59,7 @@ public class WVMSICPInterface {
     private String queryTransReq;
 
     @Value("${WVMS_WICP_TRSNACTION_URL}")
-    private  String WVMS_WICP_TRSNACTION_URL;
+    private String WVMS_WICP_TRSNACTION_URL;
 
     @Value("${WVMS_APPLICATION_NAME}")
     private String WVMS_APPLICATION_NAME;
@@ -170,27 +170,36 @@ public class WVMSICPInterface {
 
     public String readReq(String searchString) throws IOException {
 
-        String filePath = vmsHome + vmsCfgDir + "/icpRequest/" + searchString;
-        Path path = Paths.get(filePath);
+         //String filePath = vmsHome + vmsCfgDir + "/icpRequest/" + searchString;
+    	 if (vmsHome == null || vmsCfgDir == null) {
+             System.err.println("Environment variables VMS_HOME or VMS_CFG_DIR are not set!");
+             return "";
+         }
+    	 else
+    	 {	 
+	        String filePath = vmsHome + vmsCfgDir + "/icpRequest/" + searchString;
+	    	Path path = Paths.get(filePath);
+	
+	        if (!Files.exists(path)) {
+	            throw new FileNotFoundException("Cannot open file: " + filePath);
+	        }
+	
+	        // Read file
+	        StringBuilder value = new StringBuilder();
+	        try (RandomAccessFile file = new RandomAccessFile(filePath, "r");
+	                FileChannel fileChannel = file.getChannel();
+	                FileLock lock = fileChannel.lock(0, Long.MAX_VALUE, true)) { // Shared lock (READ mode)
+	
+	            String line;
+	            while ((line = file.readLine()) != null) {
+	                value.append(line).append("\n");
+	            }
+	        }
+	        // Trim any leading or trailing spaces
+	        return value.toString().trim();
 
-        if (!Files.exists(path)) {
-            throw new FileNotFoundException("Cannot open file: " + filePath);
-        }
-
-        // Read file
-        StringBuilder value = new StringBuilder();
-        try (RandomAccessFile file = new RandomAccessFile(filePath, "r");
-                FileChannel fileChannel = file.getChannel();
-                FileLock lock = fileChannel.lock(0, Long.MAX_VALUE, true)) { // Shared lock (READ mode)
-
-            String line;
-            while ((line = file.readLine()) != null) {
-                value.append(line).append("\n");
-            }
-        }
-
-        // Trim any leading or trailing spaces
-        return value.toString().trim();
+    	 }
+       
     }
 
     // public static String readConf(String searchString) throws IOException {

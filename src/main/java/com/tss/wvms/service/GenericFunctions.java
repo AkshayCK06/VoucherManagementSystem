@@ -172,7 +172,11 @@ public class GenericFunctions {
         }
 
         String logFilePath = vmsHome + "/" + vmsLogPath + "/" + logDate + "-" + fileName;
+<<<<<<< Updated upstream
         log.info("[logFunction]::::::::logFilePath:::::::::::::" + logFilePath);
+=======
+        //log.info("[logFunction]::::::::logFilePath:::::::::::::"+logFilePath);
+>>>>>>> Stashed changes
 
         // Append log content to the file
         try {
@@ -183,8 +187,13 @@ public class GenericFunctions {
                 String logEntry = logHours + " :: => " + contentToFile + "\n";
                 writer.write(logEntry);
             }
+<<<<<<< Updated upstream
 
             System.out.println("Log written to: " + logFilePath);
+=======
+            
+            //System.out.println("Log written to: " + logFilePath);
+>>>>>>> Stashed changes
         } catch (IOException e) {
             System.err.println("Error writing log: " + e.getMessage());
         }
