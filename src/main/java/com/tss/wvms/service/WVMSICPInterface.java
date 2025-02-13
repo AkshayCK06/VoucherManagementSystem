@@ -1,6 +1,7 @@
 package com.tss.wvms.service;
 
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -37,37 +38,37 @@ public class WVMSICPInterface {
     private static final Logger logger = LoggerFactory.getLogger(WVMSICPInterface.class);
 
     // Properties from application.properties
-    @Value("${WVMS_WICP_URL}")
+    @Value("${WVMS_ICP_URL}")
     private String configUrl;
 
-    @Value("${wvms.recharge.template}")
+    @Value("${WVMS_ICP_REQUEST}")
     private String rechargeTemplate;
 
-    @Value("${wvms.query.template}")
+    @Value("${WVMS_QUERY_TRANSACTION_REQUEST}")
     private String queryTemplate;
 
     @Value("${VMS_HOME}")
-    private static String vmsHome;
+    private String vmsHome;
 
     @Value("${VMS_CFG_DIR}")
-    private static String vmsCfgDir;
+    private String vmsCfgDir;
 
     @Value("${config.filename}")
-    private static String configFilename;
+    private String configFilename;
 
-    private static String queryTransReq;
+    private String queryTransReq;
 
     @Value("${WVMS_WICP_TRSNACTION_URL}")
-    private static String WVMS_WICP_TRSNACTION_URL;
+    private  String WVMS_WICP_TRSNACTION_URL;
 
     @Value("${WVMS_APPLICATION_NAME}")
-    private static String WVMS_APPLICATION_NAME;
+    private String WVMS_APPLICATION_NAME;
 
     @Value("${WVMS_AUTH_HEADER}")
-    private static String WVMS_AUTH_HEADER;
+    private String WVMS_AUTH_HEADER;
 
     @Value("${WVMS_ICP_GETBUCKET_DETAILS}")
-    private static String WVMS_ICP_GETBUCKET_DETAILS;
+    private String WVMS_ICP_GETBUCKET_DETAILS;
 
     private final RestTemplate restTemplate;
     private final JdbcTemplate jdbcTemplate;
@@ -221,7 +222,7 @@ public class WVMSICPInterface {
     //     return value;
     // }
 
-    public static String sendRequest(String msg, String url) throws IOException {
+    public String sendRequest(String msg, String url) throws IOException {
         System.out.println(" sendRequest : msg = " + msg + " | url=" + url);
 
         // Auth Value

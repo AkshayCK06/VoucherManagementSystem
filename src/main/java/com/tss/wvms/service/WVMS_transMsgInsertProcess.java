@@ -23,7 +23,7 @@ public class WVMS_transMsgInsertProcess {
     // Global variable declarations
     static WVMS_perlDatabase conDb;
     static WVMS_generic generic;
-    static String processId;
+    public static String processId;
     static String SignalFlag = "Y";
     static String logTraceFile;
     static String singleLineLog;
@@ -113,6 +113,7 @@ public class WVMS_transMsgInsertProcess {
         // (Signals already handled above)
 
         while (true) {
+        	System.out.println(":::::::::::::::::::[WVMS_transMsgInsertProcess]:::::::::::::::::::::");
             try {
                 generic.logfunction(logTraceFile, moduleName + " " + processId + " Connecting to Database*** ");
                 conDb = new WVMS_perlDatabase();
@@ -289,7 +290,6 @@ public class WVMS_transMsgInsertProcess {
     
     public static void closePrg() {
         generic.logfunction(logTraceFile, " closing the program ");
-        // In Perl sub, shift(@_) is used to get signal value but here not needed.
         TransMsgDetPrep = null;
         insertOutSMSPrep = null;
         fetchMsgPrep = null;
@@ -349,6 +349,8 @@ class QueryPrepared {
     private boolean executed;
     // For simulation purposes, we use a counter to simulate rows for TransMsgDetPrep.
     private boolean fetchedOnce;
+    private static String processId = WVMS_transMsgInsertProcess.processId;
+ 
     
     public QueryPrepared(String sql) {
         this.sql = sql;
@@ -382,7 +384,7 @@ class QueryPrepared {
                 fetchedOnce = true;
                 // Return a dummy row with 8 columns:
                 // seqId, msgId, transactionId, status, processId, date, balDet, rechargeDet
-                return new Object[]{"1", "MSG100", "TRANS100", "0", WVMS_voucherRedemption.processId, "2023-10-10", "BalanceDetail", "RechargeDetail"};
+                return new Object[]{"1", "MSG100", "TRANS100", "0", processId, "2023-10-10", "BalanceDetail", "RechargeDetail"};
             } else {
                 return null;
             }

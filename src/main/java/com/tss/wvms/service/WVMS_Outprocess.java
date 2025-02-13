@@ -103,6 +103,7 @@ public class WVMS_Outprocess {
 
     private static void mainProcess() {
         while (true) {
+        	System.out.println(":::::::::::::::::::[outProcesss]:::::::::::::::::::::");
             try {
                 if (Signal.equals("Y")) {
                     logger.info(myProgram + " *** inside Signal");
