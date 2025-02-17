@@ -167,16 +167,12 @@ public class GenericFunctions {
         String logHours = timeFormat.format(new Date());
 
         if (vmsHome == null || vmsLogPath == null) {
-            System.err.println("Environment variables VMS_HOME or VMS_LOG_PATH are not set!");
+			System.err.println("Environment variables VMS_HOME or VMS_LOG_PATH are not set!");
             return;
         }
 
         String logFilePath = vmsHome + "/" + vmsLogPath + "/" + logDate + "-" + fileName;
-<<<<<<< Updated upstream
-        log.info("[logFunction]::::::::logFilePath:::::::::::::" + logFilePath);
-=======
         //log.info("[logFunction]::::::::logFilePath:::::::::::::"+logFilePath);
->>>>>>> Stashed changes
 
         // Append log content to the file
         try {
@@ -187,15 +183,11 @@ public class GenericFunctions {
                 String logEntry = logHours + " :: => " + contentToFile + "\n";
                 writer.write(logEntry);
             }
-<<<<<<< Updated upstream
 
-            System.out.println("Log written to: " + logFilePath);
-=======
-            
             //System.out.println("Log written to: " + logFilePath);
->>>>>>> Stashed changes
         } catch (IOException e) {
             System.err.println("Error writing log: " + e.getMessage());
         }
     }
+
 }

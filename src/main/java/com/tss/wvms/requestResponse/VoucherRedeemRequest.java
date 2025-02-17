@@ -3,23 +3,28 @@ package com.tss.wvms.requestResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import jakarta.validation.constraints.NotBlank;
+
 // Specify the root element "WVMS"
 @JsonRootName("WVMS")
 public class VoucherRedeemRequest {
 
     @JsonProperty("VOUCHERFLAG")
+    @NotBlank(message = "Voucher flag is mandatory")
     private String voucherFlag;
 
     @JsonProperty("MSISDN")
+    @NotBlank(message = "MSISDN is mandatory")
     private String msisdn;
 
     @JsonProperty("VOUCHERNO")
+    @NotBlank(message = "Voucher number is mandatory")
     private String voucherNo;
 
-    // Default constructor
+   
     public VoucherRedeemRequest() {}
 
-    // Getters and Setters
+
     public String getVoucherFlag() {
         return voucherFlag;
     }

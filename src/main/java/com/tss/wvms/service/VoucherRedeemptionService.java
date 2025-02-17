@@ -2,8 +2,6 @@ package com.tss.wvms.service;
 
 import java.util.AbstractMap;
 
-
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -168,6 +166,8 @@ public class VoucherRedeemptionService {
 			{
 				responseDescription = "Unable to fetch transaction id";
 				
+				voucherRedeemResponse.resetBalInfo();
+                voucherRedeemResponse.setDenomAmount(null);
 				voucherRedeemResponse.setRespCode("1014");
 				voucherRedeemResponse.setRespDesc(responseDescription);
 				//throw new Exception("1014");
@@ -175,63 +175,69 @@ public class VoucherRedeemptionService {
 			}
 		
 			//parse the request to check the request fields
-			parseRequest(voucherRedeemRequest,transactionId);
-			
-			if(redeemVoucherList.contains(voucherRedeemRequest.toString()))
-	        {
-					responseDescription = "Multiple Duplicate Request";
-					log.error(responseDescription);
-				     
-	                voucherRedeemResponse.setRespCode("1014");
-	                voucherRedeemResponse.setRespDesc(responseDescription);
-	                //throw new Exception("1014");
-	                return voucherRedeemResponse;              
-	        }
-	        else
-	        {
-	                redeemVoucherList.add(voucherRedeemRequest.toString());
-	        }
-		
+			voucherRedeemResponse = parseRequest(voucherRedeemRequest,transactionId);
+			if (voucherRedeemResponse.getRespCode() == null || voucherRedeemResponse.getRespCode().isEmpty())
+			{
+				if(redeemVoucherList.contains(voucherRedeemRequest.toString()))
+		        {
+						responseDescription = "Multiple Duplicate Request";
+						log.error(responseDescription);
+					    
+						voucherRedeemResponse.resetBalInfo();
+                        voucherRedeemResponse.setDenomAmount(null);
+		                voucherRedeemResponse.setRespCode("1014");
+		                voucherRedeemResponse.setRespDesc(responseDescription);
+		                //throw new Exception("1014");
+		                return voucherRedeemResponse;              
+		        }
+		        else
+		        {
+		                redeemVoucherList.add(voucherRedeemRequest.toString());
+		        }
+			}
 			//to validate msisdn, voucher number and serial number format against regular expression.
-			validateData(voucherRedeemRequest,transactionId);
+			voucherRedeemResponse = validateData(voucherRedeemRequest,transactionId);
+			if (voucherRedeemResponse.getRespCode() == null || voucherRedeemResponse.getRespCode().isEmpty())
+			{
+					if(migrationFlag.equals("1"))
+			        {
+							genericFunction.logFunction(logFileName,"[redeemVoucher]::::::::::migrationFlag::::::::::"+migrationFlag);
+			                switch(String.valueOf(voucherRedeemRequest.getVoucherFlag()))
+			                {
+			                        case "2" :
+			                        			genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::(VOUCHER):::::::::::::");
+			                        	        
+			                        			query = "SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)";
+				                                responseData = getData(query,voucherRedeemRequest.getVoucherFlag(),voucherRedeemRequest,transactionId);
+				                                
+				                                genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseData(VOUCHER):::::::::::::"+responseData);
+				                                
+				                                if(responseData == false)
+				                                {
+				                                		responseCode = manageCustomerMast(voucherRedeemRequest,transactionId);
+				                                		genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseCode(VOUCHER):::::::::::::"+responseCode);
+				                                        throw new Exception(responseCode);
+				                                }
+				                                break;
+			                        case "1" :
+			                        	        query = "SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE SERIAL_NUMBER =:serialNumber AND BATCH_ID =:batchId";
+				                        		responseData = getData(query, voucherRedeemRequest.getVoucherFlag(),voucherRedeemRequest,transactionId);
+				                        		genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseData(SERIAL NUMBER):::::::::::::"+responseData);
+				                        		
+				                        		if(responseData == false)
+				                                {
+				                        				genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseCode(SERIAL NUMBER):::::::::::::"+responseCode);
+				                                        throw new Exception("1003");
+				                                }
+				                                break;
+			                        default :
+			                                	throw new Exception("1005");
+			                }
+			        }
+					genericFunction.logFunction(logFileName,"::::;before insert into insertIntoTransactionMast:::::::");
+					responseCode = insertIntoTransactionMast(voucherRedeemRequest,transactionId);
+			}
 			
-			if(migrationFlag.equals("1"))
-	        {
-					genericFunction.logFunction(logFileName,"[redeemVoucher]::::::::::migrationFlag::::::::::"+migrationFlag);
-	                switch(String.valueOf(voucherRedeemRequest.getVoucherFlag()))
-	                {
-	                        case "2" :
-	                        			genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::(VOUCHER):::::::::::::");
-	                        	        
-	                        			query = "SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE VOUCHER_NUMBER = voucherEncrypt(:voucherNumber)";
-		                                responseData = getData(query,voucherRedeemRequest.getVoucherFlag(),voucherRedeemRequest,transactionId);
-		                                
-		                                genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseData(VOUCHER):::::::::::::"+responseData);
-		                                
-		                                if(responseData == false)
-		                                {
-		                                		responseCode = manageCustomerMast(voucherRedeemRequest,transactionId);
-		                                		genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseCode(VOUCHER):::::::::::::"+responseCode);
-		                                        throw new Exception(responseCode);
-		                                }
-		                                break;
-	                        case "1" :
-	                        	        query = "SELECT BATCH_ID,voucherDecrypt(VOUCHER_NUMBER),SERIAL_NUMBER,STATUS FROM VOUCHER_DET WHERE SERIAL_NUMBER =:serialNumber AND BATCH_ID =:batchId";
-		                        		responseData = getData(query, voucherRedeemRequest.getVoucherFlag(),voucherRedeemRequest,transactionId);
-		                        		genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseData(SERIAL NUMBER):::::::::::::"+responseData);
-		                        		
-		                        		if(responseData == false)
-		                                {
-		                        				genericFunction.logFunction(logFileName,"[redeemVoucher]:::::::::::responseCode(SERIAL NUMBER):::::::::::::"+responseCode);
-		                                        throw new Exception("1003");
-		                                }
-		                                break;
-	                        default :
-	                                	throw new Exception("1005");
-	                }
-	        }
-			genericFunction.logFunction(logFileName,"::::;before insert into insertIntoTransactionMast:::::::");
-			responseCode = insertIntoTransactionMast(voucherRedeemRequest,transactionId);
 		}
 		catch (Exception e)
 		{
@@ -253,15 +259,17 @@ public class VoucherRedeemptionService {
 		finally
         {
                 redeemVoucherList.remove(voucherRedeemRequest.toString());
+                voucherRedeemResponse.resetBalInfo();
+                voucherRedeemResponse.setDenomAmount(null);
                 voucherRedeemResponse = constructResponseJson(responseCode,null);
                 genericFunction.logFunction(logFileName,"[processRequest] :: RESPONSE : "+voucherRedeemResponse);
                 genericFunction.logFunction(logFileName,"****************Voucher Redemption completed****************");
+                
+                
         }
 
-
-
-	
 		return voucherRedeemResponse; 
+		
 	}
 	
 	//parse the request to check the request fields
@@ -275,14 +283,16 @@ public class VoucherRedeemptionService {
 			//throw new Exception("1005");
 			voucherRedeemResponse.setRespCode("1005");
 			voucherRedeemResponse.setRespDesc("Request content is null for transactionId:"+transactionId);
+			return voucherRedeemResponse;
            
 		}
-		else if(voucherRedeemRequest.getVoucherFlag().isEmpty() || voucherRedeemRequest.getVoucherNo().isEmpty() || voucherRedeemRequest.getMsisdn().isEmpty())
+		else if((voucherRedeemRequest.getVoucherFlag().equals(null) || voucherRedeemRequest.getVoucherFlag().isEmpty()) || (voucherRedeemRequest.getVoucherNo().equals(null) || voucherRedeemRequest.getVoucherNo().isEmpty()) ||  (voucherRedeemRequest.getMsisdn().equals(null) || voucherRedeemRequest.getMsisdn().isEmpty()))
 		{	
 			genericFunction.logFunction(logFileName,"Invalid Request for transactionId:"+transactionId);
 			//throw new Exception("1005");
 			voucherRedeemResponse.setRespCode("1005");
 			voucherRedeemResponse.setRespDesc("Invalid Request for transactionId:"+transactionId);
+			return voucherRedeemResponse;
             
 		}
 		return voucherRedeemResponse;	
@@ -305,7 +315,8 @@ public class VoucherRedeemptionService {
                             
                     	    //throw new Exception("1008");
                 			voucherRedeemResponse.setRespCode("1008");
-                			voucherRedeemResponse.setRespDesc(responseDescription);
+                			//voucherRedeemResponse.setRespDesc(responseDescription);
+             
                     }
 
                     switch(Integer.parseInt(voucherRedeemRequest.getVoucherFlag()))
@@ -318,7 +329,9 @@ public class VoucherRedeemptionService {
                                     	    
                                             //throw new Exception("1003");
                                 			voucherRedeemResponse.setRespCode("1003");
-                                			voucherRedeemResponse.setRespDesc(responseDescription);
+                                			//voucherRedeemResponse.setRespDesc(responseDescription);
+                                			
+                                			
                                              
                                     }
                                     break;
@@ -331,7 +344,8 @@ public class VoucherRedeemptionService {
                                             String respCode = manageCustomerMast(voucherRedeemRequest,transactionId);
                                             //throw new Exception("respCode");
                                 			voucherRedeemResponse.setRespCode(respCode);
-                                			voucherRedeemResponse.setRespDesc(responseDescription);
+                                			//voucherRedeemResponse.setRespDesc(responseDescription);
+                                			
                                   
                                     }
                                     break;
@@ -345,7 +359,7 @@ public class VoucherRedeemptionService {
                 
                     //throw new Exception("1004");
                     voucherRedeemResponse.setRespCode("1004");
-        			voucherRedeemResponse.setRespDesc(responseDescription);
+        			//voucherRedeemResponse.setRespDesc(responseDescription);
           
             }
             
@@ -404,7 +418,6 @@ public class VoucherRedeemptionService {
             
         	if(!failCounts.isEmpty())
             {	
-            	fraudJson.put("accessNo",voucherRedeemRequest.getMsisdn());
             	fraudJson.put("appTxnRefId",transactionId);
             	fraudJson.put("ocsTxnRefId",transactionId);
             	fraudJson.put("genTime",dateFormat.format(fraudDate));
@@ -1375,6 +1388,8 @@ public class VoucherRedeemptionService {
                     		responseDesc = getResponseDescription(responseCode);
                             transactionDetails.setResponseDescription(responseDesc);
                             
+                            voucherRedeemResponse.resetBalInfo();
+                            voucherRedeemResponse.setDenomAmount(null);
                             voucherRedeemResponse.setRespCode(responseCode);
 	                    	voucherRedeemResponse.setRespDesc(responseDesc);
                     }
@@ -1382,6 +1397,9 @@ public class VoucherRedeemptionService {
                     {
                     		responseDesc = getResponseDescription(responseCode);
                     		transactionDetails.setResponseDescription(responseDesc);
+                    		
+                    		voucherRedeemResponse.resetBalInfo();
+                            voucherRedeemResponse.setDenomAmount(null);
                     		voucherRedeemResponse.setRespCode(responseCode);
 	                    	voucherRedeemResponse.setRespDesc(responseDesc);
                     }
@@ -1422,6 +1440,7 @@ public class VoucherRedeemptionService {
                                                 }
                                             }
                                     }
+                                    
                                     voucherRedeemResponse.setBalInfo(ivrBalInfoList);
                                     voucherRedeemResponse.setDenomAmount(String.valueOf(denominationDetails.getAmount()));
                                   
@@ -1432,7 +1451,10 @@ public class VoucherRedeemptionService {
             }catch(Exception e)
             {
             		genericFunction.logFunction(logFileName,"[constructResponseJson] Execption in constructResponseJson:: "+e.getMessage());
-                    voucherRedeemResponse.setRespCode("1000");
+            		voucherRedeemResponse.resetBalInfo();
+                    voucherRedeemResponse.setDenomAmount(null);
+            		
+            		voucherRedeemResponse.setRespCode("1000");
                     voucherRedeemResponse.setRespDesc("Something went wrong, Please retry after sometime or contact customer care for more Information.");
                   
             }

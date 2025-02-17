@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonRootName("WVMS")
@@ -18,7 +19,7 @@ public class VoucherRedeemResponse {
 	    private String respDesc;
 
 	    @JsonProperty("BALINFO")
-	    private List<BalanceInfo> balInfo;
+	    private List<BalanceInfo> balInfo = new ArrayList<>();
 
 	    @JsonProperty("DENOMAMOUNT")
 	    private String denomAmount;
@@ -45,8 +46,13 @@ public class VoucherRedeemResponse {
 	    }
 
 	    public void setBalInfo(List<BalanceInfo> balInfo) {
-	        this.balInfo = balInfo;
+	    	this.balInfo = new ArrayList<>(balInfo);
 	    }
+	    
+	    public void resetBalInfo() {
+	        this.balInfo.clear(); // Clears old data
+	    }
+
 
 	    public String getDenomAmount() {
 	        return denomAmount;

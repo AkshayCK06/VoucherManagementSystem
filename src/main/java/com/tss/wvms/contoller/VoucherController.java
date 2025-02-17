@@ -5,6 +5,7 @@ package com.tss.wvms.contoller;
 
 import org.springframework.http.MediaType;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import com.tss.wvms.service.VoucherGenerationService;
 import com.tss.wvms.service.VoucherRedeemptionService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -66,12 +68,13 @@ public class VoucherController {
 	 @PostMapping(value = "/redeem", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, 
              produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	 
-	 public VoucherRedeemResponse voucherRedeem(@RequestBody VoucherRedeemRequest request,HttpServletRequest httpRequest) throws Exception {
+	 public VoucherRedeemResponse voucherRedeem(@Valid @RequestBody VoucherRedeemRequest request,HttpServletRequest httpRequest) throws Exception {
 	   
 		log.info("::::::::::::::Received VoucherRedeemRequest:::::::::::::");
 		log.info("::::::::::::::::::::::request:::::::::::::::::::::::::::"+request);
 
 		VoucherRedeemResponse voucherRedeemResponse = new VoucherRedeemResponse();
+		
 		String contentType = httpRequest.getContentType();
         int mediaTypeArgument = 0; 
 
