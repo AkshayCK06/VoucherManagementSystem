@@ -47,7 +47,7 @@ public class WVMSICPInterface {
     @Value("${WVMS_QUERY_TRANSACTION_REQUEST}")
     private String queryTemplate;
 
-    @Value("${VMS_HOME}")
+    @Value("${VMS_HOME}") 
     private String vmsHome;
 
     @Value("${VMS_CFG_DIR}")
