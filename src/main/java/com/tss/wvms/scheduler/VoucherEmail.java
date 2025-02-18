@@ -355,7 +355,7 @@ public class VoucherEmail {
 				        	
 				        	if(!emailDet.getSuperiorEmail().equals(""))
 				        	{	
-				        		isSuperiorMailSent = genericFunctions.sendMail(emailDet.getSuperiorEmail(),fromMailId,superiorEmailTemplate,superiorEmailSubject,"",emailDet.getPassCCEmail(),emailDet.getPassBCCEmail(),fromEmailName);
+				        		isSuperiorMailSent = genericFunctions.sendMail(emailDet.getSuperiorEmail(),fromMailId,superiorEmailTemplate,superiorEmailSubject,"",null,null,fromEmailName);
 				      
 				        	}
 				        	if(!isSuperiorMailSent.equals("1"))

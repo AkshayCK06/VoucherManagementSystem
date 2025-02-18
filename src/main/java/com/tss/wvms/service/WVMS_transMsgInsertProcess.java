@@ -9,15 +9,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
 import sun.misc.Signal;
 import sun.misc.SignalHandler;
 
-
+@Service
 public class WVMS_transMsgInsertProcess {
 
     // Global variable declarations
@@ -36,70 +42,75 @@ public class WVMS_transMsgInsertProcess {
     static QueryPrepared updateTransStat;
     static String sendSmsFlag;
     
-    public static void main(String[] args) {
+    //@Scheduled(fixedDelay = 2000)
+    public void transMsgInsertProcess() {
        
+    	System.out.println(":::::::::::::::::::[WVMS_transMsgInsertProcess]:::::::::::::::::::::");
         // Register signal handlers using sun.misc.Signal
-        Signal.handle(new Signal("TERM"), new SignalHandler() {
-            public void handle(Signal sig) {
-                closePrg();
-            }
-        });
-        Signal.handle(new Signal("INT"), new SignalHandler() {
-            public void handle(Signal sig) {
-                closePrg();
-            }
-        });
-        Signal.handle(new Signal("HUP"), new SignalHandler() {
-            public void handle(Signal sig) {
-                // Mimic: sub { die; };
-                System.exit(1);
-            }
-        });
-        Signal.handle(new Signal("USR1"), new SignalHandler() {
-            public void handle(Signal sig) {
-                handleSignal();
-            }
-        });
+//        Signal.handle(new Signal("TERM"), new SignalHandler() {
+//            public void handle(Signal sig) {
+//                closePrg();
+//            }
+//        });
+//        Signal.handle(new Signal("INT"), new SignalHandler() {
+//            public void handle(Signal sig) {
+//                closePrg();
+//            }
+//        });
+//        Signal.handle(new Signal("HUP"), new SignalHandler() {
+//            public void handle(Signal sig) {
+//                // Mimic: sub { die; };
+//                System.exit(1);
+//            }
+//        });
+//        Signal.handle(new Signal("USR1"), new SignalHandler() {
+//            public void handle(Signal sig) {
+//                handleSignal();
+//            }
+//        });
 
         // Initialize generic and process id handling
         generic = new WVMS_generic();
-        if (args.length < 1) {
-            System.out.println("No Valid Process Id specified, killing the program and exiting");
-            System.exit(0);
-        }
-        processId = args[0];
-        processId = processId.replaceAll("[\\n\\r\\s]", "");
+//        if (args.length < 1) {
+//            System.out.println("No Valid Process Id specified, killing the program and exiting");
+//            System.exit(0);
+//        }
+//        processId = args[0];
+//        processId = processId.replaceAll("[\\n\\r\\s]", "");
         
         // ####### checking for the process id ######
-        if (!processId.matches("^\\d{1,2}$")) {
-            System.out.println("No Valid Process Id specified, killing the program and exiting");
-            System.exit(0);
-        }
-        String myProgram = "WVMS_transMsgInsertProcess.pl";
+//        if (!processId.matches("^\\d{1,2}$")) {
+//            System.out.println("No Valid Process Id specified, killing the program and exiting");
+//            System.exit(0);
+//        }
+//        String myProgram = "WVMS_transMsgInsertProcess.pl";
         
         // ############ Check if process is already running ###############################
         // Execute the command: ps -elf | grep -v grep | grep "myProgram processId"
-        List<String> ret = new ArrayList<String>();
-        try {
-            Process proc = Runtime.getRuntime().exec(new String[]{"sh", "-c", "ps -elf | grep -v grep | grep \"" + myProgram + " " + processId + "\""});
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-            String s = null;
-            while ((s = stdInput.readLine()) != null) {
-                ret.add(s);
-            }
-        } catch(Exception e) {
-            // In case of error continue as if no process is running.
-        }
-        // In Perl, if (0 < $#ret) means if more than one line is returned.
-        if (ret.size() > 1) {
-            System.out.println("Program " + myProgram + " already running with Process Id " + processId);
-            System.exit(0);
-        }
+//        List<String> ret = new ArrayList<String>();
+//        try {
+//            Process proc = Runtime.getRuntime().exec(new String[]{"sh", "-c", "ps -elf | grep -v grep | grep \"" + myProgram + " " + processId + "\""});
+//            BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+//            String s = null;
+//            while ((s = stdInput.readLine()) != null) {
+//                ret.add(s);
+//            }
+//        } catch(Exception e) {
+//            // In case of error continue as if no process is running.
+//        }
+//        // In Perl, if (0 < $#ret) means if more than one line is returned.
+//        if (ret.size() > 1) {
+//            System.out.println("Program " + myProgram + " already running with Process Id " + processId);
+//            System.exit(0);
+//        }
         SignalFlag = "Y";
+        String logDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         // ########## for log writing #########
-        logTraceFile = "WVMS_transMsgInsertProcess_" + processId + ".log";
+        //logTraceFile = "WVMS_transMsgInsertProcess_" + processId + ".log";
+        
+        logTraceFile = "WVMS_transMsgInsertProcess_" + logDate + ".log";
         singleLineLog = "WVMS_transMsgInsertProcessStatus.log";
-        moduleName = "WVMS_transMsgInsertProcess" + processId;
+        moduleName = "WVMS_transMsgInsertProcess";
         // ################## Global declaration ##########
         TransMsgDetPrep = null;
         smsPort = "";
@@ -115,7 +126,7 @@ public class WVMS_transMsgInsertProcess {
         while (true) {
         	System.out.println(":::::::::::::::::::[WVMS_transMsgInsertProcess]:::::::::::::::::::::");
             try {
-                generic.logfunction(logTraceFile, moduleName + " " + processId + " Connecting to Database*** ");
+                generic.logfunction(logTraceFile, moduleName + " Connecting to Database*** ");
                 conDb = new WVMS_perlDatabase();
                 conDb.dbCon();
                 generic.logfunction(logTraceFile, " conDb = " + conDb);
@@ -127,7 +138,7 @@ public class WVMS_transMsgInsertProcess {
                 generic.logfunction(logTraceFile, " Exception: " + e.getMessage());
             }
             if (conDb != null) {
-                generic.logfunction(logTraceFile, moduleName + " " + processId + " Disconnecting from Database*** ");
+                generic.logfunction(logTraceFile, moduleName +" Disconnecting from Database*** ");
                 TransMsgDetPrep = null;
                 insertOutSMSPrep = null;
                 fetchMsgPrep = null;
@@ -148,7 +159,7 @@ public class WVMS_transMsgInsertProcess {
         generic.logfunction(logTraceFile, " mainmainmainmainmain mainmainmainmain ");
         while (true) {
             if (SignalFlag.equals("Y")) {
-                generic.logfunction(logTraceFile, moduleName + " " + processId + "  *** inside Signal");
+                generic.logfunction(logTraceFile, moduleName + " *** inside Signal");
                 SignalFlag = "N";
                 loadQueries();
             }
@@ -165,9 +176,9 @@ public class WVMS_transMsgInsertProcess {
                 // Each row: ($seqId,$msgId,$transactionId,$status,$processId,$date,$balDet,$rechargeDet)
                 String seqId = row[0].toString();
                 String msgId = row[1].toString();
-                String transactionId = row[2].toString();
+                Long transactionId =Long.parseLong(row[2].toString());
                 String status = row[3].toString();
-                String procId = row[4].toString();
+                //String procId = row[4].toString();
                 String date = row[5].toString();
                 String balDet = row[6].toString();
                 String rechargeDet = row[7].toString();
@@ -208,7 +219,7 @@ public class WVMS_transMsgInsertProcess {
         }
     }
     
-    public static Object[] getMsg(String msgId, String transId, String balDet, String rechargeDet) {
+    public static Object[] getMsg(String msgId, long transId, String balDet, String rechargeDet) {
         generic.logfunction(logTraceFile, "msgId=" + msgId + "|transId=" + transId + "|balDet=" + balDet);
         fetchAmtPrep.bind_param(1, transId);
         boolean res = conDb.dbExe(fetchAmtPrep);
@@ -241,7 +252,7 @@ public class WVMS_transMsgInsertProcess {
         }
         String msg = msgRow[0].toString();
         // Perform replacements as in Perl code
-        msg = msg.replaceAll("__TRANSID__", transId);
+        msg = msg.replaceAll("__TRANSID__", transId+"");
         msg = msg.replaceAll("__DET__", rechargeDet);
         msg = msg.replaceAll("__BONUS__", "");
         msg = msg.replaceAll("__AMOUNT__", voucherAmt);
@@ -250,7 +261,7 @@ public class WVMS_transMsgInsertProcess {
         return new Object[]{msg, voucherAmt, subMsisdn};
     }
     
-    public static int insertIntoOutSMS(String msg, String transId, String subMsisdn, String processId) {
+    public static int insertIntoOutSMS(String msg, long transId, String subMsisdn, String processId) {
         insertOutSMSPrep.bind_param(1, subMsisdn);
         insertOutSMSPrep.bind_param(2, msg);
         insertOutSMSPrep.bind_param(3, transId);
@@ -266,7 +277,7 @@ public class WVMS_transMsgInsertProcess {
     }
     
     public static void loadQueries() {
-        String sql = "SELECT SEQ_ID,MESSAGE_ID,TRANSACTION_ID,STATUS,PROCESS_ID,MSG_DATE,BALANCE_DET,RECHARGE_DET FROM WVMS_TRANSACTION_MESSAGES WHERE STATUS=0 and PROCESS_ID=" + processId + " and ROWNUM<10";
+        String sql = "SELECT SEQ_ID,MESSAGE_ID,TRANSACTION_ID,STATUS,PROCESS_ID,MSG_DATE,BALANCE_DET,RECHARGE_DET FROM WVMS_TRANSACTION_MESSAGES WHERE STATUS=0 and ROWNUM<10";
         TransMsgDetPrep = conDb.dbPrep(sql);
         
         smsPort = generic.openConfig("WVMS_SENDSMS_PORT");
@@ -301,7 +312,7 @@ public class WVMS_transMsgInsertProcess {
     
     public static void handleSignal() {
         SignalFlag = "Y";
-        generic.logfunction(logTraceFile, moduleName + " " + processId + "  *** Got SIG 10... Reloding from config***");
+        generic.logfunction(logTraceFile, moduleName + " *** Got SIG 10... Reloding from config***");
         return;
     }
 }
@@ -383,7 +394,7 @@ class QueryPrepared {
             if (!fetchedOnce) {
                 fetchedOnce = true;
                 // Return a dummy row with 8 columns:
-                // seqId, msgId, transactionId, status, processId, date, balDet, rechargeDet
+                //seqId, msgId, transactionId, status, processId, date, balDet, rechargeDet
                 return new Object[]{"1", "MSG100", "TRANS100", "0", processId, "2023-10-10", "BalanceDetail", "RechargeDetail"};
             } else {
                 return null;

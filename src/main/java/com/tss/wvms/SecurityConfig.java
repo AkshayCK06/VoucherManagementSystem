@@ -2,6 +2,9 @@ package com.tss.wvms;
 import java.nio.charset.StandardCharsets;
 
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tss.wvms.generic.Generic;
 import com.tss.wvms.service.VoucherGenerationService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,16 +29,20 @@ public class SecurityConfig implements HandlerInterceptor {
    private String user;
    @Value("${WVMSGUI_API_PASSWORD}")
    private String pass;
-
-//   private Logger log = LoggerFactory.getLogger(SecurityConfig.class);
-
+   
+   @Value("${WVMS_EAPI_UNAME_PWORD}")
+   private String apiAuthUserNamePassword;
   
-   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-           throws Exception {
-      System.out.println("authorization starts................");
+   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+       System.out.println("authorization starts................");
        String requestURI = request.getRequestURI();
        log.info("`url::::::::`" + requestURI);
 
+       Map<String,String> apiUsernamePasswordHash = new HashMap<String,String>();
+       apiUsernamePasswordHash=Generic.stringToHash(apiAuthUserNamePassword,",");
+       
+       log.info(":::::apiUsernamePasswordHash:::::::::"+apiUsernamePasswordHash);
+       
        if (request.getMethod().equalsIgnoreCase("OPTIONS")) {
            // Allow OPTIONS requests for CORS preflight checks
            return true;
@@ -55,13 +63,23 @@ public class SecurityConfig implements HandlerInterceptor {
          String credentials = new String(credDecoded, StandardCharsets.UTF_8);
          // credentials = username:password
          final String[] values = credentials.split(":", 2);
-
-         if (values.length == 2 && values[0].equals(user) && values[1].equals(pass)) {
-        	 log.info("User '{}' successfully authenticated for endpoint '{}'.", values[0], requestURI);
-            return true;
-         } else {
-        	 log.warn("Invalid credentials provided by user '{}' for endpoint '{}'.",
-                  values.length > 0 ? values[0] : "Unknown", requestURI);
+         
+         try {
+        	 if(values.length == 2 && values[1].equals(values[0]) && apiUsernamePasswordHash.get(values[0]).equals(values[1]) && apiUsernamePasswordHash.get(values[1]).equals(values[0]))
+             {	 
+            	 log.info("User '{}' successfully authenticated for endpoint '{}'.", values[0], requestURI);
+                 return true;
+             }
+             else {
+            	 log.warn("Invalid credentials provided by user '{}' for endpoint '{}'.",
+                      values.length > 0 ? values[0] : "Unknown", requestURI);
+             }
+         }
+         catch(Exception e)
+         {
+        	 log.warn("Authorization header missing or invalid for endpoint '{}'.", requestURI);
+             response.setStatus(HttpStatus.UNAUTHORIZED.value());
+             return false;
          }
        }
 

@@ -5,7 +5,7 @@ package com.tss.wvms.contoller;
 
 import org.springframework.http.MediaType;
 
-
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,9 +74,29 @@ public class VoucherController {
 		log.info("::::::::::::::::::::::request:::::::::::::::::::::::::::"+request);
 
 		VoucherRedeemResponse voucherRedeemResponse = new VoucherRedeemResponse();
+		String username="",password="";
 		
 		String contentType = httpRequest.getContentType();
         int mediaTypeArgument = 0; 
+        
+
+        String authHeader = httpRequest.getHeader("Authorization");
+
+        if (authHeader != null && authHeader.startsWith("Basic ")) {
+           
+            String base64Credentials = authHeader.substring("Basic ".length());
+            byte[] decodedBytes = Base64.getDecoder().decode(base64Credentials);
+            String credentials = new String(decodedBytes);
+            
+            String[] values = credentials.split(":", 2);
+            username = values[0];
+            password = values[1];
+
+            log.info("Authenticated Username: {}", username);
+            log.info("Authenticated Password: {}", password);
+        } else {
+            log.warn("No Authorization header found");
+        }
 
         if (MediaType.APPLICATION_JSON_VALUE.equals(contentType)) {
             mediaTypeArgument = 2; // JSON
@@ -97,9 +117,41 @@ public class VoucherController {
             
         }
         
-		VoucherRedeemResponse response = voucherRedeemptionService.redeemVoucher(request);
-	    return response;
+        if(request.getMsisdn() == null || request.getMsisdn().isEmpty() || request.getMsisdn().isBlank())
+        {	
+        	voucherRedeemResponse.setRespCode("1005");
+ 			voucherRedeemResponse.setRespDesc("Invalid Request MSISDN is mandatory");
+ 			return voucherRedeemResponse;
+        }
+        else if(request.getVoucherFlag()==null || request.getVoucherFlag().isBlank() || request.getVoucherFlag().isEmpty())
+		{		
+        	voucherRedeemResponse.setRespCode("1005");
+ 			voucherRedeemResponse.setRespDesc("Invalid Request VOUCHERFLAG is mandatory");
+ 			return voucherRedeemResponse;
+		}
+        else if(request.getVoucherNo() == null || request.getVoucherNo().isBlank() || request.getVoucherNo().isEmpty())
+        {
+        	voucherRedeemResponse.setRespCode("1005");
+ 			voucherRedeemResponse.setRespDesc("Invalid Request VOUCHERNO is mandatory");
+ 			return voucherRedeemResponse;
+        }
+        else
+        {
+        	voucherRedeemResponse = voucherRedeemptionService.redeemVoucher(request,username);
+        	return voucherRedeemResponse;
+        }
+	    
 	 }
      
 	 
 }
+
+
+
+
+
+
+
+
+
+

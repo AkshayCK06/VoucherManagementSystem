@@ -19,6 +19,7 @@ public class VoucherRedeemResponse {
 	    private String respDesc;
 
 	    @JsonProperty("BALINFO")
+	    
 	    private List<BalanceInfo> balInfo = new ArrayList<>();
 
 	    @JsonProperty("DENOMAMOUNT")

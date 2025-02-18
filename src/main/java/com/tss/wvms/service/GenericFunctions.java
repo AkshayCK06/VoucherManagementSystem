@@ -157,6 +157,7 @@ public class GenericFunctions {
     }
 
     public void logFunction(String fileName, String contentToFile) {
+    	log.info("::::::log:::::::"+contentToFile);
         fileName = fileName.replaceAll("\\s", ""); // Remove spaces from filename
 
         // Get current date for log file name
