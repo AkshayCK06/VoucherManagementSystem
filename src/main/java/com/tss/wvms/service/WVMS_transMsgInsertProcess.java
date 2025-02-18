@@ -12,10 +12,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class WVMS_transMsgInsertProcess {
 
@@ -250,7 +254,7 @@ class WVMS_Database {
             try {
                 connection.close();
             } catch (SQLException e) {
-                // Log error if needed
+            e.printStackTrace();
             }
             connection = null;
         }
